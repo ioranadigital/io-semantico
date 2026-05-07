@@ -1,0 +1,24 @@
+import { useEffect } from 'react'
+import { supabase } from '@/lib/supabase'
+
+export function useRealtime(
+  table: string,
+  options?: any,
+  callback?: (payload: any) => void
+) {
+  useEffect(() => {
+    const channel = supabase.channel(`public:${table}`)
+      .on(
+        'postgres_changes',
+        { event: '*', schema: 'public', table },
+        (payload) => {
+          if (callback) callback(payload)
+        }
+      )
+      .subscribe()
+
+    return () => {
+      supabase.removeChannel(channel)
+    }
+  }, [table, callback])
+}

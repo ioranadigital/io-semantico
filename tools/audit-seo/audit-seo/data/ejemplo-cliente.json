@@ -1,0 +1,44 @@
+{
+  "cliente_nombre": "Empresa Ejemplo S.L.",
+  "cliente_url": "https://www.ejemplo.com",
+  "fecha": "2026-04-10",
+  "auditor": "Agencia SEO",
+
+  "score_tecnico": 72,
+  "estado_tecnico": "⚠️ Mejorable",
+  "score_metatags": 85,
+  "estado_metatags": "✅ Bueno",
+  "score_velocidad": 58,
+  "estado_velocidad": "❌ Crítico",
+  "score_total": 72,
+  "estado_total": "⚠️ Mejorable",
+
+  "hallazgos_clave": "- Se detectaron **14 errores 404** en páginas enlazadas desde el menú principal.\n- **3 páginas clave** no tienen meta description.\n- La velocidad de carga en móvil es crítica: LCP promedio de **4.8s**.\n- Existen **8 redirecciones en cadena** que afectan al rastreo.",
+
+  "errores_4xx": "| /productos/antiguos | 404 | /productos |\n| /blog/post-eliminado | 404 | /blog |\n| /contacto-viejo | 410 | Footer |",
+
+  "errores_5xx": "| /api/newsletter | 500 | Error interno del servidor |",
+
+  "redirecciones": "| /inicio | /home | 301 |\n| /home | / | 301 |\n| /quienes-somos | /sobre-nosotros | 302 |",
+
+  "problemas_crawl": "| /categoria/sin-productos | Página vacía sin contenido | Alto |\n| /tag/obsoleto | Thin content (< 100 palabras) | Medio |",
+
+  "auditoria_titles": "| / | Empresa Ejemplo - Inicio | 25 chars | ✅ OK |\n| /productos | Productos | 9 chars | ❌ Muy corto |\n| /blog | null | — | ❌ Falta title |",
+
+  "auditoria_descriptions": "| / | Somos una empresa dedicada a... | 145 chars | ✅ OK |\n| /productos | null | — | ❌ Falta |\n| /contacto | Contacta con nosotros para más información sobre nuestros servicios y productos disponibles en toda España | 103 chars | ✅ OK |",
+
+  "auditoria_h1": "| / | Bienvenidos a Empresa Ejemplo | ✅ OK |\n| /productos | null | ❌ Falta H1 |\n| /blog | Blog - Últimas noticias | ✅ OK |",
+
+  "lcp": "4.8s",
+  "estado_lcp": "❌ Crítico",
+  "inp": "180ms",
+  "estado_inp": "✅ OK",
+  "cls": "0.08",
+  "estado_cls": "✅ OK",
+
+  "tiempos_carga": "| / | 0.9s | 2.1s | 5.2s |\n| /productos | 1.2s | 3.4s | 7.8s |\n| /contacto | 0.7s | 1.8s | 3.9s |",
+
+  "recursos_lentos": "| /wp-content/uploads/banner-hero.jpg | Imagen | 2.4 MB | 3.1s |\n| /wp-includes/js/jquery.min.js | JavaScript | 89 KB | 0.8s |\n| /fonts/custom-font.woff2 | Fuente | 340 KB | 1.2s |",
+
+  "recomendaciones": "| 🔴 Alta | Velocidad | Imagen hero de 2.4 MB sin optimizar | Comprimir y convertir a WebP | Alto |\n| 🔴 Alta | Errores técnicos | 14 errores 404 en páginas enlazadas | Redirigir o corregir enlaces rotos | Alto |\n| 🟡 Media | Meta tags | Página /productos sin title ni H1 | Añadir title optimizado y H1 | Medio |\n| 🟡 Media | Técnico | 8 redirecciones en cadena | Apuntar directamente a la URL final | Medio |\n| 🟢 Baja | Meta tags | 3 páginas sin meta description | Redactar meta descriptions únicas | Bajo |"
+}

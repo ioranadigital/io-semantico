@@ -1,0 +1,126 @@
+/* Layout responsivo para ClienteContrato */
+
+.cliente-contrato-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cliente-contrato-header {
+  width: 100%;
+  flex-basis: 100%;
+}
+
+.cliente-contrato-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.cliente-contrato-tab-contrato {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.cliente-contrato-paquete {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cliente-contrato-metricas {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cliente-contrato-metricas-bar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 8px;
+}
+
+.cliente-contrato-action-buttons {
+  background: #f5f7f9;
+  border-radius: 10px;
+  padding: 14px 16px;
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.cliente-contrato-tab-servicios {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  width: 100%;
+}
+
+.cliente-contrato-servicios-left {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cliente-contrato-servicios-right {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cliente-contrato-paquetes-title {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(10, 43, 73, 0.55);
+  padding: 12px 0 8px 0;
+  margin-bottom: 4px;
+}
+
+/* Layout responsive para pantallas grandes */
+@media (min-width: 1400px) {
+  .cliente-contrato-tab-servicios {
+    grid-template-columns: 30% 70%;
+    gap: 16px;
+  }
+
+  .cliente-contrato-servicios-left {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .cliente-contrato-servicios-right {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .cliente-contrato-servicios-full {
+    grid-column: 1 / -1;
+  }
+}
+
+/* Para móviles */
+@media (max-width: 768px) {
+  .cliente-contrato-wrapper,
+  .cliente-contrato-content,
+  .cliente-contrato-tab-contrato,
+  .cliente-contrato-tab-servicios {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .cliente-contrato-tab-servicios {
+    grid-template-columns: 1fr;
+  }
+
+  .cliente-contrato-metricas-bar {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  }
+}

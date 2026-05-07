@@ -1,0 +1,249 @@
+{
+  "name": "Audit SEO → Gmail + Google Slides",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "audit-seo",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "node-webhook",
+      "name": "Webhook — Recibir petición",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [200, 300],
+      "webhookId": "audit-seo-trigger"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://89.167.103.147:3700/audit",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [{ "name": "Content-Type", "value": "application/json" }]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"url\": \"{{ $json.body.url }}\",\n  \"cliente\": \"{{ $json.body.cliente }}\",\n  \"extra_urls\": {{ $json.body.extra_urls ? JSON.stringify($json.body.extra_urls) : '[]' }},\n  \"split_slides\": true\n}",
+        "options": { "timeout": 180000 }
+      },
+      "id": "node-audit",
+      "name": "HTTP — Lanzar auditoría",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [440, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const data = $input.first().json;\nconst slides = data.slides ?? [];\nconst cliente = data.cliente ?? 'Cliente';\nconst fecha = data.fecha ?? new Date().toISOString().slice(0,10);\nconst siteUrl = data.url ?? '';\n\nfunction stripMd(text) {\n  return text\n    .replace(/^#{1,6}\\s+/gm, '')\n    .replace(/\\*\\*(.*?)\\*\\*/g, '$1')\n    .replace(/\\*(.*?)\\*/g, '$1')\n    .replace(/`(.*?)`/g, '$1')\n    .replace(/^\\|(.+)\\|$/gm, (m, content) => {\n      const cells = content.split('|').map(c => c.trim()).filter(c => c && !c.match(/^[-:\\s]+$/));\n      return cells.length ? cells.join('  |  ') : '';\n    })\n    .replace(/^[-:\\s|]+$/gm, '')\n    .replace(/---+/gm, '')\n    .replace(/^\\s*[-*+]\\s+/gm, '• ')\n    .replace(/\\n{3,}/g, '\\n\\n')\n    .trim();\n}\n\nconst sectionsHtml = slides.map((slide, i) => {\n  const title = slide.match(/^# (.+)/m)?.[1] ?? `Sección ${i+1}`;\n  const body = slide.replace(/^# .+/m, '').trim();\n  const htmlBody = body\n    .replace(/\\*\\*(.*?)\\*\\*/g, '<strong>$1</strong>')\n    .replace(/## (.+)/g, '<h3 style=\"color:#444;margin:12px 0 4px\">$1</h3>')\n    .replace(/\\|[^\\n]+\\|/gm, (m) => {\n      const cells = m.split('|').filter(c => c.trim() && !c.match(/^[-:\\s]+$/));\n      return '<span style=\"font-family:monospace;font-size:12px\">' + cells.map(c => c.trim()).join(' │ ') + '</span>';\n    })\n    .replace(/^\\s*[-*+]\\s+(.+)/gm, '<li>$1</li>')\n    .replace(/\\n/g, '<br>');\n  return `<div style=\"margin-bottom:28px\">\n    <h2 style=\"color:#1a73e8;border-bottom:2px solid #e8f0fe;padding-bottom:8px;margin-bottom:12px\">${title}</h2>\n    <div style=\"line-height:1.6\">${htmlBody}</div>\n  </div>`;\n}).join('\\n');\n\nconst slidesRequests = [];\nslides.forEach((slide, index) => {\n  const slideId = `slide_${index}`;\n  const titleId = `titlebox_${index}`;\n  const bodyId  = `bodybox_${index}`;\n  const title   = slide.match(/^# (.+)/m)?.[1] ?? `Sección ${index+1}`;\n  const body    = stripMd(slide.replace(/^# .+\\n?/m, '')).slice(0, 3000);\n  slidesRequests.push({ createSlide: { objectId: slideId, insertionIndex: index, slideLayoutReference: { predefinedLayout: 'BLANK' } } });\n  slidesRequests.push({ createShape: { objectId: titleId, shapeType: 'TEXT_BOX', elementProperties: { pageObjectId: slideId, size: { width: { magnitude: 580, unit: 'PT' }, height: { magnitude: 50, unit: 'PT' } }, transform: { scaleX: 1, scaleY: 1, translateX: 30, translateY: 20, unit: 'PT' } } } });\n  slidesRequests.push({ insertText: { objectId: titleId, insertionIndex: 0, text: title } });\n  slidesRequests.push({ updateTextStyle: { objectId: titleId, style: { bold: true, fontSize: { magnitude: 22, unit: 'PT' }, foregroundColor: { opaqueColor: { rgbColor: { red: 0.1, green: 0.45, blue: 0.93 } } } }, fields: 'bold,fontSize,foregroundColor' } });\n  const bodyText = body || '(sin datos disponibles)';\n  slidesRequests.push({ createShape: { objectId: bodyId, shapeType: 'TEXT_BOX', elementProperties: { pageObjectId: slideId, size: { width: { magnitude: 580, unit: 'PT' }, height: { magnitude: 290, unit: 'PT' } }, transform: { scaleX: 1, scaleY: 1, translateX: 30, translateY: 80, unit: 'PT' } } } });\n  slidesRequests.push({ insertText: { objectId: bodyId, insertionIndex: 0, text: bodyText } });\n  slidesRequests.push({ updateTextStyle: { objectId: bodyId, style: { fontSize: { magnitude: 11, unit: 'PT' } }, fields: 'fontSize' } });\n});\n\nreturn [{ json: { ...data, sectionsHtml, emailSubject: `Informe SEO — ${cliente} — ${fecha}`, slidesRequests } }];"
+      },
+      "id": "node-prepare",
+      "name": "Code — Preparar datos",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [680, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://slides.googleapis.com/v1/presentations",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "googleSlidesOAuth2Api",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"title\": \"Informe SEO — {{ $('Code — Preparar datos').first().json.cliente }} — {{ $('Code — Preparar datos').first().json.fecha }}\"\n}",
+        "options": {}
+      },
+      "id": "node-create-slides",
+      "name": "Google Slides — Crear presentación",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [920, 300],
+      "credentials": {
+        "googleSlidesOAuth2Api": {
+          "id": "REEMPLAZA_CON_TU_CREDENTIAL_ID",
+          "name": "Google Slides OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "return [{ json: { clInformesId: '1Te1oT0aRl7I2ko7DJ_Teh1sF2Hjl4QY2' } }];"
+      },
+      "id": "node-clinformes-id",
+      "name": "Code — ID CL-INFORMES",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1160, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://www.googleapis.com/drive/v3/files",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "googleDriveOAuth2Api",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"name\": \"{{ $('Code — Preparar datos').first().json.cliente }} - {{ $('Code — Preparar datos').first().json.fecha }}\",\n  \"mimeType\": \"application/vnd.google-apps.folder\",\n  \"parents\": [\"{{ $json.clInformesId }}\"]\n}",
+        "options": {}
+      },
+      "id": "node-create-subfolder",
+      "name": "Drive — Crear subcarpeta cliente",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1400, 300],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "REEMPLAZA_CON_TU_CREDENTIAL_ID",
+          "name": "Google Drive OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "PATCH",
+        "url": "=https://www.googleapis.com/drive/v3/files/{{ $('Google Slides — Crear presentación').first().json.presentationId }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "googleDriveOAuth2Api",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            { "name": "addParents",    "value": "={{ $json.id }}" },
+            { "name": "removeParents", "value": "root" },
+            { "name": "fields",        "value": "id,parents" }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{}",
+        "options": {}
+      },
+      "id": "node-move-presentation",
+      "name": "Drive — Mover presentación",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1640, 300],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "REEMPLAZA_CON_TU_CREDENTIAL_ID",
+          "name": "Google Drive OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://slides.googleapis.com/v1/presentations/{{ $('Google Slides — Crear presentación').first().json.presentationId }}:batchUpdate",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "googleSlidesOAuth2Api",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"requests\": [{\n    \"deleteObject\": {\n      \"objectId\": \"{{ $('Google Slides — Crear presentación').first().json.slides[0].objectId }}\"\n    }\n  }]\n}",
+        "options": {}
+      },
+      "id": "node-delete-slide",
+      "name": "Google Slides — Eliminar slide vacío",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1880, 300],
+      "credentials": {
+        "googleSlidesOAuth2Api": {
+          "id": "REEMPLAZA_CON_TU_CREDENTIAL_ID",
+          "name": "Google Slides OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://slides.googleapis.com/v1/presentations/{{ $('Google Slides — Crear presentación').first().json.presentationId }}:batchUpdate",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "googleSlidesOAuth2Api",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"requests\": {{ JSON.stringify($('Code — Preparar datos').first().json.slidesRequests) }}\n}",
+        "options": {}
+      },
+      "id": "node-add-slides",
+      "name": "Google Slides — Añadir slides",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [2120, 300],
+      "credentials": {
+        "googleSlidesOAuth2Api": {
+          "id": "REEMPLAZA_CON_TU_CREDENTIAL_ID",
+          "name": "Google Slides OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const auditData = $('Code — Preparar datos').first().json;\nconst presId    = $('Google Slides — Crear presentación').first().json.presentationId;\nconst presUrl   = `https://docs.google.com/presentation/d/${presId}/edit`;\nconst cliente   = auditData.cliente;\nconst fecha     = auditData.fecha;\nconst siteUrl   = auditData.url;\n\nconst slidesButton = `\n<div style=\"text-align:center;margin:0 0 32px\">\n  <a href=\"${presUrl}\"\n     style=\"display:inline-block;background:#1a73e8;color:white;text-decoration:none;\n            padding:14px 32px;border-radius:8px;font-size:16px;font-weight:bold;\n            box-shadow:0 2px 8px rgba(26,115,232,0.4)\">\n    📊 Ver presentación en Google Slides\n  </a>\n  <p style=\"color:#666;font-size:13px;margin-top:10px\">${presUrl}</p>\n</div>`;\n\nconst emailHtml = `<!DOCTYPE html>\n<html><body style=\"font-family:Arial,sans-serif;max-width:820px;margin:0 auto;padding:24px;color:#333\">\n  <div style=\"background:linear-gradient(135deg,#1a73e8,#0d47a1);color:white;padding:24px;border-radius:10px;margin-bottom:28px\">\n    <h1 style=\"margin:0;font-size:24px\">Informe SEO — ${cliente}</h1>\n    <p style=\"margin:8px 0 0;opacity:0.9\">🌐 ${siteUrl} &nbsp;|&nbsp; 📅 ${fecha}</p>\n  </div>\n  ${slidesButton}\n  ${auditData.sectionsHtml}\n  <p style=\"color:#aaa;font-size:11px;margin-top:36px;border-top:1px solid #eee;padding-top:12px\">\n    Generado automáticamente por audit-seo\n  </p>\n</body></html>`;\n\nconst emailSubject = `${auditData.emailSubject} | 📊 docs.google.com/presentation/d/${presId}`;\n\nreturn [{ json: { ...auditData, emailHtml, emailSubject, presId, presUrl } }];"
+      },
+      "id": "node-email-with-link",
+      "name": "Code — Email con link de slides",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [2360, 300]
+    },
+    {
+      "parameters": {
+        "sendTo": "honatuya@gmail.com",
+        "subject": "={{ $json.emailSubject }}",
+        "emailType": "html",
+        "message": "={{ $json.emailHtml }}",
+        "options": {}
+      },
+      "id": "node-gmail",
+      "name": "Gmail — Enviar informe",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [2600, 300],
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "REEMPLAZA_CON_TU_CREDENTIAL_ID",
+          "name": "Gmail OAuth2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const data  = $('Code — Email con link de slides').first().json;\nreturn [{\n  json: {\n    ok: true,\n    cliente:          data.cliente,\n    fecha:            data.fecha,\n    total_slides:     data.total_slides,\n    gmail_enviado:    true,\n    presentacion_id:  data.presId,\n    presentacion_url: data.presUrl,\n    carpeta_drive:    `CL-INFORMES / ${data.cliente} - ${data.fecha}`,\n  }\n}];"
+      },
+      "id": "node-final",
+      "name": "Code — Respuesta final",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [2840, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify($json) }}",
+        "options": {}
+      },
+      "id": "node-response",
+      "name": "Webhook — Responder",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [3080, 300]
+    }
+  ],
+  "connections": {
+    "Webhook — Recibir petición":         { "main": [[{ "node": "HTTP — Lanzar auditoría",              "type": "main", "index": 0 }]] },
+    "HTTP — Lanzar auditoría":            { "main": [[{ "node": "Code — Preparar datos",                "type": "main", "index": 0 }]] },
+    "Code — Preparar datos":              { "main": [[{ "node": "Google Slides — Crear presentación",   "type": "main", "index": 0 }]] },
+    "Google Slides — Crear presentación": { "main": [[{ "node": "Code — ID CL-INFORMES",                "type": "main", "index": 0 }]] },
+    "Code — ID CL-INFORMES":              { "main": [[{ "node": "Drive — Crear subcarpeta cliente",     "type": "main", "index": 0 }]] },
+    "Drive — Crear subcarpeta cliente":   { "main": [[{ "node": "Drive — Mover presentación",           "type": "main", "index": 0 }]] },
+    "Drive — Mover presentación":         { "main": [[{ "node": "Google Slides — Eliminar slide vacío", "type": "main", "index": 0 }]] },
+    "Google Slides — Eliminar slide vacío": { "main": [[{ "node": "Google Slides — Añadir slides",     "type": "main", "index": 0 }]] },
+    "Google Slides — Añadir slides":      { "main": [[{ "node": "Code — Email con link de slides",     "type": "main", "index": 0 }]] },
+    "Code — Email con link de slides":    { "main": [[{ "node": "Gmail — Enviar informe",               "type": "main", "index": 0 }]] },
+    "Gmail — Enviar informe":             { "main": [[{ "node": "Code — Respuesta final",               "type": "main", "index": 0 }]] },
+    "Code — Respuesta final":             { "main": [[{ "node": "Webhook — Responder",                  "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" },
+  "meta": { "templateCreatedBy": "audit-seo" }
+}

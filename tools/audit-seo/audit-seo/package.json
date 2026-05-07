@@ -1,0 +1,13 @@
+{
+  "name": "audit-seo",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "audit": "node collect.js",
+    "generate": "node generate.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.10.0"
+  }
+}

@@ -1,0 +1,12 @@
+# --- IORANA DIGITAL: SEO & Dev Standard ---
+node_modules/
+dist/
+build/
+.next/
+.turbo/
+out/
+*.log
+.env*
+.DS_Store
+.vite
+.local

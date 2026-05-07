@@ -1,0 +1,106 @@
+/* ── Reset & base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #ffffff;
+  --bg-2: #f7f7f5;
+  --bg-3: #f0efeb;
+  --text: #1a1a18;
+  --text-2: #6b6b67;
+  --text-3: #9b9b97;
+  --border: rgba(0,0,0,0.10);
+  --border-2: rgba(0,0,0,0.18);
+  --radius: 10px;
+  --radius-sm: 6px;
+  --ok: #16a34a;
+  --ok-bg: #f0fdf4;
+  --ok-border: #bbf7d0;
+  --warn: #b45309;
+  --warn-bg: #fffbeb;
+  --warn-border: #fde68a;
+  --crit: #dc2626;
+  --crit-bg: #fef2f2;
+  --crit-border: #fecaca;
+  --info: #1d4ed8;
+  --info-bg: #eff6ff;
+  --info-border: #bfdbfe;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg-3);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1c1c1a;
+    --bg-2: #252523;
+    --bg-3: #141413;
+    --text: #e8e8e4;
+    --text-2: #9b9b97;
+    --text-3: #6b6b67;
+    --border: rgba(255,255,255,0.10);
+    --border-2: rgba(255,255,255,0.18);
+    --ok: #4ade80;
+    --ok-bg: #052e16;
+    --ok-border: #166534;
+    --warn: #fbbf24;
+    --warn-bg: #1c1200;
+    --warn-border: #92400e;
+    --crit: #f87171;
+    --crit-bg: #1a0000;
+    --crit-border: #991b1b;
+    --info: #60a5fa;
+    --info-bg: #0c1a3a;
+    --info-border: #1e3a8a;
+  }
+}
+
+body { min-height: 100vh; }
+
+input, select, textarea, button {
+  font-family: inherit;
+  font-size: 13px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="number"],
+select,
+textarea {
+  width: 100%;
+  padding: 7px 10px;
+  border: 0.5px solid var(--border-2);
+  border-radius: var(--radius-sm);
+  background: var(--bg);
+  color: var(--text);
+  transition: border-color 0.15s;
+  outline: none;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--info);
+  box-shadow: 0 0 0 3px var(--info-bg);
+}
+
+textarea { resize: vertical; min-height: 80px; font-family: monospace; }
+
+button {
+  cursor: pointer;
+  border: 0.5px solid var(--border-2);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text);
+  padding: 7px 14px;
+  transition: background 0.12s, transform 0.1s;
+}
+button:hover { background: var(--bg-2); }
+button:active { transform: scale(0.98); }
+button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+a { color: var(--info); }
+
+/* scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-2); border-radius: 3px; }

@@ -1,0 +1,233 @@
+{
+  "name": "SEO Lead Pipeline",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "seo-lead",
+        "responseMode": "responseNode"
+      },
+      "id": "webhook",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "=https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url={{$node[\"webhook\"].json.url}}&strategy=mobile&key={{$env.PSI_API_KEY}}&category=performance&category=seo&category=accessibility&category=best-practices",
+        "options": {
+          "timeout": 60,
+          "allowUnauthorizedCerts": false
+        }
+      },
+      "id": "psi_mobile",
+      "name": "PSI Mobile",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [450, 200],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "=https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url={{$node[\"webhook\"].json.url}}&strategy=desktop&key={{$env.PSI_API_KEY}}&category=performance&category=seo&category=accessibility&category=best-practices",
+        "options": {
+          "timeout": 60,
+          "allowUnauthorizedCerts": false
+        }
+      },
+      "id": "psi_desktop",
+      "name": "PSI Desktop",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [450, 350],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/messages",
+        "authentication": "genericCredentialType",
+        "genericCredentialType": "httpHeaderAuth",
+        "headers": {
+          "anthropic-version": "2023-06-01",
+          "x-api-key": "={{$env.ANTHROPIC_API_KEY}}"
+        },
+        "body": "{\n  \"model\": \"claude-sonnet-4-20250514\",\n  \"max_tokens\": 1500,\n  \"system\": \"Eres un consultor SEO experto. Responde siempre en español. El usuario te proporciona datos de análisis PSI de un sitio web. Debes generar: 1 párrafo diagnóstico (máx 100 palabras), lista de Top 3 problemas, lista de Top 3 oportunidades, y 5 recomendaciones priorizadas. Responde en JSON con keys: diagnostico, problemas, oportunidades, recomendaciones\",\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"Sitio: {{$node[\\\"webhook\\\"].json.url}}\\nSector: {{$node[\\\"webhook\\\"].json.sector}}\\nPerf Móvil: {{$node[\\\"psi_mobile\\\"].json.lighthouseResult.categories.performance.score}}\\nSEO Score: {{$node[\\\"psi_mobile\\\"].json.lighthouseResult.categories.seo.score}}\\nLCP: {{$node[\\\"psi_mobile\\\"].json.lighthouseResult.audits['largest-contentful-paint'].numericValue}}ms\"\n    }\n  ]\n}",
+        "options": {
+          "timeout": 30
+        }
+      },
+      "id": "claude_analysis",
+      "name": "Claude Analysis",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [650, 275],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "functionCode": "const psiMobile = $input.all()[0].json['psi_mobile']?.json || {};\nconst psiDesktop = $input.all()[1].json['psi_desktop']?.json || {};\nconst claudeResponse = $input.all()[2].json['claude_analysis']?.json?.content?.[0]?.text || '{}';\n\nlet claudeData = {};\ntry {\n  claudeData = JSON.parse(claudeResponse);\n} catch (e) {\n  claudeData = { diagnostico: 'Análisis completado', problemas: [], oportunidades: [], recomendaciones: [] };\n}\n\nconst perfMobile = psiMobile.lighthouseResult?.categories?.performance?.score ?? 0;\nconst perfDesktop = psiDesktop.lighthouseResult?.categories?.performance?.score ?? 0;\nconst seoScore = psiMobile.lighthouseResult?.categories?.seo?.score ?? 0;\nconst lcp = psiMobile.lighthouseResult?.audits?.['largest-contentful-paint']?.numericValue ?? 0;\nconst inp = psiMobile.lighthouseResult?.audits?.['interaction-to-next-paint']?.numericValue ?? 0;\nconst cls = psiMobile.lighthouseResult?.audits?.['cumulative-layout-shift']?.numericValue ?? 0;\n\nlet score = 0;\nif (perfMobile > 0.75) score += 2; else if (perfMobile > 0.5) score += 1;\nif (seoScore > 0.8) score += 2; else if (seoScore > 0.6) score += 1;\nif (lcp <= 2500) score += 2; else if (lcp <= 4000) score += 1;\nif (perfDesktop > 0.9) score += 2; else if (perfDesktop > 0.7) score += 1;\nif (cls <= 0.1) score += 2; else if (cls <= 0.25) score += 1;\nscore = Math.min(Math.max(score, 0), 20);\n\nconst semaphore = score >= 15 ? 'green' : score >= 10 ? 'orange' : 'red';\n\nreturn {\n  score,\n  semaphore,\n  perfMobile: Math.round(perfMobile * 100),\n  perfDesktop: Math.round(perfDesktop * 100),\n  seoScore: Math.round(seoScore * 100),\n  lcp,\n  inp,\n  cls,\n  diagnostico: claudeData.diagnostico || 'Análisis completado',\n  problemas: claudeData.problemas || [],\n  oportunidades: claudeData.oportunidades || [],\n  recomendaciones: claudeData.recomendaciones || []\n};"
+      },
+      "id": "process_data",
+      "name": "Process & Calculate",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [850, 275]
+    },
+    {
+      "parameters": {
+        "toEmail": "honatuya@gmail.com",
+        "subject": "[SEO Agent] Nuevo análisis — {{$node[\"webhook\"].json.nombre}} ({{$node[\"webhook\"].json.url}})",
+        "htmlMessage": "<h2>Nuevo Lead - {{$node[\"webhook\"].json.modo}}</h2><p><strong>Nombre:</strong> {{$node[\"webhook\"].json.nombre}}</p><p><strong>Email:</strong> {{$node[\"webhook\"].json.email}}</p><p><strong>URL:</strong> {{$node[\"webhook\"].json.url}}</p><p><strong>Sector:</strong> {{$node[\"webhook\"].json.sector}}</p><p><strong>Score SEO:</strong> {{$node[\"process_data\"].json.score}}/20</p><p><strong>Performance Móvil:</strong> {{$node[\"process_data\"].json.perfMobile}}</p><p><strong>SEO Score:</strong> {{$node[\"process_data\"].json.seoScore}}</p><p><strong>Prioridad:</strong> {{$node[\"webhook\"].json.prioridad || 'Normal'}}</p><p><strong>Notas Internas:</strong></p><p>{{$node[\"webhook\"].json.notas_internas || 'N/A'}}</p>",
+        "options": {}
+      },
+      "id": "email_consultant",
+      "name": "Email to Consultant",
+      "type": "n8n-nodes-base.sendGrid",
+      "typeVersion": 1,
+      "position": [1050, 150],
+      "continueOnFail": false
+    },
+    {
+      "parameters": {
+        "toEmail": "={{$node[\"webhook\"].json.email}}",
+        "subject": "Tu informe SEO gratuito — {{$node[\"webhook\"].json.url}}",
+        "htmlMessage": "<h2>Hola {{$node[\"webhook\"].json.nombre}},</h2><p>Agradecemos tu interés. Aquí está tu análisis SEO:</p><p><strong>Puntuación SEO:</strong> {{$node[\"process_data\"].json.score}}/20 ({{$node[\"process_data\"].json.semaphore})})</p><h3>Diagnóstico</h3><p>{{$node[\"process_data\"].json.diagnostico}}</p><h3>Top 3 Problemas</h3><ul>{{$node[\"process_data\"].json.problemas.map((p, i) => '<li>' + (i+1) + '. ' + p + '</li>').join('')}}</ul><h3>Top 3 Oportunidades</h3><ul>{{$node[\"process_data\"].json.oportunidades.map((o, i) => '<li>' + (i+1) + '. ' + o + '</li>').join('')}}</ul><h3>Recomendaciones Priorizadas</h3><ul>{{$node[\"process_data\"].json.recomendaciones.slice(0, 5).map((r, i) => '<li>' + (i+1) + '. ' + r + '</li>').join('')}}</ul><p><strong>¿Quieres mejorar estos resultados?</strong></p><p><a href=\"mailto:honatuya@gmail.com\">Reserva una llamada gratuita</a></p><p style=\"color: #999; font-size: 12px;\">Informe generado por SEO Agent 2026</p>",
+        "options": {}
+      },
+      "id": "email_client",
+      "name": "Email to Client",
+      "type": "n8n-nodes-base.sendGrid",
+      "typeVersion": 1,
+      "position": [1050, 300],
+      "continueOnFail": true,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "sheetId": "={{$env.SHEETS_ID}}",
+        "operation": "append",
+        "columns": "Fecha,Nombre,Email,URL,Sector,Modo,Score,Perf. Móvil,LCP,SEO Score,Diagnóstico"
+      },
+      "id": "sheets_register",
+      "name": "Google Sheets Register",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [1050, 450],
+      "continueOnFail": true
+    },
+    {
+      "parameters": {
+        "respondWithOptions": {
+          "responseType": "json"
+        },
+        "responseBody": "{\n  \"status\": \"completed\",\n  \"score\": {{$node[\"process_data\"].json.score}},\n  \"semaphore\": \"{{$node[\"process_data\"].json.semaphore}}\",\n  \"processed_at\": \"{{new Date().toISOString()}}\"\n}",
+        "responseCode": "200"
+      },
+      "id": "respond_webhook",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [1250, 275]
+    }
+  ],
+  "connections": {
+    "webhook": {
+      "main": [
+        [
+          {
+            "node": "psi_mobile",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "psi_desktop",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "claude_analysis",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "psi_mobile": {
+      "main": [
+        [
+          {
+            "node": "process_data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "psi_desktop": {
+      "main": [
+        [
+          {
+            "node": "process_data",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "claude_analysis": {
+      "main": [
+        [
+          {
+            "node": "process_data",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "process_data": {
+      "main": [
+        [
+          {
+            "node": "email_consultant",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "email_client",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "sheets_register",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "respond_webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "Europe/Madrid",
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all",
+    "errorResponse": "paginated"
+  },
+  "versionId": "1",
+  "meta": {
+    "name": "SEO Lead Pipeline - Informe Gratuito",
+    "description": "Procesa leads del formulario de informe SEO gratuito, analiza con PSI y Claude, envía emails y registra en Sheets. Para SMS: reemplaza nodo Twilio con Brevo (gratis, 50 SMS/mes + email ilimitado). Ver BREVO_SETUP.md",
+    "author": "Iorana Digital - SEO Agent 2026",
+    "sms_provider": "Brevo (recommended for Spain - 50 SMS/month free + unlimited email)"
+  }
+}

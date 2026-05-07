@@ -1,0 +1,15 @@
+# No versionamos reportes (son datos generados)
+informes/
+!informes/INDEX.md
+!informes/audit-seo/INDEX.md
+!informes/conversion-reports/INDEX.md
+!informes/presupuestos/INDEX.csv
+!informes/**/.gitkeep
+
+*.pdf
+*.log
+node_modules/
+.env.local
+dist/
+build/
+.DS_Store

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Embeber formulario SEO Agent</title>
+</head>
+<body>
+
+<h2>Cómo embeber el formulario de Informe SEO Gratuito</h2>
+
+<p>
+  Copia este código HTML en la página donde quieras que aparezca el formulario
+  (por ejemplo, en tu landing page, homepage o página de servicios):
+</p>
+
+<pre><code>&lt;!-- Embeber formulario SEO Agent 2026 --&gt;
+&lt;iframe
+  src="https://tu-dominio.com/lead-form"
+  width="100%"
+  height="700"
+  frameborder="0"
+  style="border-radius: 12px; box-shadow: 0 4px 24px rgba(0,0,0,0.1); border: none;"
+  title="Informe SEO Gratuito"
+&gt;
+&lt;/iframe&gt;</code></pre>
+
+<h3>Configuración recomendada:</h3>
+
+<ul>
+  <li><strong>Ancho (width):</strong> 100% para que se adapte al contenedor</li>
+  <li><strong>Altura (height):</strong> 600-800px según el dispositivo</li>
+  <li><strong>URL (src):</strong> Cambia "tu-dominio.com" por tu dominio real</li>
+  <li><strong>Estilos opcionales:</strong> Personaliza border-radius, box-shadow, etc.</li>
+</ul>
+
+<h3>Ejemplo con media queries (responsive):</h3>
+
+<pre><code>&lt;style&gt;
+  .seo-form-container {
+    width: 100%;
+    margin: 2rem 0;
+  }
+
+  .seo-form-container iframe {
+    width: 100%;
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+  }
+
+  @media (max-width: 768px) {
+    .seo-form-container iframe {
+      height: 700px;
+    }
+  }
+
+  @media (min-width: 769px) {
+    .seo-form-container iframe {
+      height: 600px;
+    }
+  }
+&lt;/style&gt;
+
+&lt;div class="seo-form-container"&gt;
+  &lt;iframe
+    src="https://tu-dominio.com/lead-form"
+    title="Informe SEO Gratuito"
+  &gt;&lt;/iframe&gt;
+&lt;/div&gt;</code></pre>
+
+<h3>Alternativa: Usar JavaScript para cargar el iframe</h3>
+
+<p>Si prefieres más control, puedes cargar el formulario dinámicamente:</p>
+
+<pre><code>&lt;div id="seo-form-placeholder"&gt;&lt;/div&gt;
+
+&lt;script&gt;
+  document.addEventListener('DOMContentLoaded', function() {
+    const container = document.getElementById('seo-form-placeholder');
+    const iframe = document.createElement('iframe');
+    iframe.src = 'https://tu-dominio.com/lead-form';
+    iframe.width = '100%';
+    iframe.height = '700';
+    iframe.style.border = 'none';
+    iframe.style.borderRadius = '12px';
+    iframe.style.boxShadow = '0 4px 24px rgba(0,0,0,0.1)';
+    iframe.title = 'Informe SEO Gratuito';
+    container.appendChild(iframe);
+  });
+&lt;/script&gt;</code></pre>
+
+<h3>Verificar que el webhook está configurado</h3>
+
+<p>Antes de embeber el formulario, asegúrate de que:</p>
+
+<ol>
+  <li>Tienes <code>VITE_WEBHOOK_URL</code> configurado en tu .env</li>
+  <li>Tu instancia de n8n está corriendo y el webhook está activo</li>
+  <li>El dominio está disponible públicamente (no localhost)</li>
+</ol>
+
+</body>
+</html>

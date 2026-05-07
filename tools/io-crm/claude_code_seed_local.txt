@@ -1,0 +1,936 @@
+# CRM Pro — Revisar y activar datos en local
+
+Basado en estas instrucciones, implementa los cambios en el disco local.
+
+---
+
+## OBJETIVO
+
+Revisar que cada módulo del CRM muestra datos reales funcionando en local.
+Para los módulos que estén vacíos, crear datos de prueba (seed) en Supabase
+y corregir cualquier error de conexión, query o RLS que impida que los datos
+aparezcan en pantalla.
+
+---
+
+## 1. ARCHIVOS A CREAR/MODIFICAR
+
+```
+supabase/seed.sql                        ← Script de datos de prueba
+supabase/seed_auth.ts                    ← Script para crear usuarios de prueba
+scripts/check-modules.ts                 ← Script de verificación de queries
+src/lib/supabase.ts                      ← Revisar que usa las variables de entorno
+src/lib/constants.ts                     ← Añadir CAT_COLOR y STAGE_COLOR si faltan
+```
+
+Revisar y corregir si hay errores en:
+```
+src/pages/crm/Dashboard.tsx
+src/pages/crm/Leads.tsx
+src/pages/crm/LeadDetail.tsx
+src/pages/crm/Clients.tsx
+src/pages/crm/ClientDetail.tsx
+src/pages/crm/Pipeline.tsx
+src/pages/crm/Tickets.tsx
+src/pages/crm/TicketDetail.tsx
+src/pages/operations/Projects.tsx
+src/pages/operations/Maintenance.tsx
+src/pages/operations/Tasks.tsx
+src/pages/operations/Gantt.tsx
+src/pages/operations/Deliverables.tsx
+src/pages/profitability/TimeTracking.tsx
+src/pages/profitability/Expenses.tsx
+src/pages/profitability/Profitability.tsx
+src/pages/reports/Analytics.tsx
+src/pages/communication/Activity.tsx
+src/pages/communication/Docs.tsx
+src/pages/communication/PortalConfig.tsx
+src/pages/config/SopTemplates.tsx
+src/pages/config/Users.tsx
+src/pages/n8n/Automations.tsx
+src/pages/n8n/N8nLogs.tsx
+src/pages/n8n/Webhooks.tsx
+```
+
+---
+
+## 2. PASO 1 — EJECUTAR SEED EN SUPABASE
+
+Crear el archivo `supabase/seed.sql` con el siguiente contenido completo
+y ejecutarlo en Supabase → SQL Editor.
+
+```sql
+-- ============================================================
+-- SEED CRM Pro — Datos de prueba completos
+-- Ejecutar en Supabase SQL Editor
+-- ============================================================
+
+-- Limpiar datos existentes (mantener orden por FKs)
+truncate table n8n_logs restart identity cascade;
+truncate table webhook_log restart identity cascade;
+truncate table activity_log restart identity cascade;
+truncate table timelogs restart identity cascade;
+truncate table deliverables restart identity cascade;
+truncate table docs restart identity cascade;
+truncate table tasks restart identity cascade;
+truncate table projects restart identity cascade;
+truncate table proposals restart identity cascade;
+truncate table invoices restart identity cascade;
+truncate table expenses restart identity cascade;
+truncate table retainers restart identity cascade;
+truncate table tickets restart identity cascade;
+truncate table deals restart identity cascade;
+truncate table leads restart identity cascade;
+truncate table contacts restart identity cascade;
+truncate table sop_templates restart identity cascade;
+truncate table accounts restart identity cascade;
+
+-- ============================================================
+-- ACCOUNTS (clientes)
+-- ============================================================
+insert into accounts (id, name, website, sector, plan, status,
+  health_score, sla_hours, portal_active, color_hex, avatar)
+values
+  ('a1000000-0000-0000-0000-000000000001', 'Acme Corp',
+   'acmecorp.com', 'Tecnología', 'SEO + Web', 'Activo',
+   85, 4, true, '#7F77DD', 'AC'),
+  ('a1000000-0000-0000-0000-000000000002', 'Betasoft',
+   'betasoft.io', 'SaaS', 'App Móvil', 'Activo',
+   72, 8, true, '#1D9E75', 'BS'),
+  ('a1000000-0000-0000-0000-000000000003', 'CloudX',
+   'cloudx.io', 'Infraestructura', 'Infra + SEO', 'Riesgo',
+   38, 2, false, '#D85A30', 'CX');
+
+-- ============================================================
+-- CONTACTS
+-- ============================================================
+insert into contacts (id, account_id, name, email, phone,
+  role, status, origin, lead_score)
+values
+  ('c1000000-0000-0000-0000-000000000001',
+   'a1000000-0000-0000-0000-000000000001',
+   'Ana García', 'ana@acme.com', '+34 612 000 001',
+   'CTO', 'Activo', 'Web', 85),
+  ('c1000000-0000-0000-0000-000000000002',
+   'a1000000-0000-0000-0000-000000000002',
+   'Luis Martín', 'luis@beta.com', '+34 612 000 002',
+   'CEO', 'Activo', 'LinkedIn', 60),
+  ('c1000000-0000-0000-0000-000000000003',
+   'a1000000-0000-0000-0000-000000000003',
+   'Sara López', 'sara@cloudx.io', '+34 612 000 003',
+   'Directora IT', 'Activo', 'Referido', 90),
+  ('c1000000-0000-0000-0000-000000000004',
+   'a1000000-0000-0000-0000-000000000001',
+   'Pedro Ruiz', 'pedro@acme.com', '+34 612 000 004',
+   'VP Marketing', 'Activo', 'Web', 70);
+
+-- ============================================================
+-- LEADS
+-- ============================================================
+insert into leads (name, email, company, website, origin,
+  budget_range, sector, urgency, score, status,
+  audit_status, audit_speed, audit_da, audit_pages,
+  audit_lcp, audit_cls, audit_fid, audit_tech)
+values
+  ('Joaquín Serra', 'j@fintech.com', 'Fintech SL',
+   'fintech-sl.com', 'Web',
+   '>10.000€', 'Fintech', 'Alta', 87, 'Cualificado',
+   'done', 72, 34, 120, 2.1, 0.05, 80,
+   ARRAY['WordPress','Yoast SEO','WooCommerce']),
+  ('Elena Mora', 'e@retail.com', 'RetailMax',
+   'retailmax.es', 'LinkedIn',
+   '5.000-10.000€', 'eCommerce', 'Media', 55, 'Contactado',
+   'done', 45, 18, 850, 4.2, 0.18, 210,
+   ARRAY['Shopify','Google Analytics 4']),
+  ('Carlos Ríos', 'c@logistica.com', 'Logística RR',
+   'logisticarr.com', 'Referido',
+   '>10.000€', 'Logística', 'Alta', 91, 'Cualificado',
+   'done', 88, 52, 45, 1.4, 0.02, 40,
+   ARRAY['Laravel','HubSpot']),
+  ('Nuria Blanco', 'n@saas.com', 'SaaS Tools',
+   'saastools.io', 'Web',
+   '1.000-2.000€', 'SaaS', 'Baja', 44, 'Nuevo',
+   'pending', null, null, null, null, null, null, null);
+
+-- ============================================================
+-- DEALS (pipeline)
+-- ============================================================
+insert into deals (id, account_id, contact_id, title,
+  value, probability, stage, close_date)
+values
+  ('d1000000-0000-0000-0000-000000000001',
+   'a1000000-0000-0000-0000-000000000001',
+   'c1000000-0000-0000-0000-000000000001',
+   'Diseño Web Acme', 12500, 60, 'Propuesta',
+   '2024-05-30'),
+  ('d1000000-0000-0000-0000-000000000002',
+   'a1000000-0000-0000-0000-000000000002',
+   'c1000000-0000-0000-0000-000000000002',
+   'App Móvil Betasoft', 28000, 80, 'Negociación',
+   '2024-06-15'),
+  ('d1000000-0000-0000-0000-000000000003',
+   'a1000000-0000-0000-0000-000000000003',
+   'c1000000-0000-0000-0000-000000000003',
+   'Migración Cloud', 8200, 30, 'Contactado',
+   '2024-05-01'),
+  ('d1000000-0000-0000-0000-000000000004',
+   'a1000000-0000-0000-0000-000000000001',
+   'c1000000-0000-0000-0000-000000000004',
+   'SEO Package Acme', 3600, 15, 'Lead',
+   '2024-07-01'),
+  ('d1000000-0000-0000-0000-000000000005',
+   'a1000000-0000-0000-0000-000000000002',
+   'c1000000-0000-0000-0000-000000000002',
+   'ERP Custom', 45000, 75, 'Negociación',
+   '2024-08-01'),
+  ('d1000000-0000-0000-0000-000000000006',
+   'a1000000-0000-0000-0000-000000000003',
+   'c1000000-0000-0000-0000-000000000003',
+   'Auditoría IT', 5500, 100, 'Cerrado-Ganado',
+   '2024-03-01');
+
+-- ============================================================
+-- SOP TEMPLATES
+-- ============================================================
+insert into sop_templates (id, name, category, modules, tasks)
+values
+  ('t1000000-0000-0000-0000-000000000001',
+   'Onboarding cliente SEO', 'SEO',
+   ARRAY['Análisis','Estrategia','Implementación','Reporting'],
+   '[{"title":"Auditoría técnica inicial","hours_default":8,"priority":"Alta"},
+     {"title":"Config Google Search Console","hours_default":2,"priority":"Alta"},
+     {"title":"Config Google Analytics","hours_default":2,"priority":"Alta"},
+     {"title":"Investigación de keywords","hours_default":6,"priority":"Alta"},
+     {"title":"Análisis de competencia","hours_default":4,"priority":"Media"},
+     {"title":"Plan de contenidos","hours_default":4,"priority":"Media"},
+     {"title":"Optimización on-page","hours_default":8,"priority":"Alta"},
+     {"title":"Link building inicial","hours_default":6,"priority":"Media"},
+     {"title":"Informe resultados mes 1","hours_default":3,"priority":"Media"}]'::jsonb),
+  ('t1000000-0000-0000-0000-000000000002',
+   'Desarrollo Sitio Web', 'Web',
+   ARRAY['Discovery','Diseño','Desarrollo','Lanzamiento'],
+   '[{"title":"Brief y requisitos","hours_default":4,"priority":"Alta"},
+     {"title":"Wireframes","hours_default":8,"priority":"Alta"},
+     {"title":"Diseño visual mockups","hours_default":16,"priority":"Alta"},
+     {"title":"Maquetación HTML/CSS","hours_default":20,"priority":"Alta"},
+     {"title":"Desarrollo CMS","hours_default":16,"priority":"Alta"},
+     {"title":"Integración formularios","hours_default":4,"priority":"Media"},
+     {"title":"SEO on-page básico","hours_default":4,"priority":"Media"},
+     {"title":"Pruebas compatibilidad","hours_default":6,"priority":"Alta"},
+     {"title":"Lanzamiento","hours_default":2,"priority":"Alta"},
+     {"title":"Formación cliente","hours_default":2,"priority":"Baja"}]'::jsonb),
+  ('t1000000-0000-0000-0000-000000000003',
+   'Automatizaciones y CRM', 'CRM',
+   ARRAY['Análisis','Configuración','Integración','Formación'],
+   '[{"title":"Mapeo de procesos actuales","hours_default":4,"priority":"Alta"},
+     {"title":"Definición flujos n8n","hours_default":6,"priority":"Alta"},
+     {"title":"Config Supabase","hours_default":4,"priority":"Alta"},
+     {"title":"Integración formularios web","hours_default":4,"priority":"Media"},
+     {"title":"Pipeline de ventas","hours_default":3,"priority":"Media"},
+     {"title":"Automatización onboarding","hours_default":6,"priority":"Alta"},
+     {"title":"Alertas inactividad","hours_default":3,"priority":"Media"},
+     {"title":"Pruebas end-to-end","hours_default":4,"priority":"Alta"},
+     {"title":"Formación del equipo","hours_default":3,"priority":"Media"},
+     {"title":"Documentación SOPs","hours_default":3,"priority":"Baja"}]'::jsonb),
+  ('t1000000-0000-0000-0000-000000000004',
+   'PPC & Paid Search', 'PPC',
+   ARRAY['Planificación','Activación','Optimización'],
+   '[{"title":"Análisis mercado y competencia","hours_default":4,"priority":"Alta"},
+     {"title":"Definición KPIs","hours_default":2,"priority":"Alta"},
+     {"title":"Estructura de campañas","hours_default":4,"priority":"Alta"},
+     {"title":"Investigación keywords","hours_default":4,"priority":"Alta"},
+     {"title":"Creación de anuncios","hours_default":6,"priority":"Alta"},
+     {"title":"Config conversiones","hours_default":3,"priority":"Alta"},
+     {"title":"Lanzamiento campañas","hours_default":2,"priority":"Alta"},
+     {"title":"Optimización semanal","hours_default":3,"priority":"Media"},
+     {"title":"Informe mensual","hours_default":2,"priority":"Media"}]'::jsonb),
+  ('t1000000-0000-0000-0000-000000000005',
+   'Gestión Redes Sociales', 'RRSS',
+   ARRAY['Estrategia','Producción','Gestión'],
+   '[{"title":"Auditoría perfiles actuales","hours_default":3,"priority":"Alta"},
+     {"title":"Definición estrategia social","hours_default":4,"priority":"Alta"},
+     {"title":"Calendario de publicaciones","hours_default":3,"priority":"Media"},
+     {"title":"Diseño plantillas visuales","hours_default":8,"priority":"Media"},
+     {"title":"Producción contenido mensual","hours_default":12,"priority":"Alta"},
+     {"title":"Publicación y programación","hours_default":4,"priority":"Alta"},
+     {"title":"Gestión de comunidad","hours_default":6,"priority":"Media"},
+     {"title":"Análisis métricas mensual","hours_default":3,"priority":"Media"}]'::jsonb);
+
+-- ============================================================
+-- PROJECTS
+-- ============================================================
+insert into projects (id, account_id, deal_id, name, status,
+  budget, spent, phase, due_date, color_hex,
+  milestones, milestone_done, sop_template_id)
+values
+  ('p1000000-0000-0000-0000-000000000001',
+   'a1000000-0000-0000-0000-000000000001',
+   'd1000000-0000-0000-0000-000000000001',
+   'Diseño Web Acme', 'En curso',
+   16000, 10200, 'Desarrollo', '2024-05-15', '#7F77DD',
+   ARRAY['Discovery','Diseño','Desarrollo','QA','Lanzamiento'], 2,
+   't1000000-0000-0000-0000-000000000002'),
+  ('p1000000-0000-0000-0000-000000000002',
+   'a1000000-0000-0000-0000-000000000002',
+   'd1000000-0000-0000-0000-000000000002',
+   'App Móvil Betasoft', 'En curso',
+   45000, 18000, 'Testing', '2024-06-30', '#1D9E75',
+   ARRAY['Arquitectura','Diseño','Desarrollo','Testing','Lanzamiento'], 3,
+   null),
+  ('p1000000-0000-0000-0000-000000000003',
+   'a1000000-0000-0000-0000-000000000003',
+   'd1000000-0000-0000-0000-000000000003',
+   'Migración Cloud', 'En riesgo',
+   12000, 11500, 'Migración', '2024-04-20', '#D85A30',
+   ARRAY['Auditoría','Planificación','Migración','Validación'], 2,
+   null);
+
+-- ============================================================
+-- TASKS
+-- ============================================================
+insert into tasks (project_id, account_id, title, status,
+  priority, hours_budget, hours_logged, position)
+values
+  -- Diseño Web Acme
+  ('p1000000-0000-0000-0000-000000000001',
+   'a1000000-0000-0000-0000-000000000001',
+   'Wireframes UI', 'Completada', 'Alta', 8, 8, 0),
+  ('p1000000-0000-0000-0000-000000000001',
+   'a1000000-0000-0000-0000-000000000001',
+   'Diseño visual mockups', 'Completada', 'Alta', 16, 16, 1),
+  ('p1000000-0000-0000-0000-000000000001',
+   'a1000000-0000-0000-0000-000000000001',
+   'Desarrollo front-end', 'En progreso', 'Alta', 20, 12, 2),
+  ('p1000000-0000-0000-0000-000000000001',
+   'a1000000-0000-0000-0000-000000000001',
+   'SEO on-page', 'Pendiente', 'Media', 4, 0, 3),
+  ('p1000000-0000-0000-0000-000000000001',
+   'a1000000-0000-0000-0000-000000000001',
+   'Pruebas de compatibilidad', 'Pendiente', 'Alta', 6, 0, 4),
+  -- App Móvil Betasoft
+  ('p1000000-0000-0000-0000-000000000002',
+   'a1000000-0000-0000-0000-000000000002',
+   'Arquitectura del sistema', 'Completada', 'Alta', 12, 12, 0),
+  ('p1000000-0000-0000-0000-000000000002',
+   'a1000000-0000-0000-0000-000000000002',
+   'Diseño UI/UX', 'Completada', 'Alta', 20, 20, 1),
+  ('p1000000-0000-0000-0000-000000000002',
+   'a1000000-0000-0000-0000-000000000002',
+   'Desarrollo backend', 'Completada', 'Alta', 40, 40, 2),
+  ('p1000000-0000-0000-0000-000000000002',
+   'a1000000-0000-0000-0000-000000000002',
+   'Desarrollo frontend móvil', 'En progreso', 'Alta', 30, 18, 3),
+  ('p1000000-0000-0000-0000-000000000002',
+   'a1000000-0000-0000-0000-000000000002',
+   'Testing y QA', 'Pendiente', 'Alta', 16, 0, 4),
+  -- Migración Cloud
+  ('p1000000-0000-0000-0000-000000000003',
+   'a1000000-0000-0000-0000-000000000003',
+   'Inventario de sistemas', 'Completada', 'Media', 8, 8, 0),
+  ('p1000000-0000-0000-0000-000000000003',
+   'a1000000-0000-0000-0000-000000000003',
+   'Plan de migración', 'Completada', 'Alta', 6, 6, 1),
+  ('p1000000-0000-0000-0000-000000000003',
+   'a1000000-0000-0000-0000-000000000003',
+   'Backup completo', 'En progreso', 'Alta', 4, 3, 2),
+  ('p1000000-0000-0000-0000-000000000003',
+   'a1000000-0000-0000-0000-000000000003',
+   'Migración a producción', 'Pendiente', 'Crítica', 10, 0, 3);
+
+-- ============================================================
+-- TICKETS
+-- ============================================================
+insert into tickets (ref, account_id, contact_id, title,
+  description, priority, category, status,
+  sla_hours, created_at, resolved_at)
+values
+  ('TK-001',
+   'a1000000-0000-0000-0000-000000000001',
+   'c1000000-0000-0000-0000-000000000001',
+   'Caída de velocidad web tras actualización',
+   'La web carga en más de 6 segundos tras el despliegue del martes. Se ha verificado en Chrome y Safari con red de 50Mbps.',
+   'Alta', 'Caída de servicio', 'En proceso',
+   4, now() - interval '1 day', null),
+  ('TK-002',
+   'a1000000-0000-0000-0000-000000000001',
+   'c1000000-0000-0000-0000-000000000004',
+   'Duda sobre interpretación del informe de keywords',
+   'El cliente no entiende la diferencia entre posición media y CTR en el informe mensual.',
+   'Baja', 'Duda', 'Resuelto',
+   8, now() - interval '5 days', now() - interval '4 days'),
+  ('TK-003',
+   'a1000000-0000-0000-0000-000000000002',
+   'c1000000-0000-0000-0000-000000000002',
+   'Petición de cambio en pantalla de login',
+   'Solicitan cambiar el flujo de autenticación al nuevo diseño aprobado en la reunión del jueves.',
+   'Media', 'Petición de cambio', 'Esperando al cliente',
+   8, now() - interval '2 days', null),
+  ('TK-004',
+   'a1000000-0000-0000-0000-000000000003',
+   'c1000000-0000-0000-0000-000000000003',
+   'Error crítico en migración de datos',
+   'Pérdida parcial de datos en la migración del entorno de staging a producción. Afecta a registros creados entre el 28 y el 30 de marzo.',
+   'Crítica', 'Bug', 'En proceso',
+   2, now() - interval '12 hours', null),
+  ('TK-005',
+   'a1000000-0000-0000-0000-000000000003',
+   'c1000000-0000-0000-0000-000000000003',
+   'Solicitud de auditoría extra no contemplada',
+   'El cliente solicita una auditoría adicional de seguridad no incluida en el contrato actual.',
+   'Media', 'Petición de cambio', 'Abierto',
+   8, now() - interval '1 day', null);
+
+-- ============================================================
+-- RETAINERS
+-- ============================================================
+insert into retainers (account_id, active, hours_month,
+  hours_used, price_month, renew_date, alert_pct)
+values
+  ('a1000000-0000-0000-0000-000000000001',
+   true, 20, 16, 1200, '2024-04-30', 80),
+  ('a1000000-0000-0000-0000-000000000002',
+   true, 30, 18, 2000, '2024-04-30', 80),
+  ('a1000000-0000-0000-0000-000000000003',
+   true, 10, 9.5, 800, '2024-04-20', 80);
+
+-- ============================================================
+-- TIMELOGS
+-- ============================================================
+insert into timelogs (project_id, description, hours, logged_at)
+values
+  ('p1000000-0000-0000-0000-000000000001',
+   'Reunión de kick-off con el cliente', 1.5,
+   current_date - interval '10 days'),
+  ('p1000000-0000-0000-0000-000000000001',
+   'Desarrollo wireframes principales', 6,
+   current_date - interval '8 days'),
+  ('p1000000-0000-0000-0000-000000000001',
+   'Revisión diseño con el equipo', 2,
+   current_date - interval '5 days'),
+  ('p1000000-0000-0000-0000-000000000001',
+   'Maquetación componentes React', 8,
+   current_date - interval '3 days'),
+  ('p1000000-0000-0000-0000-000000000002',
+   'Arquitectura de base de datos', 6,
+   current_date - interval '15 days'),
+  ('p1000000-0000-0000-0000-000000000002',
+   'Desarrollo API REST', 8,
+   current_date - interval '10 days'),
+  ('p1000000-0000-0000-0000-000000000002',
+   'Integración con servicios externos', 4,
+   current_date - interval '5 days'),
+  ('p1000000-0000-0000-0000-000000000003',
+   'Análisis de infraestructura actual', 5,
+   current_date - interval '12 days'),
+  ('p1000000-0000-0000-0000-000000000003',
+   'Configuración entorno staging', 6,
+   current_date - interval '7 days');
+
+-- ============================================================
+-- INVOICES
+-- ============================================================
+insert into invoices (account_id, ref, amount, status,
+  issue_date, due_date, paid_date)
+values
+  ('a1000000-0000-0000-0000-000000000001',
+   'F-2024-041', 1800, 'Pagada',
+   '2024-03-01', '2024-03-15', '2024-03-10'),
+  ('a1000000-0000-0000-0000-000000000001',
+   'F-2024-042', 2400, 'Pendiente',
+   '2024-04-01', '2024-04-15', null),
+  ('a1000000-0000-0000-0000-000000000002',
+   'F-2024-038', 4500, 'Pagada',
+   '2024-03-15', '2024-03-30', '2024-03-25'),
+  ('a1000000-0000-0000-0000-000000000002',
+   'F-2024-043', 4500, 'Pendiente',
+   '2024-04-15', '2024-04-30', null),
+  ('a1000000-0000-0000-0000-000000000003',
+   'F-2024-035', 2200, 'Vencida',
+   '2024-03-01', '2024-03-15', null);
+
+-- ============================================================
+-- PROPOSALS
+-- ============================================================
+insert into proposals (account_id, deal_id, title, amount, status)
+values
+  ('a1000000-0000-0000-0000-000000000001',
+   'd1000000-0000-0000-0000-000000000004',
+   'Propuesta Rediseño Blog Corporativo', 3200, 'Pendiente'),
+  ('a1000000-0000-0000-0000-000000000003',
+   'd1000000-0000-0000-0000-000000000003',
+   'Propuesta Auditoría de Seguridad Extra', 1200, 'Pendiente');
+
+-- ============================================================
+-- EXPENSES
+-- ============================================================
+insert into expenses (project_id, account_id, concept,
+  amount, category, date)
+values
+  ('p1000000-0000-0000-0000-000000000001',
+   'a1000000-0000-0000-0000-000000000001',
+   'Ahrefs — suscripción mensual', 199, 'Software',
+   current_date - interval '2 days'),
+  ('p1000000-0000-0000-0000-000000000001',
+   'a1000000-0000-0000-0000-000000000001',
+   'Google Ads — campaña awareness', 800, 'Marketing',
+   current_date - interval '5 days'),
+  ('p1000000-0000-0000-0000-000000000002',
+   'a1000000-0000-0000-0000-000000000002',
+   'Redactor externo — artículos blog', 450, 'Personal',
+   current_date - interval '7 days'),
+  ('p1000000-0000-0000-0000-000000000003',
+   'a1000000-0000-0000-0000-000000000003',
+   'AWS — instancias EC2', 320, 'Infraestructura',
+   current_date - interval '3 days');
+
+-- ============================================================
+-- DELIVERABLES
+-- ============================================================
+insert into deliverables (project_id, account_id, title,
+  type, status, updated_at)
+values
+  ('p1000000-0000-0000-0000-000000000001',
+   'a1000000-0000-0000-0000-000000000001',
+   'Auditoría SEO Técnica inicial', 'Auditoría', 'Aprobado',
+   now() - interval '10 days'),
+  ('p1000000-0000-0000-0000-000000000001',
+   'a1000000-0000-0000-0000-000000000001',
+   'Propuesta de arquitectura web', 'Estrategia',
+   'En revisión interna', now() - interval '2 days'),
+  ('p1000000-0000-0000-0000-000000000002',
+   'a1000000-0000-0000-0000-000000000002',
+   'Wireframes pantallas principales', 'Diseño',
+   'Enviado al cliente', now() - interval '5 days'),
+  ('p1000000-0000-0000-0000-000000000002',
+   'a1000000-0000-0000-0000-000000000002',
+   'Informe de rendimiento mensual', 'Informe',
+   'Pendiente', now()),
+  ('p1000000-0000-0000-0000-000000000003',
+   'a1000000-0000-0000-0000-000000000003',
+   'Plan de migración documentado', 'Técnico',
+   'Aprobado', now() - interval '15 days');
+
+-- ============================================================
+-- DOCS
+-- ============================================================
+insert into docs (account_id, project_id, title, type, content)
+values
+  (null, null,
+   'Manual de onboarding de clientes', 'SOP',
+   '# Manual de Onboarding\n\n## Proceso estándar\n\n1. Reunión de kick-off\n2. Acceso al portal\n3. Configuración de herramientas\n4. Primera entrega en 7 días'),
+  ('a1000000-0000-0000-0000-000000000001',
+   'p1000000-0000-0000-0000-000000000001',
+   'Estrategia SEO — Acme Corp 2024', 'Estrategia',
+   '# Estrategia SEO Acme\n\n## Objetivos\n- Aumentar tráfico orgánico 40%\n- Top 3 en 15 keywords objetivo'),
+  (null, null,
+   'Contrato Marco de Servicios 2024', 'Contrato',
+   '# Contrato Marco\n\nCondiciones generales de prestación de servicios...'),
+  ('a1000000-0000-0000-0000-000000000002',
+   'p1000000-0000-0000-0000-000000000002',
+   'Especificaciones técnicas API móvil', 'Técnico',
+   '# API Specs\n\n## Endpoints\n- GET /users\n- POST /auth/login\n- GET /projects');
+
+-- ============================================================
+-- ACTIVITY LOG
+-- ============================================================
+insert into activity_log (account_id, entity_type, entity_id,
+  action, actor, created_at)
+values
+  (null, 'lead', null,
+   'Lead ''Joaquín Serra'' ingresado desde formulario web vía n8n',
+   'n8n', now() - interval '30 minutes'),
+  ('a1000000-0000-0000-0000-000000000001',
+   'ticket', null,
+   'Ticket TK-001 creado — Caída velocidad web (Alta prioridad)',
+   'Ana García', now() - interval '1 day'),
+  ('a1000000-0000-0000-0000-000000000002',
+   'deal', 'd1000000-0000-0000-0000-000000000002',
+   'Deal ''App Móvil Betasoft'' movido a Negociación',
+   'n8n', now() - interval '2 hours'),
+  ('a1000000-0000-0000-0000-000000000001',
+   'project', 'p1000000-0000-0000-0000-000000000001',
+   'Proyecto ''Diseño Web Acme'' — hito ''Diseño'' completado',
+   'manual', now() - interval '5 days'),
+  ('a1000000-0000-0000-0000-000000000003',
+   'ticket', null,
+   'Ticket TK-004 CRÍTICO creado — Error migración de datos',
+   'Sara López', now() - interval '12 hours'),
+  (null, 'system', null,
+   'Flujo n8n ''Alerta retainer >80%'' ejecutado — CloudX al 95%',
+   'n8n', now() - interval '3 hours');
+
+-- ============================================================
+-- N8N LOGS
+-- ============================================================
+insert into n8n_logs (flow_name, trigger_type, status,
+  duration_ms, items_count, error_msg, executed_at)
+values
+  ('Ingesta leads + auditoría express', 'webhook',
+   'ok', 1240, 1, null, now() - interval '30 minutes'),
+  ('Alerta SLA ticket crítico', 'database',
+   'ok', 820, 1, null, now() - interval '12 hours'),
+  ('Onboarding al ganar deal', 'database',
+   'error', null, 0,
+   'Google Drive API: quota exceeded. Retry in 60s.',
+   now() - interval '2 days'),
+  ('Email resolución ticket', 'database',
+   'ok', 2100, 1, null, now() - interval '4 days'),
+  ('Alerta retainer >80%', 'cron',
+   'warning', 920, 2,
+   'CloudX retainer al 95% — renovación en 6 días',
+   now() - interval '3 hours'),
+  ('Resumen semanal equipo', 'cron',
+   'ok', 4500, 3, null, now() - interval '7 days');
+
+-- ============================================================
+-- WEBHOOK LOG
+-- ============================================================
+insert into webhook_log (source, payload, status, received_at)
+values
+  ('Formulario web — /contacto',
+   '{"name":"Joaquín Serra","email":"j@fintech.com","company":"Fintech SL","website":"fintech-sl.com","budget":">10.000€","sector":"Fintech","urgency":"Alta","origin":"Web"}'::jsonb,
+   'procesado', now() - interval '30 minutes'),
+  ('Formulario web — /contacto',
+   '{"name":"Nuria Blanco","email":"n@saas.com","company":"SaaS Tools","website":"saastools.io","budget":"1.000-2.000€","sector":"SaaS","urgency":"Baja","origin":"Web"}'::jsonb,
+   'procesado', now() - interval '2 hours'),
+  ('Stripe — payment.succeeded',
+   '{"invoice":"F-2024-041","amount":1800,"currency":"eur","customer":"Acme Corp","status":"succeeded"}'::jsonb,
+   'procesado', now() - interval '10 days'),
+  ('Typeform — satisfaction-survey',
+   '{"score":9,"comment":"Muy buena comunicación y resultados","client":"Betasoft"}'::jsonb,
+   'procesado', now() - interval '5 days'),
+  ('Formulario web — /contacto',
+   '{"name":"Bot Spam","email":"spam@test.com","company":"—","message":"Buy followers cheap"}'::jsonb,
+   'rechazado', now() - interval '3 days');
+
+-- ============================================================
+-- PORTAL USERS (accesos externos)
+-- Nota: los user_id deben existir en auth.users
+-- Crear primero los usuarios desde Supabase Auth
+-- o dejar null y actualizar después
+-- ============================================================
+-- insert into portal_users (user_id, account_id, role, active)
+-- values ('auth-user-uuid-aqui', 'a1000000-...', 'Cliente', true);
+
+-- ============================================================
+-- VERIFICACIÓN FINAL
+-- ============================================================
+select 'accounts' as tabla, count(*) as filas from accounts
+union all select 'contacts', count(*) from contacts
+union all select 'leads', count(*) from leads
+union all select 'deals', count(*) from deals
+union all select 'sop_templates', count(*) from sop_templates
+union all select 'projects', count(*) from projects
+union all select 'tasks', count(*) from tasks
+union all select 'tickets', count(*) from tickets
+union all select 'retainers', count(*) from retainers
+union all select 'timelogs', count(*) from timelogs
+union all select 'invoices', count(*) from invoices
+union all select 'proposals', count(*) from proposals
+union all select 'expenses', count(*) from expenses
+union all select 'deliverables', count(*) from deliverables
+union all select 'docs', count(*) from docs
+union all select 'activity_log', count(*) from activity_log
+union all select 'n8n_logs', count(*) from n8n_logs
+union all select 'webhook_log', count(*) from webhook_log
+order by tabla;
+```
+
+---
+
+## 3. PASO 2 — CREAR USUARIO DE PRUEBA EN SUPABASE AUTH
+
+Ir a Supabase → Authentication → Users → "Invite user" y crear:
+
+```
+Email: admin@miempresa.com
+Password: CRMPro2024!
+```
+
+Después en SQL Editor ejecutar:
+```sql
+-- Verificar que el usuario existe
+select id, email from auth.users where email = 'admin@miempresa.com';
+
+-- Copiar el UUID del usuario y usarlo aquí:
+-- (sustituir 'UUID-DEL-USUARIO' por el ID real)
+insert into portal_users (user_id, account_id, contact_id, role, active)
+values (
+  'UUID-DEL-USUARIO',
+  'a1000000-0000-0000-0000-000000000001',
+  'c1000000-0000-0000-0000-000000000001',
+  'Cliente',
+  true
+);
+```
+
+---
+
+## 4. PASO 3 — VERIFICAR Y CORREGIR CADA MÓDULO
+
+Para cada módulo, verificar en este orden:
+1. Abrir el módulo en el navegador
+2. Abrir DevTools → Network → filtrar por "supabase"
+3. Ver si las queries devuelven datos (status 200 con payload)
+4. Si hay error 403 → problema de RLS (ver sección 5)
+5. Si hay error 400 → query malformada (ver sección 6)
+6. Si hay datos pero no se muestran → problema de renderizado (ver sección 7)
+
+### Checklist por módulo
+
+```
+[ ] Dashboard         → métricas cargan, feed actividad visible
+[ ] Leads             → tabla con 4 leads, scores calculados, badges auditoría
+[ ] LeadDetail        → detalle con auditoría express y scoring desglosado
+[ ] Contacts          → grid de 4 contactos
+[ ] Pipeline          → 6 columnas con deals en sus etapas
+[ ] Clients           → lista de 3 clientes con health y retainer
+[ ] ClientDetail      → 3 pestañas funcionando, timeline visible
+[ ] Tickets           → tabla con 5 tickets y badges correctos
+[ ] TicketDetail      → detalle con metadatos y botón resolver
+[ ] Projects          → proyectos activos + biblioteca SOP con 5 plantillas
+[ ] Maintenance       → 3 cards de retainer con donut y alertas
+[ ] Tasks             → tabla global con 14 tareas
+[ ] Gantt             → jerarquía 3 niveles con datos reales
+[ ] Deliverables      → tabla con 5 entregables y estados
+[ ] TimeTracking      → cronómetro funcional + registros
+[ ] Expenses          → tabla con 4 gastos
+[ ] Profitability     → cards con barras de horas y presupuesto
+[ ] Analytics         → gráficos con datos de deals y leads
+[ ] Activity          → feed con 6 entradas del log
+[ ] Docs              → grid con 4 documentos
+[ ] PortalConfig      → toggle de portal por cliente
+[ ] SopTemplates      → 5 plantillas editables
+[ ] Users             → tabla de usuarios
+[ ] Automations       → 6 flujos agrupados por nombre
+[ ] N8nLogs           → 6 logs con estados ok/error/warning
+[ ] Webhooks          → 5 webhooks expandibles con JSON
+```
+
+---
+
+## 5. PASO 4 — CORREGIR ERRORES DE RLS (403)
+
+Si alguna query devuelve 403, ejecutar en Supabase SQL Editor:
+
+```sql
+-- Ver políticas actuales
+select tablename, policyname, cmd, qual
+from pg_policies
+where schemaname = 'public'
+order by tablename;
+
+-- Si falta política para una tabla, añadirla:
+-- (reemplazar 'nombre_tabla' por la tabla afectada)
+create policy "allow_authenticated" on nombre_tabla
+  for all using (auth.role() = 'authenticated');
+
+-- Si RLS está bloqueando TODO (modo desarrollo):
+-- SOLO usar esto en local/desarrollo, nunca en producción
+alter table nombre_tabla disable row level security;
+```
+
+Para desarrollo local, desactivar RLS temporalmente en las tablas que fallen:
+```sql
+-- Solo para desarrollo local:
+alter table accounts disable row level security;
+alter table contacts disable row level security;
+alter table leads disable row level security;
+alter table deals disable row level security;
+alter table projects disable row level security;
+alter table tasks disable row level security;
+alter table timelogs disable row level security;
+alter table tickets disable row level security;
+alter table retainers disable row level security;
+alter table invoices disable row level security;
+alter table proposals disable row level security;
+alter table expenses disable row level security;
+alter table deliverables disable row level security;
+alter table docs disable row level security;
+alter table sop_templates disable row level security;
+alter table portal_users disable row level security;
+alter table activity_log disable row level security;
+alter table webhook_log disable row level security;
+alter table n8n_logs disable row level security;
+```
+
+---
+
+## 6. PASO 5 — CORREGIR ERRORES DE QUERY (400)
+
+Si una query falla con error 400, las causas más comunes son:
+
+**Vista no existe:**
+```sql
+-- Verificar que las vistas están creadas
+select viewname from pg_views where schemaname = 'public';
+-- Debe mostrar: v_project_profitability, v_retainer_status, v_client_timeline
+```
+
+Si alguna vista no existe, crearla:
+```sql
+-- v_retainer_status (más importante para Maintenance)
+create or replace view v_retainer_status as
+select
+  r.id, r.account_id, a.name as client, a.color_hex, a.avatar,
+  r.hours_month, r.hours_used as hours_used_field,
+  coalesce(sum(tl.hours), 0) as hours_used,
+  round(coalesce(sum(tl.hours), 0) / nullif(r.hours_month, 0) * 100, 1) as pct_used,
+  r.price_month, r.renew_date, r.alert_pct, r.active
+from retainers r
+join accounts a on a.id = r.account_id
+left join projects p on p.account_id = r.account_id
+left join tasks t on t.project_id = p.id
+left join timelogs tl on tl.task_id = t.id
+  and date_trunc('month', tl.logged_at::date) = date_trunc('month', current_date)
+group by r.id, a.name, a.color_hex, a.avatar;
+
+-- v_project_profitability
+create or replace view v_project_profitability as
+select
+  p.id, p.name, a.name as client, p.budget, p.spent,
+  coalesce(sum(tl.hours), 0) as hours_logged,
+  coalesce((select sum(t2.hours_budget) from tasks t2 where t2.project_id = p.id), 0) as hours_budget,
+  round(coalesce(p.spent,0) / nullif(p.budget,0) * 100, 1) as budget_pct,
+  p.status, p.due_date
+from projects p
+join accounts a on a.id = p.account_id
+left join tasks t on t.project_id = p.id
+left join timelogs tl on tl.task_id = t.id
+group by p.id, a.name;
+
+-- v_client_timeline
+create or replace view v_client_timeline as
+  select account_id, 'ticket' as type,
+    title as text, resolved_at as event_date, ref as ref
+  from tickets where status = 'Resuelto' and resolved_at is not null
+union all
+  select account_id, 'hito' as type,
+    name || ' — hito completado' as text,
+    updated_at as event_date, id::text as ref
+  from projects where milestone_done > 0
+union all
+  select account_id, 'factura' as type,
+    ref || ' pagada · ' || amount::text || '€' as text,
+    paid_date::timestamptz as event_date, ref as ref
+  from invoices where status = 'Pagada' and paid_date is not null
+order by event_date desc;
+```
+
+**Join incorrecto en la query:**
+Si el frontend hace `.select('*, accounts(name)')` y falla, verificar que la FK existe:
+```sql
+select conname, conrelid::regclass, confrelid::regclass
+from pg_constraint
+where contype = 'f'
+order by conrelid::regclass::text;
+```
+
+---
+
+## 7. PASO 6 — CORREGIR PROBLEMAS DE RENDERIZADO
+
+Si los datos llegan de Supabase pero no se ven en pantalla:
+
+**El módulo muestra SkeletonLoader permanentemente:**
+- El `isLoading` nunca cambia a false
+- Solución: añadir `finally { setIsLoading(false) }` en el bloque de fetch
+
+**Los datos llegan pero el componente no los renderiza:**
+- Revisar que el tipo del dato coincide con la interfaz TypeScript
+- Revisar que no hay `undefined` en el acceso a propiedades anidadas (usar optional chaining `?.`)
+
+**Las relaciones (joins) no traen datos:**
+Si `.select('*, accounts(name)')` no trae el campo `accounts.name`:
+- En Supabase, las relaciones en el select usan el nombre de la tabla referenciada
+- Verificar que la FK está correctamente definida en el schema
+- Usar la sintaxis exacta: `accounts(name, color_hex)` para múltiples campos
+
+**El donut o gráficos no renderiza:**
+- Verificar que recharts y el componente DonutChart están importados correctamente
+- Los SVG inline necesitan valores numéricos, no strings. Usar `Number(pct)` o `parseFloat`
+
+---
+
+## 8. DEPENDENCIAS ADICIONALES A VERIFICAR
+
+Ejecutar si no están instaladas:
+```bash
+# Verificar que @dnd-kit está instalado (necesario para Pipeline)
+npm list @dnd-kit/core
+
+# Si no está:
+npm install @dnd-kit/core @dnd-kit/sortable @dnd-kit/utilities
+
+# Verificar recharts (necesario para Analytics)
+npm list recharts
+
+# Si no está:
+npm install recharts
+
+# Verificar date-fns (necesario para tiempos relativos)
+npm list date-fns
+
+# Si no está:
+npm install date-fns
+```
+
+---
+
+## 9. VARIABLES DE ENTORNO
+
+Verificar que `.env.local` existe y tiene los valores correctos:
+```bash
+cat .env.local
+```
+
+Debe mostrar:
+```env
+VITE_SUPABASE_URL=https://tu-proyecto.supabase.co
+VITE_SUPABASE_ANON_KEY=eyJ...
+```
+
+Si el archivo no existe o las variables están vacías:
+```bash
+cp .env.example .env.local
+# Editar .env.local con los valores reales de Supabase → Settings → API
+```
+
+---
+
+## 10. COMANDOS DE TERMINAL
+
+```bash
+# 1. Verificar que el proyecto compila sin errores de TypeScript
+npx tsc --noEmit
+
+# 2. Arrancar servidor de desarrollo
+npm run dev
+
+# 3. Ver logs del servidor (si hay errores de red)
+# Abrir DevTools → Console y Network simultáneamente
+
+# 4. Si hay errores de módulos no encontrados
+npm install
+
+# 5. Limpiar caché de Vite si hay comportamientos extraños
+rm -rf node_modules/.vite
+npm run dev
+```
+
+---
+
+## 11. RESULTADO ESPERADO AL FINALIZAR
+
+Todos los módulos del CRM deben:
+- Mostrar datos reales provenientes de Supabase
+- Las métricas del Dashboard mostrar: 3 clientes, tickets abiertos, pipeline activo
+- La tabla de Leads mostrar 4 leads con scores y auditoría
+- El Pipeline mostrar 6 deals en sus columnas correctas
+- La Vista 360 de Acme Corp mostrar las 3 pestañas con datos
+- Los Tickets mostrar 5 tickets con sus prioridades
+- Los Proyectos mostrar 3 proyectos + 5 plantillas SOP
+- Los Retainers mostrar 3 clientes con el % calculado desde timelogs
+- El Gantt mostrar jerarquía Cliente → Proyecto → Tareas
+- Los Logs n8n mostrar 6 ejecuciones con estados ok/error/warning
+- Los Webhooks mostrar 5 entradas expandibles con payload JSON

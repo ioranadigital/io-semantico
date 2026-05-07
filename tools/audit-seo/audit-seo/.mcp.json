@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "puppeteer-mcp": {
+      "command": "node",
+      "args": ["E:\\mcp\\puppeteer-mcp\\dist\\index.js"]
+    },
+    "crawl-mcp": {
+      "command": "node",
+      "args": ["E:\\mcp\\crawl-mcp\\dist\\index.js"]
+    },
+    "fastmcp-seo": {
+      "command": "python",
+      "args": ["E:\\mcp\\fastmcp-seo\\server.py"]
+    }
+  }
+}

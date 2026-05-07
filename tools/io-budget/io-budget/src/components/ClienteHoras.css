@@ -1,0 +1,154 @@
+/* Layout de dos columnas para ClienteHoras */
+
+.cliente-horas-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.cliente-horas-top {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.cliente-horas-main {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+.cliente-horas-calculator {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.cliente-horas-modifiers {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.cliente-horas-metrics {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.cliente-horas-action-buttons {
+  background: #f5f7f9;
+  border-radius: 10px;
+  padding: 16px;
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+/* Layout de dos columnas en pantallas grandes */
+@media (min-width: 1400px) {
+  .cliente-horas-main {
+    grid-template-columns: 60% 40%;
+    gap: 16px;
+  }
+
+  .cliente-horas-calculator {
+    gap: 12px;
+  }
+
+  .cliente-horas-modifiers {
+    gap: 12px;
+  }
+}
+
+/* Optimización de tarjetas de tramos */
+.cliente-horas-tramos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 6px;
+}
+
+.cliente-horas-tramo-card {
+  padding: 8px 6px;
+  text-align: center;
+  border-radius: 8px;
+  transition: all 0.2s;
+  font-size: 12px;
+}
+
+.cliente-horas-tramo-card .rate {
+  font-size: 13px;
+  font-weight: 600;
+  margin: 2px 0;
+}
+
+/* Barra de métricas compacta */
+.cliente-horas-metrics-bar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.cliente-horas-metric-card {
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: #ebf2f7;
+  text-align: center;
+  font-size: 11px;
+  color: rgba(10, 43, 73, 0.6);
+}
+
+.cliente-horas-metric-card.accent {
+  background: rgba(255, 140, 34, 0.12);
+  color: #ff8c22;
+}
+
+.cliente-horas-metric-card .label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 2px;
+}
+
+.cliente-horas-metric-card .value {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0a2b49;
+}
+
+/* Reducir padding en Cards */
+.cliente-horas-compact-card {
+  padding: 12px 14px !important;
+}
+
+.cliente-horas-compact-card > div:first-child {
+  margin-bottom: 10px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .cliente-horas-main {
+    grid-template-columns: 1fr;
+  }
+
+  .cliente-horas-metrics-bar {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .cliente-horas-metrics-bar {
+    grid-template-columns: 1fr;
+  }
+
+  .cliente-horas-tramos {
+    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+  }
+
+  .cliente-horas-compact-card {
+    padding: 10px 12px !important;
+  }
+}

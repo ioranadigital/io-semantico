@@ -1,0 +1,614 @@
+# CRM Pro — Instrucciones de implementación para Claude Code
+
+Basado en estas instrucciones, implementa los cambios en el disco local.
+
+---
+
+## 1. ARCHIVOS A CREAR/MODIFICAR
+
+### Raíz del proyecto
+```
+.env.local                          ← Variables de entorno Supabase
+vite.config.ts                      ← Configuración Vite con aliases (@/)
+tailwind.config.ts                  ← Extender con colores del CRM y fuente Inter
+tsconfig.json                       ← Paths alias @/ → src/
+postcss.config.js                   ← PostCSS con Tailwind y autoprefixer
+index.html                          ← Fuente Inter desde Google Fonts
+package.json                        ← Dependencias (ver sección 3)
+```
+
+### Librería y configuración (src/lib/)
+```
+src/lib/supabase.ts                 ← Cliente Supabase con createClient()
+src/lib/utils.ts                    ← Helpers: fmtEur(), cn(), safeQuery()
+src/lib/constants.ts                ← Colores, prioridades, estados, mapeos
+```
+
+### Tipos TypeScript (src/types/)
+```
+src/types/database.types.ts         ← Interfaces para las 19 tablas + 3 vistas
+src/types/index.ts                  ← Re-export de todos los tipos
+```
+
+### Store global (src/store/)
+```
+src/store/authStore.ts              ← Zustand: user, session, role, signIn, signOut
+src/store/appStore.ts               ← Zustand: toast state, sidebar collapsed
+```
+
+### Hooks (src/hooks/)
+```
+src/hooks/useAuth.ts                ← Hook de autenticación con Supabase Auth
+src/hooks/useRealtime.ts            ← Hook genérico para suscripciones Realtime
+src/hooks/useToast.ts               ← Hook para mostrar/ocultar toast
+src/hooks/useSupabaseQuery.ts       ← Hook wrapper para queries con loading/error
+src/hooks/useTimer.ts               ← Hook del cronómetro (start/stop/reset/seconds)
+src/hooks/useGlobalSearch.ts        ← Hook de búsqueda en accounts+contacts+leads
+```
+
+### Componentes de layout (src/components/layout/)
+```
+src/components/layout/Layout.tsx            ← Layout principal: Sidebar + Topbar + Outlet
+src/components/layout/Sidebar.tsx           ← Sidebar con 23 módulos en 8 secciones
+src/components/layout/Topbar.tsx            ← Barra superior con título + search + status
+src/components/layout/ProtectedRoute.tsx    ← Guard de ruta por rol (interno/cliente)
+src/components/layout/MobileDrawer.tsx      ← Sidebar como drawer en móvil (<768px)
+```
+
+### Componentes compartidos (src/components/shared/)
+```
+src/components/shared/MetricCard.tsx        ← Card de métrica con label/value/sub/alert
+src/components/shared/Badge.tsx             ← Badge de texto con bg y color
+src/components/shared/Avatar.tsx            ← Círculo con iniciales
+src/components/shared/ProgressBar.tsx       ← Barra de progreso con semáforo
+src/components/shared/DataTable.tsx         ← Wrapper TanStack Table estilizado
+src/components/shared/Toast.tsx             ← Notificación flotante con auto-dismiss
+src/components/shared/Card.tsx              ← Card contenedora con border y radius
+src/components/shared/SectionHeader.tsx     ← Título de sección 13px medium
+src/components/shared/EmptyState.tsx        ← Placeholder cuando no hay datos
+src/components/shared/SkeletonLoader.tsx    ← Skeleton para métricas, tablas y cards
+src/components/shared/Modal.tsx             ← Modal genérico con overlay
+src/components/shared/ConfirmDialog.tsx     ← Diálogo de confirmación
+src/components/shared/GlobalSearch.tsx      ← Dropdown de búsqueda en Topbar
+src/components/shared/DonutChart.tsx        ← SVG donut para bolsa de horas
+```
+
+### Páginas — CRM (src/pages/crm/)
+```
+src/pages/crm/Dashboard.tsx                 ← Dashboard principal con métricas y feeds
+src/pages/crm/Leads.tsx                     ← Lista de leads con scoring y auditoría
+src/pages/crm/LeadDetail.tsx                ← Detalle lead: auditoría + scoring + conversión
+src/pages/crm/Contacts.tsx                  ← Grid de contactos con cards
+src/pages/crm/Pipeline.tsx                  ← Kanban drag-and-drop de deals
+src/pages/crm/Clients.tsx                   ← Lista de clientes con retainer y health
+src/pages/crm/ClientDetail.tsx              ← Vista 360°: 3 pestañas (Resumen/Actividad/Finanzas)
+src/pages/crm/Tickets.tsx                   ← Lista de tickets con SLA
+src/pages/crm/TicketDetail.tsx              ← Detalle ticket: respuesta + resolución
+```
+
+### Páginas — Operaciones (src/pages/operations/)
+```
+src/pages/operations/Projects.tsx           ← Proyectos activos + Biblioteca SOP
+src/pages/operations/Maintenance.tsx        ← Retainers con donut y alertas
+src/pages/operations/Tasks.tsx              ← Vista global de tareas
+src/pages/operations/Gantt.tsx              ← Diagrama Gantt 3 niveles
+src/pages/operations/Deliverables.tsx       ← Entregables con estados
+```
+
+### Páginas — Rentabilidad (src/pages/profitability/)
+```
+src/pages/profitability/TimeTracking.tsx    ← Cronómetro + registros
+src/pages/profitability/Expenses.tsx        ← Gastos con categorías
+src/pages/profitability/Profitability.tsx   ← Rentabilidad por proyecto
+```
+
+### Páginas — Informes (src/pages/reports/)
+```
+src/pages/reports/Analytics.tsx             ← Gráficos de pipeline y leads
+```
+
+### Páginas — Comunicación (src/pages/communication/)
+```
+src/pages/communication/Activity.tsx        ← Bitácora con Realtime
+src/pages/communication/Docs.tsx            ← Grid de documentos
+src/pages/communication/PortalConfig.tsx    ← Config accesos + preview
+src/pages/communication/PortalPreview.tsx   ← Vista simulada del cliente
+```
+
+### Páginas — Configuración (src/pages/config/)
+```
+src/pages/config/SopTemplates.tsx           ← CRUD de plantillas SOP
+src/pages/config/Users.tsx                  ← Gestión de usuarios y accesos
+```
+
+### Páginas — n8n (src/pages/n8n/)
+```
+src/pages/n8n/Automations.tsx               ← Lista de flujos agrupados
+src/pages/n8n/N8nLogs.tsx                   ← Logs con Realtime
+src/pages/n8n/Webhooks.tsx                  ← Webhooks expandibles con JSON
+```
+
+### Páginas — Auth y Portal (src/pages/auth/)
+```
+src/pages/auth/Login.tsx                    ← Login con Supabase Auth
+src/pages/auth/ClientPortal.tsx             ← Portal externo del cliente
+```
+
+### App entry (src/)
+```
+src/App.tsx                                 ← Router con todas las rutas + ProtectedRoute
+src/main.tsx                                ← Entry point con BrowserRouter
+src/index.css                               ← Tailwind directives + CSS variables del CRM
+```
+
+### Supabase (supabase/)
+```
+supabase/schema.sql                         ← Esquema completo de 19 tablas (ya entregado)
+```
+
+### n8n workflows (n8n/)
+```
+n8n/01-ingesta-leads-auditoria.json         ← Flow 1 (ya entregado)
+n8n/02-onboarding-deal-ganado.json          ← Flow 2 (ya entregado)
+n8n/03-alerta-sla-critico.json             ← Flow 3 (ya entregado)
+n8n/04-alerta-retainer-80.json             ← Flow 4 (ya entregado)
+n8n/05-resolucion-ticket-email.json        ← Flow 5 (ya entregado)
+```
+
+---
+
+## 2. LÓGICA DE NEGOCIO
+
+### Autenticación y roles
+- `useAuth` hook: al hacer login con `supabase.auth.signInWithPassword()`, consultar `portal_users` para determinar el rol:
+  - Si existe fila con ese `user_id` → `role = 'cliente'` → redirect a `/portal`
+  - Si no existe → `role = 'interno'` → redirect a `/dashboard`
+- `ProtectedRoute`: si no hay sesión → `/login`. Si rol='cliente' intenta ruta interna → `/portal`. Si rol='interno' intenta `/portal` → `/dashboard`.
+
+### Lead Scoring (cálculo en frontend)
+```typescript
+function calcLeadScore(lead: Lead): number {
+  let s = 0;
+  if (lead.budget_range?.includes('>10.000')) s += 40;
+  else if (lead.budget_range?.includes('5.000')) s += 30;
+  else if (lead.budget_range?.includes('2.000')) s += 20;
+  else s += 10;
+  if (lead.urgency === 'Alta') s += 30;
+  else if (lead.urgency === 'Media') s += 15;
+  else s += 5;
+  const fitSectors = ['Fintech','Logística','SaaS','eCommerce','Retail'];
+  if (fitSectors.includes(lead.sector || '')) s += 20;
+  else s += 10;
+  if (lead.audit_status === 'done' && lead.audit_speed)
+    s += Math.round(lead.audit_speed / 10);
+  return Math.min(s, 100);
+}
+```
+
+### Conversión Lead → Cliente
+Al pulsar "Convertir a cliente" en LeadDetail:
+1. `INSERT accounts` (name=company, website, sector, status='Activo', health_score=100)
+2. `INSERT contacts` (account_id del nuevo account, name, email, origin)
+3. `UPDATE leads` SET status='Cualificado', converted_to_contact_id
+4. `INSERT activity_log` con action descriptiva
+5. Toast + navegar a `/clients/:newId`
+
+### Pipeline Drag & Drop
+Al soltar card en nueva columna:
+1. `UPDATE deals SET stage = newStage WHERE id = dealId`
+2. `INSERT activity_log` con "Deal 'X' movido a [stage]"
+3. Toast de confirmación
+
+### Aplicar plantilla SOP → Crear proyecto
+Al confirmar en el modal:
+1. `INSERT projects` (account_id, name, status='Pendiente', milestones=template.modules, sop_template_id)
+2. `INSERT tasks[]` (project_id, title de cada tarea del template, status='Pendiente', hours_budget=4, position=index)
+3. `INSERT activity_log`
+4. Toast "Proyecto creado con X tareas"
+
+### Cronómetro → Timelog
+Al pulsar "Detener":
+1. Calcular hours = seconds / 3600 con 2 decimales
+2. `INSERT timelogs` (project_id, user_id, description, hours, logged_at=today)
+3. Reset timer a 0
+4. Toast "Xh registradas"
+
+### Resolver ticket
+1. `UPDATE tickets SET status='Resuelto', resolved_at=now() WHERE id=ticketId`
+2. `INSERT activity_log` con "[ref] marcado como Resuelto — email enviado"
+3. Toast + navegar a `/tickets`
+
+### Aceptar propuesta
+1. `UPDATE proposals SET status='Aceptada', accepted_at=now() WHERE id=proposalId`
+2. `INSERT activity_log` con "Propuesta '[title]' aceptada por [client]"
+3. Toast "Propuesta aceptada · n8n creará el proyecto automáticamente"
+
+### Toggle portal de cliente
+1. `UPDATE accounts SET portal_active = !current WHERE id=accountId`
+2. Toast
+
+### Retainer — usar vista SQL
+En `/maintenance` y en la Vista 360, leer de `v_retainer_status` (NO del campo `retainers.hours_used`):
+```typescript
+const { data } = await supabase.from('v_retainer_status').select('*').eq('active', true)
+```
+
+### Timeline 360 — con fallback
+Intentar leer `v_client_timeline` filtrando por `account_id`. Si devuelve 0 resultados, hacer fallback mezclando tickets resueltos + facturas pagadas del mismo account_id ordenados por fecha descendente.
+
+### Realtime — suscripciones activas
+Suscribir en estos módulos:
+- `leads` (UPDATE audit_status) → actualizar fila en la lista
+- `tickets` (INSERT, UPDATE) → actualizar lista y badges
+- `n8n_logs` (INSERT) → prepend al feed de logs
+- `activity_log` (INSERT) → prepend a la bitácora
+
+### Queries a Supabase con safeQuery wrapper
+```typescript
+async function safeQuery<T>(query: Promise<{data: T|null, error: any}>): Promise<T|null> {
+  const { data, error } = await query;
+  if (error) {
+    console.error('Supabase error:', error);
+    appStore.getState().showToast('Error al cargar datos', '#E24B4A');
+    return null;
+  }
+  return data;
+}
+```
+
+---
+
+## 3. DEPENDENCIAS
+
+```bash
+# Framework y routing
+npm install react-router-dom@6
+
+# Supabase
+npm install @supabase/supabase-js
+
+# Estado global
+npm install zustand
+
+# Formularios y validación
+npm install react-hook-form zod @hookform/resolvers
+
+# UI base (shadcn/ui)
+npx shadcn-ui@latest init
+npx shadcn-ui@latest add button input select textarea label tabs dialog dropdown-menu sheet skeleton toast
+
+# Tablas
+npm install @tanstack/react-table
+
+# Iconos
+npm install lucide-react
+
+# Gráficos
+npm install recharts
+
+# Fechas
+npm install date-fns
+
+# Drag and Drop (para Pipeline Kanban)
+npm install @dnd-kit/core @dnd-kit/sortable @dnd-kit/utilities
+
+# Clase condicional
+npm install clsx tailwind-merge
+```
+
+---
+
+## 4. COMANDOS DE TERMINAL
+
+```bash
+# 1. Crear proyecto Vite con React + TypeScript
+npm create vite@latest crm-pro -- --template react-ts
+cd crm-pro
+
+# 2. Instalar Tailwind CSS
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+
+# 3. Instalar todas las dependencias del proyecto
+npm install react-router-dom@6 @supabase/supabase-js zustand \
+  react-hook-form zod @hookform/resolvers \
+  @tanstack/react-table lucide-react recharts date-fns \
+  @dnd-kit/core @dnd-kit/sortable @dnd-kit/utilities \
+  clsx tailwind-merge
+
+# 4. Configurar shadcn/ui
+npx shadcn-ui@latest init
+# Seleccionar: TypeScript=yes, style=Default, base color=Slate, CSS variables=yes
+npx shadcn-ui@latest add button input select textarea label tabs \
+  dialog dropdown-menu sheet skeleton toast
+
+# 5. Verificar que compila
+npm run dev
+
+# 6. Build de producción (cuando esté listo)
+npm run build
+```
+
+---
+
+## 5. VARIABLES DE ENTORNO
+
+Crear archivo `.env.local` en la raíz del proyecto:
+
+```env
+# Supabase — Obtener de: supabase.com → Settings → API
+VITE_SUPABASE_URL=https://tu-proyecto.supabase.co
+VITE_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+
+# NOTA: La service_role key NUNCA va en el frontend.
+# Solo se usa en n8n (backend).
+```
+
+Verificar que `.env.local` está en `.gitignore` (Vite lo incluye por defecto).
+
+No se necesitan más variables de entorno en el frontend. Las credenciales de Slack, SMTP, Google Drive y APIs de auditoría van en n8n directamente.
+
+---
+
+## 6. SISTEMA DE DISEÑO — IMPLEMENTAR EN src/index.css
+
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap');
+
+:root {
+  /* Paleta principal */
+  --purple: #7F77DD;     --purple-l: #EEEDFE;   --purple-d: #3C3489;
+  --teal: #1D9E75;       --teal-l: #E1F5EE;     --teal-d: #085041;
+  --coral: #D85A30;      --coral-l: #FAECE7;    --coral-d: #712B13;
+  --blue: #378ADD;       --blue-l: #E6F1FB;     --blue-d: #0C447C;
+  --amber: #BA7517;      --amber-l: #FAEEDA;    --amber-d: #633806;
+  --green: #639922;      --green-l: #EAF3DE;    --green-d: #27500A;
+  --red: #E24B4A;        --red-l: #FCEBEB;      --red-d: #791F1F;
+  --gray: #888780;       --gray-l: #F1EFE8;     --gray-d: #444441;
+
+  /* Semánticos */
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F8F7F4;
+  --bg-tertiary: #F1EFE8;
+  --text-primary: #1A1A1A;
+  --text-secondary: #6B6B6B;
+  --text-tertiary: #9B9B9B;
+  --border-primary: #D4D4D4;
+  --border-secondary: #E5E5E5;
+  --border-tertiary: #F0F0F0;
+
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+/* Dark mode */
+.dark {
+  --bg-primary: #1A1A1A;
+  --bg-secondary: #242424;
+  --bg-tertiary: #2E2E2E;
+  --text-primary: #F5F5F5;
+  --text-secondary: #A0A0A0;
+  --text-tertiary: #6B6B6B;
+  --border-primary: #444444;
+  --border-secondary: #383838;
+  --border-tertiary: #2E2E2E;
+}
+
+body {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+```
+
+---
+
+## 7. EXTENDER tailwind.config.ts
+
+```typescript
+import type { Config } from 'tailwindcss'
+
+export default {
+  darkMode: 'class',
+  content: ['./index.html', './src/**/*.{ts,tsx}'],
+  theme: {
+    extend: {
+      fontFamily: {
+        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
+      },
+      colors: {
+        brand: {
+          purple: 'var(--purple)',
+          'purple-l': 'var(--purple-l)',
+          'purple-d': 'var(--purple-d)',
+          teal: 'var(--teal)',
+          'teal-l': 'var(--teal-l)',
+          'teal-d': 'var(--teal-d)',
+          coral: 'var(--coral)',
+          'coral-l': 'var(--coral-l)',
+          'coral-d': 'var(--coral-d)',
+          blue: 'var(--blue)',
+          'blue-l': 'var(--blue-l)',
+          'blue-d': 'var(--blue-d)',
+          amber: 'var(--amber)',
+          'amber-l': 'var(--amber-l)',
+          'amber-d': 'var(--amber-d)',
+          green: 'var(--green)',
+          'green-l': 'var(--green-l)',
+          'green-d': 'var(--green-d)',
+          red: 'var(--red)',
+          'red-l': 'var(--red-l)',
+          'red-d': 'var(--red-d)',
+        },
+        surface: {
+          primary: 'var(--bg-primary)',
+          secondary: 'var(--bg-secondary)',
+          tertiary: 'var(--bg-tertiary)',
+        },
+        content: {
+          primary: 'var(--text-primary)',
+          secondary: 'var(--text-secondary)',
+          tertiary: 'var(--text-tertiary)',
+        },
+        edge: {
+          primary: 'var(--border-primary)',
+          secondary: 'var(--border-secondary)',
+          tertiary: 'var(--border-tertiary)',
+        }
+      },
+      fontSize: {
+        'xs-crm': ['11px', { lineHeight: '16px' }],
+        'sm-crm': ['12px', { lineHeight: '18px' }],
+        'base-crm': ['13px', { lineHeight: '20px' }],
+        'md-crm': ['14px', { lineHeight: '22px' }],
+        'lg-crm': ['15px', { lineHeight: '24px' }],
+        'xl-crm': ['16px', { lineHeight: '24px' }],
+        'metric': ['22px', { lineHeight: '28px' }],
+      },
+      borderRadius: {
+        'crm': '12px',
+        'crm-sm': '8px',
+        'crm-xs': '6px',
+      }
+    },
+  },
+  plugins: [require('tailwindcss-animate')],
+} satisfies Config
+```
+
+---
+
+## 8. ESTRUCTURA DE NAVEGACIÓN — SIDEBAR
+
+Implementar en Sidebar.tsx exactamente esta estructura:
+
+```typescript
+const NAV_SECTIONS = [
+  { items: [
+    { id: 'dashboard', label: 'Dashboard', path: '/dashboard', icon: 'LayoutDashboard' },
+  ]},
+  { label: 'CRM', items: [
+    { id: 'leads', label: 'Leads & Scoring', path: '/leads', icon: 'Zap' },
+    { id: 'contacts', label: 'Contactos', path: '/contacts', icon: 'Users' },
+    { id: 'pipeline', label: 'Pipeline', path: '/pipeline', icon: 'TrendingUp' },
+    { id: 'clients', label: 'Clientes', path: '/clients', icon: 'Building2' },
+  ]},
+  { label: 'Tickets', items: [
+    { id: 'tickets', label: 'Tickets', path: '/tickets', icon: 'Ticket' },
+  ]},
+  { label: 'Operaciones', items: [
+    { id: 'projects', label: 'Proyectos', path: '/projects', icon: 'FolderOpen' },
+    { id: 'maintenance', label: 'Mantenimiento', path: '/maintenance', icon: 'RefreshCw' },
+    { id: 'tasks', label: 'Tareas', path: '/tasks', icon: 'CheckSquare' },
+    { id: 'gantt', label: 'Gantt', path: '/gantt', icon: 'BarChart3' },
+    { id: 'deliverables', label: 'Entregables', path: '/deliverables', icon: 'FileCheck' },
+  ]},
+  { label: 'Rentabilidad', items: [
+    { id: 'timetracking', label: 'Time Tracking', path: '/timetracking', icon: 'Clock' },
+    { id: 'expenses', label: 'Gastos', path: '/expenses', icon: 'Tag' },
+    { id: 'profitability', label: 'Rentabilidad', path: '/profitability', icon: 'PieChart' },
+  ]},
+  { label: 'Informes', items: [
+    { id: 'analytics', label: 'Analítica', path: '/analytics', icon: 'LineChart' },
+  ]},
+  { label: 'Comunicación', items: [
+    { id: 'activity', label: 'Bitácora', path: '/activity', icon: 'Activity' },
+    { id: 'docs', label: 'Documentos', path: '/docs', icon: 'FileText' },
+    { id: 'portal', label: 'Portal Cliente', path: '/portal-config', icon: 'Eye' },
+  ]},
+  { label: 'Configuración', items: [
+    { id: 'sop', label: 'Plantillas SOP', path: '/sop', icon: 'Layers' },
+    { id: 'users', label: 'Usuarios & Accesos', path: '/users', icon: 'Lock' },
+  ]},
+  { label: 'n8n + Supabase', items: [
+    { id: 'automations', label: 'Automatizaciones', path: '/automations', icon: 'Cpu' },
+    { id: 'n8n-logs', label: 'Logs ejecución', path: '/n8n-logs', icon: 'Terminal' },
+    { id: 'webhooks', label: 'Webhooks', path: '/webhooks', icon: 'Webhook' },
+  ]},
+]
+```
+
+---
+
+## 9. ROUTING COMPLETO — src/App.tsx
+
+```typescript
+// Todas las rutas internas envueltas en Layout + ProtectedRoute(role='interno')
+// Ruta /portal envuelta en ProtectedRoute(role='cliente')
+// Lazy loading con React.lazy y Suspense para cada página
+// /login es la única ruta pública
+// / redirige a /dashboard
+```
+
+Rutas:
+```
+/login          → Login
+/dashboard      → Dashboard
+/leads          → Leads
+/leads/:id      → LeadDetail
+/contacts       → Contacts
+/pipeline       → Pipeline
+/clients        → Clients
+/clients/:id    → ClientDetail
+/tickets        → Tickets
+/tickets/:id    → TicketDetail
+/projects       → Projects
+/maintenance    → Maintenance
+/tasks          → Tasks
+/gantt          → Gantt
+/deliverables   → Deliverables
+/timetracking   → TimeTracking
+/expenses       → Expenses
+/profitability  → Profitability
+/analytics      → Analytics
+/activity       → Activity
+/docs           → Docs
+/portal-config  → PortalConfig
+/portal-preview → PortalPreview
+/sop            → SopTemplates
+/users          → Users
+/automations    → Automations
+/n8n-logs       → N8nLogs
+/webhooks       → Webhooks
+/portal         → ClientPortal
+```
+
+---
+
+## 10. PRIORIDAD DE IMPLEMENTACIÓN
+
+Construir en este orden para que cada paso compile sin errores:
+
+1. **Setup:** Vite + Tailwind + dependencias + CSS variables + tipos
+2. **Lib:** supabase.ts + utils.ts + constants.ts
+3. **Store:** authStore + appStore
+4. **Hooks:** useAuth + useToast + useSupabaseQuery + useRealtime + useTimer
+5. **Shared components:** MetricCard, Badge, Avatar, ProgressBar, DataTable, Toast, Card, Modal, SkeletonLoader
+6. **Layout:** Sidebar + Topbar + Layout + ProtectedRoute + Login
+7. **CRM:** Dashboard → Leads/LeadDetail → Pipeline → Contacts → Clients/ClientDetail → Tickets/TicketDetail
+8. **Operaciones:** Projects (con SOP) → Maintenance → Tasks → Gantt → Deliverables
+9. **Rentabilidad:** TimeTracking → Expenses → Profitability
+10. **Informes + Comunicación:** Analytics → Activity → Docs → PortalConfig → PortalPreview
+11. **Config:** SopTemplates → Users
+12. **n8n:** Automations → N8nLogs → Webhooks
+13. **Portal:** ClientPortal (ruta /portal con layout simplificado)
+
+Cada módulo debe:
+- Conectar a Supabase con queries reales
+- Mostrar SkeletonLoader mientras carga
+- Mostrar Toast en acciones de escritura
+- Manejar errores con safeQuery
+- Ser responsive (sidebar colapsable <768px, tablas con scroll horizontal)
+
+---
+
+## NOTA FINAL
+
+El esquema SQL de Supabase (19 tablas, índices, triggers, RLS, vistas) ya está preparado en el archivo `supabase/schema.sql`. Debe ejecutarse manualmente en el SQL Editor de Supabase ANTES de probar la app.
+
+Los flujos de n8n (5 archivos JSON) están en la carpeta `n8n/`. Se importan manualmente en la instancia de n8n.
+
+La app no necesita backend propio — todo se comunica directamente con Supabase desde el frontend (excepto las automatizaciones que van por n8n).

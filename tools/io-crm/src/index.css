@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Paleta principal */
+  --purple: #7F77DD;
+  --purple-l: #EEEDFE;
+  --purple-d: #3C3489;
+  --teal: #1D9E75;
+  --teal-l: #E1F5EE;
+  --teal-d: #085041;
+  --coral: #D85A30;
+  --coral-l: #FAECE7;
+  --coral-d: #712B13;
+  --blue: #378ADD;
+  --blue-l: #E6F1FB;
+  --blue-d: #0C447C;
+  --amber: #BA7517;
+  --amber-l: #FAEEDA;
+  --amber-d: #633806;
+  --green: #639922;
+  --green-l: #EAF3DE;
+  --green-d: #27500A;
+  --red: #E24B4A;
+  --red-l: #FCEBEB;
+  --red-d: #791F1F;
+  --gray: #888780;
+  --gray-l: #F1EFE8;
+  --gray-d: #444441;
+
+  /* Semánticos */
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F8F7F4;
+  --bg-tertiary: #F1EFE8;
+  --text-primary: #1A1A1A;
+  --text-secondary: #6B6B6B;
+  --text-tertiary: #9B9B9B;
+  --border-primary: #D4D4D4;
+  --border-secondary: #E5E5E5;
+  --border-tertiary: #F0F0F0;
+
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+.dark {
+  --bg-primary: #1A1A1A;
+  --bg-secondary: #242424;
+  --bg-tertiary: #2E2E2E;
+  --text-primary: #F5F5F5;
+  --text-secondary: #A0A0A0;
+  --text-tertiary: #6B6B6B;
+  --border-primary: #444444;
+  --border-secondary: #383838;
+  --border-tertiary: #2E2E2E;
+}
+
+body {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+@layer components {
+  .text-xs-medium {
+    @apply text-xs font-medium;
+  }
+  .text-sm-medium {
+    @apply text-sm font-medium;
+  }
+  .text-base-medium {
+    @apply text-base font-medium;
+  }
+}
