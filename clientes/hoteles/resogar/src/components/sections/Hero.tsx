@@ -1,7 +1,15 @@
 export default function Hero() {
   return (
-    <section className="relative w-full h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 overflow-hidden pt-20">
-      {/* Animated background */}
+    <section
+      className="relative w-full h-screen bg-cover bg-center bg-no-repeat overflow-hidden pt-20"
+      style={{
+        backgroundImage: 'url("https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=1400&q=80")'
+      }}
+    >
+      {/* Overlay oscuro para mejor legibilidad */}
+      <div className="absolute inset-0 bg-black/50"></div>
+
+      {/* Animated accent shapes */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-20 right-20 w-96 h-96 bg-blue-500 rounded-full blur-3xl"></div>
         <div className="absolute bottom-20 left-20 w-96 h-96 bg-purple-500 rounded-full blur-3xl"></div>
@@ -11,13 +19,13 @@ export default function Hero() {
         {/* Badge */}
         <div className="mb-6 inline-block">
           <span className="px-4 py-2 bg-blue-600/20 border border-blue-400 text-blue-200 rounded-full text-sm font-semibold">
-            ✨ Suites Boutique Premium
+            ✨ Apartamentos Premium en Centro
           </span>
         </div>
 
         {/* Headline */}
         <h1 className="text-5xl md:text-6xl lg:text-7xl font-light text-white text-center mb-6 max-w-4xl leading-tight">
-          Apartamentos de <span className="font-semibold">Lujo</span> en Madrid
+          Departamentos de <span className="font-semibold">Lujo</span> en el Centro de Salamanca
         </h1>
 
         {/* Subheading */}
