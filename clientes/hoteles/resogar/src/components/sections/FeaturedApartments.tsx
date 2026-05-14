@@ -7,7 +7,7 @@ export default function FeaturedApartments() {
   const [expandedId, setExpandedId] = useState<number | null>(null);
 
   return (
-    <section className="section-padding bg-gradient-to-b from-gray-50 to-white">
+    <section id="apartamentos-destacados" className="section-padding bg-gradient-to-b from-gray-50 to-white">
       <div className="container-fluid">
         {/* Header */}
         <div className="mb-16">

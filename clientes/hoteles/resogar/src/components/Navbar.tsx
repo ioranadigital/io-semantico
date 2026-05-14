@@ -16,12 +16,12 @@ export default function Navbar() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            <a href="#" className="text-gray-700 hover:text-gray-900 font-light">Apartamentos</a>
-            <a href="#experiencias" className="text-gray-700 hover:text-gray-900 font-light">Experiencias</a>
-            <a href="#" className="text-gray-700 hover:text-gray-900 font-light">Contacto</a>
-            <button className="px-6 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-all">
+            <a href="/#apartamentos-destacados" className="text-gray-700 hover:text-gray-900 font-light">Apartamentos</a>
+            <a href="/#experiencias" className="text-gray-700 hover:text-gray-900 font-light">Experiencias</a>
+            <a href="/#contacto" className="text-gray-700 hover:text-gray-900 font-light">Contacto</a>
+            <a href="/checkout" className="px-6 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-all">
               Reservar
-            </button>
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
@@ -38,12 +38,12 @@ export default function Navbar() {
         {/* Mobile Menu */}
         {mobileMenuOpen && (
           <div className="md:hidden mt-4 pb-4 space-y-4">
-            <a href="#" className="block text-gray-700 hover:text-gray-900 font-light">Apartamentos</a>
-            <a href="#experiencias" className="block text-gray-700 hover:text-gray-900 font-light">Experiencias</a>
-            <a href="#" className="block text-gray-700 hover:text-gray-900 font-light">Contacto</a>
-            <button className="w-full px-6 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700">
+            <a href="/#apartamentos-destacados" className="block text-gray-700 hover:text-gray-900 font-light">Apartamentos</a>
+            <a href="/#experiencias" className="block text-gray-700 hover:text-gray-900 font-light">Experiencias</a>
+            <a href="/#contacto" className="block text-gray-700 hover:text-gray-900 font-light">Contacto</a>
+            <a href="/checkout" className="block w-full px-6 py-2 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 text-center">
               Reservar
-            </button>
+            </a>
           </div>
         )}
       </div>
