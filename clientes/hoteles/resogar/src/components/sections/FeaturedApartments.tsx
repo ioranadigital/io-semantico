@@ -121,7 +121,7 @@ export default function FeaturedApartments() {
                     </div>
                   </div>
                   <a
-                    href={`/apartamentos/${apt.zone}/${apt.slug}`}
+                    href={`/apartamentos/${apt.zone}/${apt.subzone}/${apt.slug}`}
                     className="px-5 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-all text-sm whitespace-nowrap"
                   >
                     Ver Detalles →

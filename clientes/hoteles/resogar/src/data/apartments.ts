@@ -3,6 +3,7 @@ export interface Apartment {
   slug: string;
   name: string;
   zone: string;
+  subzone: string;
   zoneDisplay: string;
   location: string;
   price: number;
@@ -29,10 +30,11 @@ export interface Apartment {
 export const apartments: Apartment[] = [
   {
     id: 1,
-    slug: 'pradillo-premium-ii',
-    name: 'Lujoso Apartamento en Centro Histórico',
-    zone: 'chamartin',
-    zoneDisplay: 'Chamartín',
+    slug: 'lujo-premium-resogar',
+    name: 'Lujoso Apartamento Premium-Resogar',
+    zone: 'salamanca',
+    subzone: 'plazamayor',
+    zoneDisplay: 'Salamanca',
     location: 'Salamanca, a 100m de la Plaza Mayor, Madrid',
     price: 185,
     rating: 4.65,
@@ -108,9 +110,10 @@ Nuestro equipo está disponible para ayudarle con cualquier necesidad.`,
   },
   {
     id: 2,
-    slug: 'recoletos-elegance',
-    name: 'Lujoso Apto. Boutique a 100m Plaza Mayor',
+    slug: 'lujo-boutique-resogar',
+    name: 'Lujoso Apartamento Boutique-Resogar',
     zone: 'salamanca',
+    subzone: 'plazamayor',
     zoneDisplay: 'Salamanca',
     location: 'Salamanca, a 100m de la Plaza Mayor, Madrid',
     price: 195,
@@ -187,10 +190,11 @@ Perfecto para parejas o familias pequeñas que buscan lo mejor de Madrid.`,
   },
   {
     id: 3,
-    slug: 'vista-real-penthouse',
-    name: 'Lujoso Apartamento con Patio Privado',
-    zone: 'centro-historico',
-    zoneDisplay: 'Centro Histórico',
+    slug: 'lujo-con-patio-privado-resogar',
+    name: 'Lujoso Apartamento con Patio Privado-Resogar',
+    zone: 'salamanca',
+    subzone: 'plazamayor',
+    zoneDisplay: 'Salamanca',
     location: 'Salamanca, a 100m de la Plaza Mayor, Madrid',
     price: 215,
     rating: 5.0,
@@ -267,10 +271,14 @@ Ideal para parejas o familias pequeñas que desean lo mejor de Madrid con todos 
   }
 ];
 
-export function getApartmentBySlug(zone: string, slug: string): Apartment | undefined {
-  return apartments.find(apt => apt.zone === zone && apt.slug === slug);
+export function getApartmentBySlug(zone: string, subzone: string, slug: string): Apartment | undefined {
+  return apartments.find(apt => apt.zone === zone && apt.subzone === subzone && apt.slug === slug);
 }
 
 export function getApartmentsByZone(zone: string): Apartment[] {
   return apartments.filter(apt => apt.zone === zone);
+}
+
+export function getApartmentsBySubzone(zone: string, subzone: string): Apartment[] {
+  return apartments.filter(apt => apt.zone === zone && apt.subzone === subzone);
 }

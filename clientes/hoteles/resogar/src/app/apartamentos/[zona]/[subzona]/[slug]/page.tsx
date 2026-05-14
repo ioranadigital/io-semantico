@@ -5,10 +5,10 @@ import ApartmentDetailClient from '@/components/ApartmentDetailClient';
 export default async function ApartmentDetail({
   params,
 }: {
-  params: Promise<{ zona: string; slug: string }>;
+  params: Promise<{ zona: string; subzona: string; slug: string }>;
 }) {
-  const { zona, slug } = await params;
-  const apartment = getApartmentBySlug(zona, slug);
+  const { zona, subzona, slug } = await params;
+  const apartment = getApartmentBySlug(zona, subzona, slug);
 
   if (!apartment) {
     return (
