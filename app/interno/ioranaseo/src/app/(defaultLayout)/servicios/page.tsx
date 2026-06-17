@@ -10,12 +10,12 @@ const ServiciosComparaPage = () => {
     <div>
       <BreadCumb
         bgimg="/assets/img/bg/comon-hero-bg.jpg"
-        Title="Compara Nuestros Servicios"
+        Title="Conoce Nuestros Servicios"
       ></BreadCumb>
 
       <HeroBannerPlanes
         subtitle="Servicios Digitales"
-        title="Compara Nuestros Servicios"
+        title="Conoce <span style='color: #4D32A5;'>Nuestros Servicios</span>"
         content="Encuentra el servicio que mejor se adapte a tu negocio y tus necesidades específicas de marketing digital."
         img="/assets/img/hero/hero3-main-img.png"
       ></HeroBannerPlanes>
