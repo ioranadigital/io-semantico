@@ -1,0 +1,259 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e272]:
+      - paragraph [ref=e274]:
+        - text: Utilizamos cookies para mejorar tu experiencia. Al continuar navegando, aceptas nuestro uso de cookies. Lee nuestra
+        - link "política de privacidad" [ref=e275] [cursor=pointer]:
+          - /url: /legal
+        - text: .
+      - generic [ref=e276]:
+        - button "Rechazar" [ref=e277] [cursor=pointer]
+        - button "Aceptar" [ref=e278] [cursor=pointer]
+    - banner [ref=e3]:
+      - generic [ref=e6]:
+        - generic [ref=e7]:
+          - link "IoranaSEO Logo" [ref=e8] [cursor=pointer]:
+            - /url: /
+            - img "IoranaSEO Logo" [ref=e9]
+          - navigation
+        - generic:
+          - generic:
+            - generic: 
+    - generic [ref=e13]:
+      - generic [ref=e17]:
+        - generic [ref=e19]:
+          - generic [ref=e20]:
+            - link "Inicio" [ref=e21] [cursor=pointer]:
+              - /url: /
+            - text: ">"
+          - generic [ref=e22]: Planes y Precios
+        - generic [ref=e23]:
+          - generic [ref=e25]:
+            - paragraph [ref=e26]: SEO & Visibilidad
+            - heading "Servicio SEO Local" [level=1] [ref=e27]
+            - paragraph [ref=e29]: Nuestros planes están diseñados para adaptarse a las necesidades de tu empresa, desde startups hasta grandes corporaciones.
+            - generic [ref=e30]:
+              - generic [ref=e31]:
+                - generic [ref=e32]: ✓
+                - text: Higher Conversion Rates
+              - generic [ref=e33]:
+                - generic [ref=e34]: ✓
+                - text: Increase Website Traffic
+              - generic [ref=e35]:
+                - generic [ref=e36]: ✓
+                - text: Local Market Dominance
+              - generic [ref=e37]:
+                - generic [ref=e38]: ✓
+                - text: 24/7 Promotion
+            - generic [ref=e39]:
+              - button " Llámanos" [ref=e40] [cursor=pointer]:
+                - generic [ref=e41]:
+                  - generic [ref=e42]: 
+                  - text: Llámanos
+              - link "Mira Nuestros Planes " [ref=e43] [cursor=pointer]:
+                - /url: /planes
+                - generic [ref=e44]:
+                  - text: Mira Nuestros Planes
+                  - generic [ref=e46]: 
+          - generic [ref=e49]:
+            - heading "¿Por qué importa?" [level=3] [ref=e50]
+            - generic [ref=e51]:
+              - generic [ref=e52]:
+                - generic [ref=e53]: ✓
+                - paragraph [ref=e54]: El 46% de todas las búsquedas en Google tienen intención local — tus clientes te están buscando ahora mismo
+              - generic [ref=e55]:
+                - generic [ref=e56]: ✓
+                - paragraph [ref=e57]: El 76% de las personas que hacen una búsqueda local visitan el negocio en 24 horas
+              - generic [ref=e58]:
+                - generic [ref=e59]: ✓
+                - paragraph [ref=e60]: Los negocios en el Local Pack de Google reciben el 44% de los clics totales de la página de resultados
+      - generic [ref=e62]:
+        - generic [ref=e63]:
+          - heading "¿Por qué es importante el SEO Local?" [level=2] [ref=e64]
+          - paragraph [ref=e66]: Somos especialistas en posicionar negocios locales en Google. Con más de 80 proyectos exitosos, sabemos exactamente qué funciona.
+        - generic [ref=e67]:
+          - generic [ref=e68]:
+            - generic [ref=e69]:
+              - img [ref=e71]
+              - generic [ref=e74]:
+                - heading "Estrategia Personalizada" [level=3] [ref=e75]
+                - paragraph [ref=e76]: Diseñamos una estrategia SEO Local única para tu negocio, basada en tu sector, competencia y objetivos específicos.
+            - generic [ref=e77]:
+              - img [ref=e79]
+              - generic [ref=e81]:
+                - heading "Resultados Rápidos" [level=3] [ref=e82]
+                - paragraph [ref=e83]: Implementamos técnicas probadas que generan visibilidad en Google Local dentro de las primeras semanas de trabajo.
+            - generic [ref=e84]:
+              - img [ref=e86]
+              - generic [ref=e89]:
+                - heading "Garantía de Posicionamiento" [level=3] [ref=e90]
+                - paragraph [ref=e91]: Te posicionamos en el Local Pack de Google o ajustamos nuestra estrategia sin costo adicional hasta lograrlo.
+          - generic [ref=e92]:
+            - img [ref=e94]
+            - img "Profesionales de SEO Local" [ref=e97]
+      - generic [ref=e99]:
+        - generic [ref=e100]:
+          - heading "¿Cómo desarrollamos SEO Local?" [level=2] [ref=e101]
+          - paragraph [ref=e102]: Proceso probado en más de 80 proyectos. Sin tecnicismos, sin sorpresas.
+        - generic [ref=e103]:
+          - generic [ref=e104] [cursor=pointer]:
+            - img [ref=e106]
+            - generic [ref=e109]: Semana 1
+            - heading "Auditoría Local" [level=3] [ref=e110]
+            - paragraph [ref=e111]: Analizamos tu ficha actual, la consistencia NAP en directorios, las reseñas existentes y la posición real de tu negocio en el pack local frente a competidores.
+            - paragraph [ref=e112]: Análisis NAP · Reseñas · Posición competitiva
+          - generic [ref=e113] [cursor=pointer]:
+            - img [ref=e115]
+            - generic [ref=e118]: Semana 2
+            - heading "Optimización de Ficha" [level=3] [ref=e119]
+            - paragraph [ref=e120]: "Completamos y optimizamos cada campo de Google Business: categorías, atributos, servicios, horarios, fotografías profesionales y descripción con keywords locales."
+            - paragraph [ref=e121]: GBP setup · Categorías · Fotos profesionales
+          - generic [ref=e122] [cursor=pointer]:
+            - img [ref=e124]
+            - generic [ref=e127]: Semana 3
+            - heading "Estrategia de Contenido Local" [level=3] [ref=e128]
+            - paragraph [ref=e129]: Creamos un calendario de Google Posts, preguntas y respuestas, y actualizaciones que mantienen la ficha activa y relevante para el algoritmo local.
+            - paragraph [ref=e130]: Google Posts · Q&A · Calendario editorial
+          - generic [ref=e131] [cursor=pointer]:
+            - img [ref=e133]
+            - generic [ref=e135]: Semana 4
+            - heading "Gestión de Reseñas" [level=3] [ref=e136]
+            - paragraph [ref=e137]: Implementamos un sistema de captación de reseñas auténticas, respondemos a todos los comentarios y neutralizamos el impacto de valoraciones negativas.
+            - paragraph [ref=e138]: Sistema de captación · Respuestas · Reputación
+          - generic [ref=e139] [cursor=pointer]:
+            - img [ref=e141]
+            - generic [ref=e143]: Mensual
+            - heading "Monitorización y Reporting" [level=3] [ref=e144]
+            - paragraph [ref=e145]: Reporting mensual con evolución de posición en el pack local, llamadas generadas, visitas a la web desde Maps y comparativa vs. competencia.
+            - paragraph [ref=e146]: Reporting mensual · Analytics · Comparativa
+      - generic [ref=e148]:
+        - heading "Resolvemos tus principales dudas" [level=2] [ref=e149]
+        - generic [ref=e150]:
+          - generic [ref=e153]:
+            - heading "¿Qué es SEO y por qué es importante para mi negocio?" [level=2] [ref=e155]:
+              - button "¿Qué es SEO y por qué es importante para mi negocio?" [ref=e156] [cursor=pointer]
+            - heading "¿Cuánto tiempo tarda en ver resultados del SEO?" [level=2] [ref=e158]:
+              - button "¿Cuánto tiempo tarda en ver resultados del SEO?" [ref=e159] [cursor=pointer]
+            - heading "¿Qué servicios ofrece una empresa de marketing SEO?" [level=2] [ref=e161]:
+              - button "¿Qué servicios ofrece una empresa de marketing SEO?" [ref=e162] [cursor=pointer]
+            - heading "¿Cómo abordas la construcción de enlaces de retroceso?" [level=2] [ref=e164]:
+              - button "¿Cómo abordas la construcción de enlaces de retroceso?" [ref=e165] [cursor=pointer]
+            - heading "¿Qué es SEO local y cómo puede beneficiar a mi negocio?" [level=2] [ref=e167]:
+              - button "¿Qué es SEO local y cómo puede beneficiar a mi negocio?" [ref=e168] [cursor=pointer]
+            - heading "¿Cuáles son los primeros pasos para mejorar el SEO de mi sitio?" [level=2] [ref=e170]:
+              - button "¿Cuáles son los primeros pasos para mejorar el SEO de mi sitio?" [ref=e171] [cursor=pointer]
+          - generic [ref=e173]:
+            - heading "¿Listo para comenzar?" [level=3] [ref=e174]
+            - paragraph [ref=e175]: Nuestro equipo de expertos en SEO está aquí para ayudarte a crecer tu negocio online.
+            - generic [ref=e176]:
+              - textbox "Tu nombre" [ref=e178]
+              - textbox "Tu correo electrónico" [ref=e180]
+              - textbox "Tu sitio web" [ref=e182]
+              - textbox "Cuéntanos sobre tu negocio" [ref=e184]
+              - button "Enviar Mensaje" [ref=e185] [cursor=pointer]
+    - generic [ref=e187]:
+      - generic [ref=e188]:
+        - generic [ref=e190]:
+          - link "img" [ref=e191] [cursor=pointer]:
+            - /url: index.html
+            - img "img" [ref=e192]
+          - paragraph [ref=e193]: En Iorana SEO, estamos comprometidos a ayudar a tu negocio a alcanzar sus objetivos en línea a través de marketing digital SEO experto.
+        - generic [ref=e195]:
+          - heading "Enlaces Rápidos" [level=3] [ref=e196]
+          - list [ref=e197]:
+            - listitem [ref=e198]:
+              - link "Sobre Nosotros" [ref=e199] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=e200]:
+              - link "Contáctanos" [ref=e201] [cursor=pointer]:
+                - /url: /contact
+            - listitem [ref=e202]:
+              - link "Plan de Precios" [ref=e203] [cursor=pointer]:
+                - /url: /pricing
+            - listitem [ref=e204]:
+              - link "Nuestros Artículos" [ref=e205] [cursor=pointer]:
+                - /url: /blog
+            - listitem [ref=e206]:
+              - link "Casos de Estudio" [ref=e207] [cursor=pointer]:
+                - /url: /case
+        - generic [ref=e209]:
+          - heading "Empresa" [level=3] [ref=e210]
+          - list [ref=e211]:
+            - listitem [ref=e212]:
+              - link "Nuestro Portafolio" [ref=e213] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e214]:
+              - link "Miembro del Equipo" [ref=e215] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e216]:
+              - link "Plan de Precios" [ref=e217] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e218]:
+              - link "Política de Privacidad" [ref=e219] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e220]:
+              - link "Asociación" [ref=e221] [cursor=pointer]:
+                - /url: "#"
+        - generic [ref=e223]:
+          - heading "Servicios" [level=3] [ref=e224]
+          - list [ref=e225]:
+            - listitem [ref=e226]:
+              - link "Marketing SEO" [ref=e227] [cursor=pointer]:
+                - /url: /service/service-details
+            - listitem [ref=e228]:
+              - link "Marketing de Contenidos" [ref=e229] [cursor=pointer]:
+                - /url: /service/service-details
+            - listitem [ref=e230]:
+              - link "Marketing Digital" [ref=e231] [cursor=pointer]:
+                - /url: /service/service-details
+            - listitem [ref=e232]:
+              - link "Email Marketing" [ref=e233] [cursor=pointer]:
+                - /url: /service/service-details
+            - listitem [ref=e234]:
+              - link "Estrategia de Marketing" [ref=e235] [cursor=pointer]:
+                - /url: /service/service-details
+        - generic [ref=e237]:
+          - heading "Legal" [level=3] [ref=e238]
+          - list [ref=e239]:
+            - listitem [ref=e240]:
+              - link "Términos y Condiciones" [ref=e241] [cursor=pointer]:
+                - /url: /legal
+            - listitem [ref=e242]:
+              - link "Política de Privacidad" [ref=e243] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e244]:
+              - link "Política de Cookies" [ref=e245] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e246]:
+              - link "Aviso Legal" [ref=e247] [cursor=pointer]:
+                - /url: "#"
+            - listitem [ref=e248]:
+              - link "Contacto Legal" [ref=e249] [cursor=pointer]:
+                - /url: "#"
+      - generic [ref=e252]:
+        - paragraph [ref=e255]: Copyright 2026 Iorana SEO | Todos los Derechos Reservados
+        - list [ref=e257]:
+          - listitem [ref=e258]:
+            - link "" [ref=e259] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e260]: 
+          - listitem [ref=e261]:
+            - link "" [ref=e262] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e263]: 
+          - listitem [ref=e264]:
+            - link "" [ref=e265] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e266]: 
+          - listitem [ref=e267]:
+            - link "" [ref=e268] [cursor=pointer]:
+              - /url: "#"
+              - generic [ref=e269]: 
+  - status [ref=e304]:
+    - generic [ref=e305]:
+      - img [ref=e307]
+      - generic [ref=e309]:
+        - text: Static route
+        - button "Hide static indicator" [ref=e310] [cursor=pointer]:
+          - img [ref=e311]
+  - alert [ref=e291]

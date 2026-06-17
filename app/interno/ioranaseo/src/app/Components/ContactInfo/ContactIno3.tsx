@@ -239,7 +239,7 @@ const ContactIno3: FC = () => {
 
         #accordionContact .accordion-item.active button {
           color: #4D32A5 !important;
-          background-color: rgba(77, 50, 165, 0.5) !important;
+          background-color: rgba(77, 50, 165, 0.25) !important;
         }
 
         #accordionContact .accordion-item.active button::before {
