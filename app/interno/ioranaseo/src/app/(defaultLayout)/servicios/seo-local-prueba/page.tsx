@@ -15,7 +15,7 @@ const SeoLocalPruebaPage = () => {
       <div style={{ fontSize: "0.85em" }} className="ficha-hero">
         <HeroBannerPlanes
           subtitle="Planes y Precios"
-          title="Servicio SEO Local"
+          title="Servicio <span style='color: #4D32A5;'>SEO Local</span>"
           content="Nuestros planes están diseñados para adaptarse a las necesidades de tu empresa, desde startups hasta grandes corporaciones."
           img="/assets/img/hero/hero3-main-img.png"
           showImage={false}

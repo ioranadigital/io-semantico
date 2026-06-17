@@ -31,20 +31,11 @@ const ContactIno3: FC = () => {
   return (
     <div
       className="cta2 cta2-no-images"
-      data-background="/assets/img/bg/cta3-bg.jpg"
-      style={{ position: "relative" }}
+      style={{
+        position: "relative",
+        backgroundColor: "#ffffff",
+      }}
     >
-      <div
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          backgroundColor: "rgba(255, 255, 255, 0.3)",
-          pointerEvents: "none",
-        }}
-      ></div>
       <div
         className="container _relative"
         style={{ position: "relative", zIndex: 1 }}
@@ -54,12 +45,12 @@ const ContactIno3: FC = () => {
             textAlign: "center",
             fontSize: "42px",
             fontWeight: "700",
-            color: "#ffffff",
             marginBottom: "60px",
             lineHeight: "1.3",
           }}
         >
-          Resolvemos tus principales dudas
+          <span style={{ color: "#1a1a1a" }}>Resolvemos</span>{" "}
+          <span style={{ color: "#4D32A5" }}>tus principales dudas</span>
         </h2>
         <div className="row align-items-start">
           {/* Left Column - FAQ */}
@@ -103,83 +94,97 @@ const ContactIno3: FC = () => {
 
           {/* Right Column - Contact Form */}
           <div className="col-lg-6">
-            <div className="contact-form-container">
-              <div className="contact-form-right">
-                <h3
+            <div
+              style={{
+                backgroundColor: "#ffffff",
+                padding: "48px",
+                borderRadius: "24px",
+                boxShadow: "0 10px 30px rgba(0, 0, 0, 0.1)",
+                border: "1px solid #e5e7eb",
+              }}
+            >
+              <h3
+                style={{
+                  fontSize: "28px",
+                  fontWeight: "700",
+                  marginBottom: "16px",
+                  color: "#FF8C00",
+                  margin: "0 0 24px 0",
+                }}
+              >
+                ¿Listo para comenzar?
+              </h3>
+              <p
+                style={{
+                  color: "#333",
+                  fontSize: "15px",
+                  margin: "0 0 24px 0",
+                }}
+              >
+                Nuestro equipo de expertos en SEO está aquí para ayudarte a
+                crecer tu negocio online.
+              </p>
+              <form className="contact-form-planes" action="#">
+                <div className="form-group">
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Tu nombre"
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    type="email"
+                    className="form-control"
+                    placeholder="Tu correo electrónico"
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    type="url"
+                    className="form-control"
+                    placeholder="Tu sitio web"
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <textarea
+                    className="form-control"
+                    rows={4}
+                    placeholder="Cuéntanos sobre tu negocio"
+                  ></textarea>
+                </div>
+                <button
+                  type="submit"
+                  className="btn-barrido-contact"
                   style={{
-                    fontSize: "28px",
-                    fontWeight: "700",
-                    marginBottom: "16px",
+                    backgroundColor: "#FF8C00",
+                    color: "#ffffff",
+                    padding: "14px 32px",
+                    borderRadius: "24px",
+                    border: "none",
+                    fontWeight: "600",
+                    fontSize: "14px",
+                    cursor: "pointer",
+                    width: "100%",
+                    position: "relative",
+                    overflow: "hidden",
                   }}
                 >
-                  ¿Listo para comenzar?
-                </h3>
-                <p>
-                  Nuestro equipo de expertos en SEO está aquí para ayudarte a
-                  crecer tu negocio online.
-                </p>
-                <form className="contact-form-planes" action="#">
-                  <div className="form-group">
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="Tu nombre"
-                      required
-                    />
-                  </div>
-                  <div className="form-group">
-                    <input
-                      type="email"
-                      className="form-control"
-                      placeholder="Tu correo electrónico"
-                      required
-                    />
-                  </div>
-                  <div className="form-group">
-                    <input
-                      type="url"
-                      className="form-control"
-                      placeholder="Tu sitio web"
-                      required
-                    />
-                  </div>
-                  <div className="form-group">
-                    <textarea
-                      className="form-control"
-                      rows={4}
-                      placeholder="Cuéntanos sobre tu negocio"
-                    ></textarea>
-                  </div>
-                  <button
-                    type="submit"
-                    className="btn-barrido-contact"
-                    style={{
-                      backgroundColor: "#FF8C00",
-                      color: "#ffffff",
-                      padding: "14px 32px",
-                      borderRadius: "24px",
-                      border: "none",
-                      fontWeight: "600",
-                      fontSize: "14px",
-                      cursor: "pointer",
-                      width: "100%",
-                      position: "relative",
-                      overflow: "hidden",
-                    }}
-                  >
-                    <span style={{ position: "relative", zIndex: 1 }}>
-                      Enviar Mensaje
-                    </span>
-                  </button>
-                </form>
-              </div>
+                  <span style={{ position: "relative", zIndex: 1 }}>
+                    Enviar Mensaje
+                  </span>
+                </button>
+              </form>
             </div>
           </div>
         </div>
       </div>
       <style>{`
         #accordionContact .accordion-item {
-          border: none !important;
+          border: 2px solid #D1D5DB !important;
           border-radius: 14px !important;
           background-color: #F5F5FD !important;
           margin-top: 16px !important;
@@ -276,6 +281,21 @@ const ContactIno3: FC = () => {
         .btn-barrido-contact span {
           position: relative;
           z-index: 1;
+        }
+
+        .contact-form-planes .form-group {
+          margin-bottom: 20px !important;
+        }
+
+        .contact-form-planes .form-control {
+          border: 2px solid #D4BFFF !important;
+          border-radius: 12px !important;
+          padding: 14px 16px !important;
+        }
+
+        .contact-form-planes .form-control:focus {
+          border-color: #4D32A5 !important;
+          box-shadow: 0 0 0 3px rgba(77, 50, 165, 0.1) !important;
         }
       `}</style>
     </div>

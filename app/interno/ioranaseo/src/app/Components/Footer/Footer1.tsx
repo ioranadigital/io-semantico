@@ -9,8 +9,14 @@ interface Footer1Props {
 
 const Footer1: FC<Footer1Props> = ({ addclass, footerlogo }) => {
   return (
-    <div className={addclass}>
-      <div className="container">
+    <div
+      className={addclass}
+      style={{
+        backgroundColor: "#f5f5f5",
+        position: "relative",
+      }}
+    >
+      <div className="container" style={{ position: "relative", zIndex: 1 }}>
         <div className="row">
           <div className="col-lg-3 col-md-6">
             <div className="heading1">

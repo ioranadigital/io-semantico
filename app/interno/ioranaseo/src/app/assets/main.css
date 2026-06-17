@@ -13936,6 +13936,9 @@ body.body {
   padding-top: 100px;
   background-color: #ffffff;
 }
+.footer1 .heading1 p {
+  color: #666666;
+}
 .footer1 .logo {
   width: 160px;
   display: inline-block;
@@ -13999,7 +14002,7 @@ body.body {
   }
 }
 .footer1 .menu-list h3 {
-  color: var(--SEO-Marketing-Text-Color, #0B0314);
+  color: #0B0314;
   font-size: 24px;
   font-style: normal;
   font-weight: 500;
@@ -14019,7 +14022,7 @@ body.body {
   }
 }
 .footer1 .menu-list ul li a {
-  color: var(--SEO-Marketing-Text-Color, #0B0314);
+  color: #0B0314;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -14046,7 +14049,7 @@ body.body {
 }
 .footer1 .menu-list.contact-list .contact-box .pera a {
   display: inline-block;
-  color: var(--SEO-Marketing-Text-Color, #0B0314);
+  color: #0B0314;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;

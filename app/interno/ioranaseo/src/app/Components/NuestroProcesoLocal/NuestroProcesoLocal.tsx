@@ -66,7 +66,7 @@ export default function NuestroProcesoLocal() {
     <section
       style={{
         padding: "80px 20px",
-        backgroundColor: "#f9fafb",
+        backgroundColor: "#ffffff",
         position: "relative",
         overflow: "hidden",
       }}
@@ -83,7 +83,7 @@ export default function NuestroProcesoLocal() {
             }}
           >
             ¿Cómo desarrollamos{" "}
-            <span style={{ color: "#FF8C00" }}>SEO Local?</span>
+            <span style={{ color: "#4D32A5" }}>SEO Local?</span>
           </h2>
           <p
             style={{
