@@ -33,13 +33,13 @@ const FeaturesSection: FC = () => {
   return (
     <section
       style={{
-        padding: "80px 20px",
+        padding: "60px 20px",
         backgroundColor: "#ffffff",
         position: "relative",
       }}
     >
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-        <div style={{ marginBottom: "60px" }}>
+        <div style={{ marginBottom: "40px" }}>
           <h2
             style={{
               fontSize: "42px",
