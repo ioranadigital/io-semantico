@@ -186,7 +186,7 @@ const ContactIno3: FC = () => {
         #accordionContact .accordion-item {
           border: 1px solid #D1D5DB !important;
           border-radius: 14px !important;
-          background-color: rgba(237, 233, 254, 0.5) !important;
+          background-color: rgba(237, 233, 254, 0.25) !important;
           margin-top: 16px !important;
           transition: all 0.4s !important;
         }
