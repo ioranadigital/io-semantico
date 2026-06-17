@@ -26,7 +26,7 @@ const Nav: FC<NavProps> = ({ setMobileToggle }) => {
                 <ul>
                   <li>
                     <Link
-                      href="/service"
+                      href="/servicios/posicionamiento-google"
                       onClick={() => setMobileToggle(false)}
                     >
                       Presencia Digital en Google
@@ -34,7 +34,7 @@ const Nav: FC<NavProps> = ({ setMobileToggle }) => {
                   </li>
                   <li>
                     <Link
-                      href="/servicios/seo-local"
+                      href="/servicios/seo-local-prueba"
                       onClick={() => setMobileToggle(false)}
                     >
                       SEO Local
@@ -49,7 +49,7 @@ const Nav: FC<NavProps> = ({ setMobileToggle }) => {
                 <ul>
                   <li>
                     <Link
-                      href="/service"
+                      href="/servicios/pagina-web"
                       onClick={() => setMobileToggle(false)}
                     >
                       Páginas Web
@@ -57,7 +57,7 @@ const Nav: FC<NavProps> = ({ setMobileToggle }) => {
                   </li>
                   <li>
                     <Link
-                      href="/service"
+                      href="/servicios/tienda-online"
                       onClick={() => setMobileToggle(false)}
                     >
                       Tienda Online (e-commerce)
@@ -72,7 +72,7 @@ const Nav: FC<NavProps> = ({ setMobileToggle }) => {
                 <ul>
                   <li>
                     <Link
-                      href="/service"
+                      href="/servicios/google-ads"
                       onClick={() => setMobileToggle(false)}
                     >
                       Campañas de Google Ads
@@ -80,7 +80,7 @@ const Nav: FC<NavProps> = ({ setMobileToggle }) => {
                   </li>
                   <li>
                     <Link
-                      href="/service"
+                      href="/servicios/facebook-ads"
                       onClick={() => setMobileToggle(false)}
                     >
                       Campañas de Facebook Ads
@@ -95,7 +95,7 @@ const Nav: FC<NavProps> = ({ setMobileToggle }) => {
                 <ul>
                   <li>
                     <Link
-                      href="/service"
+                      href="/servicios/contenidos"
                       onClick={() => setMobileToggle(false)}
                     >
                       Contenidos
@@ -103,7 +103,7 @@ const Nav: FC<NavProps> = ({ setMobileToggle }) => {
                   </li>
                   <li>
                     <Link
-                      href="/service"
+                      href="/servicios/imagen-marca"
                       onClick={() => setMobileToggle(false)}
                     >
                       Imagen de Marca
@@ -149,7 +149,7 @@ const Nav: FC<NavProps> = ({ setMobileToggle }) => {
                 <ul>
                   <li>
                     <Link
-                      href="/service"
+                      href="/servicios/documentacion"
                       onClick={() => setMobileToggle(false)}
                     >
                       Documentación Controlada
@@ -157,7 +157,7 @@ const Nav: FC<NavProps> = ({ setMobileToggle }) => {
                   </li>
                   <li>
                     <Link
-                      href="/service"
+                      href="/servicios/whatsapp"
                       onClick={() => setMobileToggle(false)}
                     >
                       Notificaciones WhatsApp
@@ -165,7 +165,7 @@ const Nav: FC<NavProps> = ({ setMobileToggle }) => {
                   </li>
                   <li>
                     <Link
-                      href="/service"
+                      href="/servicios/reservas-online"
                       onClick={() => setMobileToggle(false)}
                     >
                       Reservas Online
