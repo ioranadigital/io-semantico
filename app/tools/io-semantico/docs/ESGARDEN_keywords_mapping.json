@@ -1,0 +1,171 @@
+{
+  "cliente": {
+    "nombre": "ESGARDEN",
+    "url": "https://esgarden.com",
+    "descripcion": "Tienda online especializada en barbacoas, parrillas y accesorios de exterior"
+  },
+  "keywords": [
+    {
+      "id": "kw_001",
+      "palabra_clave": "barbacoas",
+      "nivel": "level1",
+      "intension": "informacional",
+      "volumen_busqueda": 8900,
+      "dificultad": 45,
+      "tipo": "Core/Brand"
+    },
+    {
+      "id": "kw_002",
+      "palabra_clave": "esgarden barbacoas",
+      "nivel": "level1",
+      "intension": "navegacional",
+      "volumen_busqueda": 320,
+      "dificultad": 15,
+      "tipo": "Core/Brand"
+    },
+    {
+      "id": "kw_003",
+      "palabra_clave": "barbacoas gas",
+      "nivel": "level2",
+      "intension": "transaccional",
+      "volumen_busqueda": 1200,
+      "dificultad": 55,
+      "tipo": "Segmentación"
+    },
+    {
+      "id": "kw_004",
+      "palabra_clave": "parrillas carbón",
+      "nivel": "level2",
+      "intension": "transaccional",
+      "volumen_busqueda": 890,
+      "dificultad": 60,
+      "tipo": "Segmentación"
+    },
+    {
+      "id": "kw_005",
+      "palabra_clave": "cómo usar barbacoa",
+      "nivel": "level3",
+      "intension": "informacional",
+      "volumen_busqueda": 650,
+      "dificultad": 35,
+      "tipo": "Educacional"
+    },
+    {
+      "id": "kw_006",
+      "palabra_clave": "limpieza barbacoa",
+      "nivel": "level3",
+      "intension": "informacional",
+      "volumen_busqueda": 420,
+      "dificultad": 30,
+      "tipo": "Educacional"
+    },
+    {
+      "id": "kw_007",
+      "palabra_clave": "mantenimiento parrilla",
+      "nivel": "level3",
+      "intension": "informacional",
+      "volumen_busqueda": 380,
+      "dificultad": 28,
+      "tipo": "Educacional"
+    },
+    {
+      "id": "kw_008",
+      "palabra_clave": "recipes barbacoa",
+      "nivel": "level3",
+      "intension": "informacional",
+      "volumen_busqueda": 1100,
+      "dificultad": 40,
+      "tipo": "Educacional"
+    },
+    {
+      "id": "kw_009",
+      "palabra_clave": "barbacoa gas vs carbón",
+      "nivel": "level4",
+      "intension": "informacional",
+      "volumen_busqueda": 560,
+      "dificultad": 42,
+      "tipo": "Comparativo"
+    },
+    {
+      "id": "kw_010",
+      "palabra_clave": "mejores barbacoas",
+      "nivel": "level4",
+      "intension": "informacional",
+      "volumen_busqueda": 1800,
+      "dificultad": 65,
+      "tipo": "Comparativo"
+    },
+    {
+      "id": "kw_011",
+      "palabra_clave": "barbacoa portatil",
+      "nivel": "level4",
+      "intension": "transaccional",
+      "volumen_busqueda": 420,
+      "dificultad": 50,
+      "tipo": "Comparativo"
+    },
+    {
+      "id": "kw_012",
+      "palabra_clave": "barbacoa acero inoxidable",
+      "nivel": "level5",
+      "intension": "transaccional",
+      "volumen_busqueda": 280,
+      "dificultad": 48,
+      "tipo": "Long-tail"
+    },
+    {
+      "id": "kw_013",
+      "palabra_clave": "parrilla infrarrojo",
+      "nivel": "level5",
+      "intension": "transaccional",
+      "volumen_busqueda": 150,
+      "dificultad": 55,
+      "tipo": "Long-tail"
+    },
+    {
+      "id": "kw_014",
+      "palabra_clave": "fundas barbacoa impermeable",
+      "nivel": "level5",
+      "intension": "transaccional",
+      "volumen_busqueda": 190,
+      "dificultad": 38,
+      "tipo": "Long-tail"
+    },
+    {
+      "id": "kw_015",
+      "palabra_clave": "accesorios barbacoa premium",
+      "nivel": "level5",
+      "intension": "transaccional",
+      "volumen_busqueda": 220,
+      "dificultad": 45,
+      "tipo": "Long-tail"
+    },
+    {
+      "id": "kw_016",
+      "palabra_clave": "ropa protección barbacoa",
+      "nivel": "level5",
+      "intension": "transaccional",
+      "volumen_busqueda": 110,
+      "dificultad": 40,
+      "tipo": "Long-tail"
+    }
+  ],
+  "resumen": {
+    "total_keywords": 18,
+    "por_nivel": {
+      "level1": 2,
+      "level2": 2,
+      "level3": 4,
+      "level4": 3,
+      "level5": 5
+    },
+    "por_intencion": {
+      "informacional": 9,
+      "transaccional": 6,
+      "navegacional": 1,
+      "local": 0
+    },
+    "volumen_total": 19870,
+    "dificultad_promedio": 44.7
+  }
+}

@@ -1,0 +1,58 @@
+[
+  {
+    "icon": "/assets/img/icons/service-icon1.svg",
+    "title": "SEO Marketing",
+    "desc": "Search Engine Optimize (SEO) best marketing is to essential for boosting your website visibility in best search engine results.",
+    "btnLink": "/service/service-details",
+    "addclass": "service-box noactive"
+  },
+  {
+    "icon": "/assets/img/icons/service-icon2.svg",
+    "title": "Content Marketing",
+    "desc": "Content marketing is a strategic approach focused on creating  distributing valuable, relevant, and consistent content result.",
+    "btnLink": "/service/service-details",
+    "addclass": "service-box noactive"
+  },
+  {
+    "icon": "/assets/img/icons/service-icon4.svg",
+    "title": "Digital Marketing",
+    "desc": "Digital marketing encompasses all online marketing best efforts  connect with potential digital an grow your business strategy.",
+    "btnLink": "/service/service-details",
+    "addclass": "service-box active"
+  },
+  {
+    "icon": "/assets/img/icons/service-icon4.svg",
+    "title": "Email Marketing",
+    "desc": "Email marketing is a digital of marketing strategy that involve sending emails to a targeted list of recipients with the best goal.",
+    "btnLink": "/service/service-details",
+    "addclass": "service-box noactive"
+  },
+  {
+    "icon": "/assets/img/icons/service-icon5.svg",
+    "title": "PPC Advertise",
+    "desc": "Pay-Per-Click (PPC) advertising is a powerful digital marketing tool that allows businesses to reach their target audience.",
+    "btnLink": "/service/service-details",
+    "addclass": "service-box noactive"
+  },
+  {
+    "icon": "/assets/img/icons/service-icon6.svg",
+    "title": "Influence Marketing",
+    "desc": "Analyst reporting is a critical within any organization, providing valuable insights and data-driven recommendations.",
+    "btnLink": "/service/service-details",
+    "addclass": "service-box noactive"
+  },
+  {
+    "icon": "/assets/img/icons/service-icon7.svg",
+    "title": "Video Marketing",
+    "desc": "One Page Optimization, also known as On-Page SEO, is the practice of optimizing individual web pages rank higher search.",
+    "btnLink": "/service/service-details",
+    "addclass": "service-box noactive"
+  },
+  {
+    "icon": "/assets/img/icons/service-icon8.svg",
+    "title": "Social Media Marketing",
+    "desc": "Identifying the most relevant social media platforms (e.g., Facebook, Instagram, Twitter, LinkedIn, TikTok) based Any.",
+    "btnLink": "/service/service-details",
+    "addclass": "service-box noactive"
+  }
+]

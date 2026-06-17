@@ -1,0 +1,30 @@
+[
+  {
+    "icon": "/assets/img/icons/service-icon1.svg",
+    "title": "SEO Marketing",
+    "desc": "Search Engine Optimize (SEO) best marketing is to essential for boosting your website visibility in best search engine results.",
+    "btnLink": "/service/service-details",
+    "addclass": "service-box noactive"
+  },
+  {
+    "icon": "/assets/img/icons/service-icon2.svg",
+    "title": "Content Marketing",
+    "desc": "Content marketing is a strategic approach focused on creating  distributing valuable, relevant, and consistent content result.",
+    "btnLink": "/service/service-details",
+    "addclass": "service-box noactive"
+  },
+  {
+    "icon": "/assets/img/icons/service-icon4.svg",
+    "title": "Digital Marketing",
+    "desc": "Digital marketing encompasses all online marketing best efforts  connect with potential digital an grow your business strategy.",
+    "btnLink": "/service/service-details",
+    "addclass": "service-box active"
+  },
+  {
+    "icon": "/assets/img/icons/service-icon4.svg",
+    "title": "Email Marketing",
+    "desc": "Email marketing is a digital of marketing strategy that involve sending emails to a targeted list of recipients with the best goal.",
+    "btnLink": "/service/service-details",
+    "addclass": "service-box noactive"
+  }
+]

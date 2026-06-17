@@ -1,0 +1,22 @@
+[
+  {
+    "img": "/assets/img/icons/about3-icon1.svg",
+    "title": "13K",
+    "desc": "Project Complete"
+  },
+  {
+    "img": "/assets/img/icons/about3-icon2.svg",
+    "title": "12K",
+    "desc": "Happy Client"
+  },
+  {
+    "img": "/assets/img/icons/about3-icon3.svg",
+    "title": "49+",
+    "desc": "Awards Winning"
+  },
+  {
+    "img": "/assets/img/icons/about3-icon4.svg",
+    "title": "98%",
+    "desc": "Success Rate"
+  }
+]

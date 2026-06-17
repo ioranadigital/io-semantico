@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80" width="200" height="80">
+  <!-- White background -->
+  <rect width="200" height="80" fill="#ffffff" rx="8"/>
+
+  <!-- Text: IoranaSEO -->
+  <text x="100" y="52" font-family="Arial, sans-serif" font-size="32" font-weight="700" fill="#4D32A5" text-anchor="middle" dominant-baseline="middle">
+    IoranaSEO
+  </text>
+</svg>

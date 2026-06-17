@@ -1,0 +1,346 @@
+{
+  "cliente": "ESGARDEN",
+  "total_urls": 69,
+  "urls": {
+    "home": [
+      {
+        "url": "https://esgarden.com/",
+        "h1": "Barbacoas y Parrillas de Calidad | ESGARDEN",
+        "meta_title": "Tienda Online de Barbacoas - ESGARDEN",
+        "meta_description": "Descubre nuestras barbacoas y parrillas. Envío gratis a toda España.",
+        "tipologia": "home"
+      }
+    ],
+    "categorias": [
+      {
+        "url": "https://esgarden.com/barbacoas/",
+        "h1": "Barbacoas | Comprar Online",
+        "meta_title": "Barbacoas - ESGARDEN",
+        "meta_description": "Amplio catálogo de barbacoas de gas, carbón y electricidad.",
+        "tipologia": "categoria"
+      },
+      {
+        "url": "https://esgarden.com/parrillas/",
+        "h1": "Parrillas Profesionales",
+        "meta_title": "Parrillas - ESGARDEN",
+        "meta_description": "Parrillas de acero inoxidable para toda ocasión.",
+        "tipologia": "categoria"
+      },
+      {
+        "url": "https://esgarden.com/accesorios/",
+        "h1": "Accesorios Barbacoa",
+        "meta_title": "Accesorios - ESGARDEN",
+        "meta_description": "Fundas, cubiertas y accesorios para barbacoas.",
+        "tipologia": "categoria"
+      },
+      {
+        "url": "https://esgarden.com/blog/",
+        "h1": "Blog de Barbacoas",
+        "meta_title": "Blog - ESGARDEN",
+        "meta_description": "Consejos y guías sobre barbacoas y parrillas.",
+        "tipologia": "landing"
+      },
+      {
+        "url": "https://esgarden.com/ofertas/",
+        "h1": "Ofertas Especiales",
+        "meta_title": "Ofertas - ESGARDEN",
+        "meta_description": "Descuentos en barbacoas y parrillas seleccionadas.",
+        "tipologia": "landing"
+      },
+      {
+        "url": "https://esgarden.com/nosotros/",
+        "h1": "Sobre ESGARDEN",
+        "meta_title": "Nosotros - ESGARDEN",
+        "meta_description": "Conoce la historia y valores de ESGARDEN.",
+        "tipologia": "estatico"
+      }
+    ],
+    "subcategorias": [
+      {
+        "url": "https://esgarden.com/barbacoas/gas/",
+        "h1": "Barbacoas de Gas",
+        "tipologia": "categoria"
+      },
+      {
+        "url": "https://esgarden.com/barbacoas/carbon/",
+        "h1": "Barbacoas de Carbón",
+        "tipologia": "categoria"
+      },
+      {
+        "url": "https://esgarden.com/barbacoas/portatiles/",
+        "h1": "Barbacoas Portátiles",
+        "tipologia": "categoria"
+      },
+      {
+        "url": "https://esgarden.com/parrillas/acero-inoxidable/",
+        "h1": "Parrillas Acero Inoxidable",
+        "tipologia": "categoria"
+      },
+      {
+        "url": "https://esgarden.com/parrillas/infrarrojo/",
+        "h1": "Parrillas Infrarrojo",
+        "tipologia": "categoria"
+      },
+      {
+        "url": "https://esgarden.com/accesorios/fundas/",
+        "h1": "Fundas para Barbacoas",
+        "tipologia": "categoria"
+      },
+      {
+        "url": "https://esgarden.com/accesorios/limpieza/",
+        "h1": "Productos Limpieza",
+        "tipologia": "categoria"
+      },
+      {
+        "url": "https://esgarden.com/accesorios/herramientas/",
+        "h1": "Herramientas Barbacoa",
+        "tipologia": "categoria"
+      }
+    ],
+    "productos": [
+      {
+        "url": "https://esgarden.com/productos/weber-master-touch/",
+        "h1": "Barbacoa Weber Master Touch",
+        "tipologia": "producto",
+        "categoria": "barbacoas/gas"
+      },
+      {
+        "url": "https://esgarden.com/productos/landmann-kg/",
+        "h1": "Barbacoa Landmann KG68",
+        "tipologia": "producto",
+        "categoria": "barbacoas/gas"
+      },
+      {
+        "url": "https://esgarden.com/productos/kamado-joe/",
+        "h1": "Kamado Joe XL",
+        "tipologia": "producto",
+        "categoria": "parrillas/infrarrojo"
+      },
+      {
+        "url": "https://esgarden.com/productos/evicook/",
+        "h1": "Barbacoa Evicook Premium",
+        "tipologia": "producto",
+        "categoria": "barbacoas/gas"
+      },
+      {
+        "url": "https://esgarden.com/productos/outdoorchef/",
+        "h1": "Parrilla Outdoorchef Grill",
+        "tipologia": "producto",
+        "categoria": "parrillas/acero-inoxidable"
+      },
+      {
+        "url": "https://esgarden.com/productos/grill-pro/",
+        "h1": "Barbacoa Grill Pro Inox",
+        "tipologia": "producto"
+      },
+      {
+        "url": "https://esgarden.com/productos/blooma-prestige/",
+        "h1": "Blooma Prestige BBQ",
+        "tipologia": "producto"
+      },
+      {
+        "url": "https://esgarden.com/productos/aeg-gasgrill/",
+        "h1": "AEG Gasgrill ProfiChef",
+        "tipologia": "producto"
+      },
+      {
+        "url": "https://esgarden.com/productos/bbq-24/",
+        "h1": "BBQ-24 Deluxe Smoker",
+        "tipologia": "producto"
+      },
+      {
+        "url": "https://esgarden.com/productos/funda-impermeable/",
+        "h1": "Funda Barbacoa Impermeable",
+        "tipologia": "producto",
+        "categoria": "accesorios/fundas"
+      },
+      {
+        "url": "https://esgarden.com/productos/kit-limpieza/",
+        "h1": "Kit Limpieza Barbacoa",
+        "tipologia": "producto",
+        "categoria": "accesorios/limpieza"
+      },
+      {
+        "url": "https://esgarden.com/productos/termometro-digital/",
+        "h1": "Termómetro Digital WiFi",
+        "tipologia": "producto"
+      },
+      {
+        "url": "https://esgarden.com/productos/pinzas-acero/",
+        "h1": "Pinzas Acero Inoxidable",
+        "tipologia": "producto"
+      },
+      {
+        "url": "https://esgarden.com/productos/brocha-limpieza/",
+        "h1": "Brocha Limpieza Rejilla",
+        "tipologia": "producto"
+      },
+      {
+        "url": "https://esgarden.com/productos/gas-propano/",
+        "h1": "Botella Gas Propano 10kg",
+        "tipologia": "producto"
+      },
+      {
+        "url": "https://esgarden.com/productos/carbon-vegetal/",
+        "h1": "Carbón Vegetal Premium",
+        "tipologia": "producto"
+      },
+      {
+        "url": "https://esgarden.com/productos/ahumador-portatil/",
+        "h1": "Ahumador Portátil",
+        "tipologia": "producto"
+      },
+      {
+        "url": "https://esgarden.com/productos/rejilla-grill/",
+        "h1": "Rejilla Cast Iron",
+        "tipologia": "producto"
+      },
+      {
+        "url": "https://esgarden.com/productos/piedra-pizza/",
+        "h1": "Piedra Pizza Barbacoa",
+        "tipologia": "producto"
+      },
+      {
+        "url": "https://esgarden.com/productos/camaras-humo/",
+        "h1": "Cámaras Humo",
+        "tipologia": "producto"
+      },
+      {
+        "url": "https://esgarden.com/productos/tabla-corte/",
+        "h1": "Tabla Corte Madera",
+        "tipologia": "producto"
+      },
+      {
+        "url": "https://esgarden.com/productos/porta-botellas/",
+        "h1": "Porta Botellas BBQ",
+        "tipologia": "producto"
+      },
+      {
+        "url": "https://esgarden.com/productos/estanteria-lateral/",
+        "h1": "Estantería Lateral",
+        "tipologia": "producto"
+      },
+      {
+        "url": "https://esgarden.com/productos/brazadera-soporte/",
+        "h1": "Brazadera Soporte Botella",
+        "tipologia": "producto"
+      },
+      {
+        "url": "https://esgarden.com/productos/rotisserie/",
+        "h1": "Sistema Rotisserie",
+        "tipologia": "producto"
+      },
+      {
+        "url": "https://esgarden.com/productos/rejilla-plancha/",
+        "h1": "Rejilla Plancha Cast",
+        "tipologia": "producto"
+      },
+      {
+        "url": "https://esgarden.com/productos/luz-led/",
+        "h1": "Iluminación LED Barbacoa",
+        "tipologia": "producto"
+      },
+      {
+        "url": "https://esgarden.com/productos/cubierta-trabajo/",
+        "h1": "Cubierta Trabajo Inox",
+        "tipologia": "producto"
+      },
+      {
+        "url": "https://esgarden.com/productos/barometro-analogico/",
+        "h1": "Barómetro Analógico",
+        "tipologia": "producto"
+      },
+      {
+        "url": "https://esgarden.com/productos/camaras-acero/",
+        "h1": "Cámaras de Humo Acero",
+        "tipologia": "producto"
+      }
+    ],
+    "blog": [
+      {
+        "url": "https://esgarden.com/blog/como-elegir-barbacoa/",
+        "h1": "Cómo Elegir la Barbacoa Perfecta",
+        "tipologia": "blog"
+      },
+      {
+        "url": "https://esgarden.com/blog/mantenimiento-barbacoa/",
+        "h1": "Mantenimiento de Barbacoa",
+        "tipologia": "blog"
+      },
+      {
+        "url": "https://esgarden.com/blog/recetas-barbacoa/",
+        "h1": "Recetas Deliciosas BBQ",
+        "tipologia": "blog"
+      },
+      {
+        "url": "https://esgarden.com/blog/limpieza-profunda/",
+        "h1": "Limpieza Profunda de Barbacoa",
+        "tipologia": "blog"
+      },
+      {
+        "url": "https://esgarden.com/blog/gas-vs-carbon/",
+        "h1": "Gas vs Carbón: Comparativa",
+        "tipologia": "blog"
+      },
+      {
+        "url": "https://esgarden.com/blog/ahumador-basico/",
+        "h1": "Ahumado Básico para Principiantes",
+        "tipologia": "blog"
+      },
+      {
+        "url": "https://esgarden.com/blog/maderas-ahumado/",
+        "h1": "Maderas Ahumado: Guía Completa",
+        "tipologia": "blog"
+      },
+      {
+        "url": "https://esgarden.com/blog/temperatura-barbacoa/",
+        "h1": "Control de Temperatura",
+        "tipologia": "blog"
+      },
+      {
+        "url": "https://esgarden.com/blog/asado-perfecto/",
+        "h1": "Secretos del Asado Perfecto",
+        "tipologia": "blog"
+      },
+      {
+        "url": "https://esgarden.com/blog/marinados-barbacoa/",
+        "h1": "Marinados y Adobos BBQ",
+        "tipologia": "blog"
+      },
+      {
+        "url": "https://esgarden.com/blog/vinagretas-bbq/",
+        "h1": "Vinagretas BBQ Caseras",
+        "tipologia": "blog"
+      },
+      {
+        "url": "https://esgarden.com/blog/ropa-proteccion/",
+        "h1": "Ropa de Protección BBQ",
+        "tipologia": "blog"
+      },
+      {
+        "url": "https://esgarden.com/blog/almacenamiento-barbacoa/",
+        "h1": "Almacenamiento Seguro Barbacoa",
+        "tipologia": "blog"
+      },
+      {
+        "url": "https://esgarden.com/blog/accesorios-imprescindibles/",
+        "h1": "Accesorios Imprescindibles BBQ",
+        "tipologia": "blog"
+      },
+      {
+        "url": "https://esgarden.com/blog/invierno-barbacoa/",
+        "h1": "Barbacoa en Invierno",
+        "tipologia": "blog"
+      }
+    ]
+  },
+  "resumen_por_tipologia": {
+    "home": 1,
+    "categoria": 14,
+    "producto": 30,
+    "blog": 15,
+    "landing": 7,
+    "estatico": 2,
+    "total": 69
+  }
+}

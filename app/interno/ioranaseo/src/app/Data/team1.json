@@ -1,0 +1,29 @@
+[
+  {
+    "img": "/assets/img/team/team1-img1.png",
+    "title": "SR. Alex Robertson",
+    "desc": "Founder, SEO Analysts",
+    "twitter": "#",
+    "linkedin": "#",
+    "instagram": "#",
+    "facebook": "#"
+  },
+  {
+    "img": "/assets/img/team/team1-img2.png",
+    "title": "Shelia Abernathy",
+    "desc": "CEO, Head of Strategy",
+    "twitter": "#",
+    "linkedin": "#",
+    "instagram": "#",
+    "facebook": "#"
+  },
+  {
+    "img": "/assets/img/team/team1-img3.png",
+    "title": "Devin Romaguera",
+    "desc": "Social Media Manager",
+    "twitter": "#",
+    "linkedin": "#",
+    "instagram": "#",
+    "facebook": "#"
+  }
+]
