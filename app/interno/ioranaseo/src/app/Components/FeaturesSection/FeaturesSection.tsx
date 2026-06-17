@@ -50,8 +50,8 @@ const FeaturesSection: FC = () => {
               margin: "0 0 16px 0",
             }}
           >
-            ¿Por qué elegir{" "}
-            <span style={{ color: "#4D32A5" }}>Iorana SEO?</span>
+            ¿Por qué es importante el{" "}
+            <span style={{ color: "#4D32A5" }}>SEO Local?</span>
           </h2>
           <div
             style={{
