@@ -5,3 +5,6 @@
 [    7075ms] [WARNING] Image with src "/assets/img/work/hombre-mujer-empreendedores-online.jpg" was detected as the Largest Contentful Paint (LCP). Please add the "priority" property if this image is above the fold.
 Read more: https://nextjs.org/docs/api-reference/next/image#priority @ http://localhost:3005/_next/static/chunks/node_modules_next_dist_d09de6._.js:633
 [    7267ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3005/_next/static/chunks/node_modules_next_dist_client_9bb038._.js:12439
+[   40259ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3005/_next/static/chunks/node_modules_next_dist_client_9bb038._.js:12439
+[   40296ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3005/_next/static/chunks/node_modules_next_dist_client_9bb038._.js:12439
+[   40315ms] [LOG] [Fast Refresh] done in 20ms @ http://localhost:3005/_next/static/chunks/node_modules_next_dist_client_9bb038._.js:12266
