@@ -34,7 +34,11 @@ const ContenidosPage = () => {
         description="El contenido es el rey en marketing digital. Contenido estratégico y optimizado posiciona tu marca, atrae tráfico orgánico y convierte visitantes en clientes."
       ></FeaturesSection>
 
-      <NuestroProcesoLocal></NuestroProcesoLocal>
+      <NuestroProcesoLocal
+        title="Como generamos los"
+        titleHighlight="Contenidos para tu web"
+        description="Proceso probado en más de 80 proyectos. Contenido optimizado que posiciona en Google y genera resultados."
+      ></NuestroProcesoLocal>
 
       <ContactIno3></ContactIno3>
     </div>
