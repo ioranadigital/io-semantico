@@ -10,7 +10,7 @@ const facturacionElectronicaSteps = [
   {
     num: "01",
     title: "Estrategia Personalizada",
-    body: "📋 Cumplimiento 100% con normativas fiscales · 💻 Plataforma seleccionada según tu negocio · 🔗 Integración con sistemas actuales",
+    body: "Cumplimiento 100% con normativas fiscales · Plataforma seleccionada según tu negocio · Integración con sistemas actuales",
     detail: "Auditoría fiscal · Requisitos legales · Plataforma",
     duration: "Semana 1",
     color: "#ff8c00",
@@ -19,7 +19,7 @@ const facturacionElectronicaSteps = [
   {
     num: "02",
     title: "Resultados Rápidos",
-    body: "⚡ Facturas electrónicas en operación en 2 semanas · 📊 Reportes fiscales automáticos · 🎯 Cero errores de cumplimiento",
+    body: "Facturas electrónicas en operación en 2 semanas · Reportes fiscales automáticos · Cero errores de cumplimiento",
     detail: "Setup · Integración API · Testing",
     duration: "Semana 2",
     color: "#818cf8",
@@ -28,7 +28,7 @@ const facturacionElectronicaSteps = [
   {
     num: "03",
     title: "Garantía de Legalidad",
-    body: "✅ 100% conforme con Hacienda · 🔒 Datos protegidos y auditables · 💰 Impuestos calculados automáticamente",
+    body: "100% conforme con Hacienda · Datos protegidos y auditables · Impuestos calculados automáticamente",
     detail: "Capacitación · Manuales · Soporte inicial",
     duration: "Semana 3",
     color: "#34d399",

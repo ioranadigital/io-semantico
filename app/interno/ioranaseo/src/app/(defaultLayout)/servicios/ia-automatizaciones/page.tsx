@@ -10,7 +10,7 @@ const iaAutomatizacionesSteps = [
   {
     num: "01",
     title: "Estrategia Personalizada",
-    body: "🤖 Procesos identificados para automatizar · ⏱️ Ahorro de tiempo significativo mapeado · 💰 Rentabilidad estimada por proceso",
+    body: "Procesos identificados para automatizar · Ahorro de tiempo significativo mapeado · Rentabilidad estimada por proceso",
     detail: "Process mapping · Análisis de tiempo · ROI",
     duration: "Semana 1",
     color: "#ff8c00",
@@ -19,7 +19,7 @@ const iaAutomatizacionesSteps = [
   {
     num: "02",
     title: "Resultados Rápidos",
-    body: "📊 Reducción de 40-60% en tareas manuales · 🚀 Productividad del equipo aumentada · 💡 Decisiones mejor informadas con IA",
+    body: "Reducción de 40-60% en tareas manuales · Productividad del equipo aumentada · Decisiones mejor informadas con IA",
     detail: "Herramientas · Integración · Capacitación",
     duration: "Semana 2",
     color: "#818cf8",
@@ -28,7 +28,7 @@ const iaAutomatizacionesSteps = [
   {
     num: "03",
     title: "Garantía de Eficiencia",
-    body: "✅ Sistemas funcionando sin interrupciones · 🎯 ROI medible en los costos operacionales · 🔄 Soporte continuo incluido",
+    body: "Sistemas funcionando sin interrupciones · ROI medible en los costos operacionales · Soporte continuo incluido",
     detail: "Setup · Testing · Integración API",
     duration: "Semana 3-4",
     color: "#34d399",

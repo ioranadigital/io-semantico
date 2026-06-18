@@ -10,7 +10,7 @@ const tiendaOnlineSteps = [
   {
     num: "01",
     title: "Estrategia Personalizada",
-    body: "🛍️ Catálogo optimizado para vender más · 💳 Múltiples pasarelas de pago seguras · 📦 Gestión de inventario automática",
+    body: "Catálogo optimizado para vender más · Múltiples pasarelas de pago seguras · Gestión de inventario automática",
     detail: "Catálogo analysis · Segmentación · Roadmap",
     duration: "Semana 1",
     color: "#ff8c00",
@@ -19,7 +19,7 @@ const tiendaOnlineSteps = [
   {
     num: "02",
     title: "Resultados Rápidos",
-    body: "📈 Primeras ventas en semanas · 🎯 Carrito de compra optimizado para no abandonos · 🔔 Notificaciones automáticas a clientes",
+    body: "Primeras ventas en semanas · Carrito de compra optimizado para no abandonos · Notificaciones automáticas a clientes",
     detail: "Plataforma setup · Pagos · Integraciones",
     duration: "Semana 2-3",
     color: "#818cf8",
@@ -28,7 +28,7 @@ const tiendaOnlineSteps = [
   {
     num: "03",
     title: "Garantía de Ventas",
-    body: "✅ Tienda segura certificada SSL · 📊 Analytics detallado de cada venta · 💰 Margen de ganancia máximo garantizado",
+    body: "Tienda segura certificada SSL · Analytics detallado de cada venta · Margen de ganancia máximo garantizado",
     detail: "UX optimizada · Mobile friendly · Checkout rápido",
     duration: "Semana 4",
     color: "#34d399",

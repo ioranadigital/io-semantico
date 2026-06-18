@@ -10,7 +10,7 @@ const gestionDocumentalSteps = [
   {
     num: "01",
     title: "Estrategia Personalizada",
-    body: "📁 Documentos organizados y clasificados · 🔐 Acceso controlado por usuario · ⏱️ Políticas de retención definidas",
+    body: "Documentos organizados y clasificados · Acceso controlado por usuario · Políticas de retención definidas",
     detail: "Inventario · Clasificación · Políticas",
     duration: "Semana 1-2",
     color: "#ff8c00",
@@ -19,7 +19,7 @@ const gestionDocumentalSteps = [
   {
     num: "02",
     title: "Resultados Rápidos",
-    body: "⚡ Sistema operativo en 3-4 semanas · 🔍 Búsqueda de documentos en segundos · 📊 Auditoría completa disponible",
+    body: "Sistema operativo en 3-4 semanas · Búsqueda de documentos en segundos · Auditoría completa disponible",
     detail: "Setup · Configuración · Seguridad",
     duration: "Semana 3",
     color: "#818cf8",
@@ -28,7 +28,7 @@ const gestionDocumentalSteps = [
   {
     num: "03",
     title: "Garantía de Seguridad",
-    body: "✅ Documentos protegidos y respaldados · 🔒 Compliance con normativas · 🎯 Reducción de riesgos legales",
+    body: "Documentos protegidos y respaldados · Compliance con normativas · Reducción de riesgos legales",
     detail: "Digitalización · Organización · Etiquetado",
     duration: "Semana 4-5",
     color: "#34d399",

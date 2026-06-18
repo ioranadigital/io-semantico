@@ -10,7 +10,7 @@ const contenidosSteps = [
   {
     num: "01",
     title: "Estrategia Personalizada",
-    body: "📝 Palabras clave con alto potencial de búsqueda · 📅 Calendario editorial 100% personalizado · 🎯 Temas que interesan a tu audiencia",
+    body: "Palabras clave con alto potencial de búsqueda · Calendario editorial 100% personalizado · Temas que interesan a tu audiencia",
     detail: "Keyword research · Editorial calendar · Topics",
     duration: "Semana 1",
     color: "#ff8c00",
@@ -19,7 +19,7 @@ const contenidosSteps = [
   {
     num: "02",
     title: "Resultados Rápidos",
-    body: "📈 Tráfico orgánico en los primeros meses · 🏆 Posicionamiento en primera página de Google · 🎬 Contenido viral con engagement alto",
+    body: "Tráfico orgánico en los primeros meses · Posicionamiento en primera página de Google · Contenido viral con engagement alto",
     detail: "Redacción · SEO optimization · Estructura",
     duration: "Semana 2-3",
     color: "#818cf8",
@@ -28,7 +28,7 @@ const contenidosSteps = [
   {
     num: "03",
     title: "Garantía de Visibilidad",
-    body: "✅ Contenido que convierte lectores en clientes · 📊 Actualización y mejora continua · 🔄 Rankings que se mantienen",
+    body: "Contenido que convierte lectores en clientes · Actualización y mejora continua · Rankings que se mantienen",
     detail: "Diseño · Imágenes · Videos · Infografías",
     duration: "Semana 4",
     color: "#34d399",

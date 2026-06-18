@@ -10,7 +10,7 @@ const imagenMarcaSteps = [
   {
     num: "01",
     title: "Estrategia Personalizada",
-    body: "🎨 Logo único que te diferencia de competencia · 💎 Identidad visual coherente y profesional · 🎯 Mensaje claro de tu negocio",
+    body: "Logo único que te diferencia de competencia · Identidad visual coherente y profesional · Mensaje claro de tu negocio",
     detail: "Entrevistas · Análisis competitivo · Posicionamiento",
     duration: "Semana 1",
     color: "#ff8c00",
@@ -19,7 +19,7 @@ const imagenMarcaSteps = [
   {
     num: "02",
     title: "Resultados Rápidos",
-    body: "✨ Logo profesional en 2-3 semanas · 🎭 Guía de marca completa lista · 📱 Aplicaciones en redes sociales inmediatas",
+    body: "Logo profesional en 2-3 semanas · Guía de marca completa lista · Aplicaciones en redes sociales inmediatas",
     detail: "Concepto · Variantes · Usos permitidos",
     duration: "Semana 2-3",
     color: "#818cf8",
@@ -28,7 +28,7 @@ const imagenMarcaSteps = [
   {
     num: "03",
     title: "Garantía de Impacto",
-    body: "✅ Marca recordable y profesional garantizada · 🏢 Presencia consistente en todas plataformas · 💰 Valor agregado a tu negocio",
+    body: "Marca recordable y profesional garantizada · Presencia consistente en todas plataformas · Valor agregado a tu negocio",
     detail: "Colores primarios · Secundarios · Tipografía",
     duration: "Semana 4",
     color: "#34d399",

@@ -10,7 +10,7 @@ const facebookAdsSteps = [
   {
     num: "01",
     title: "Estrategia Personalizada",
-    body: "👥 Audiencia perfecta identificada y segmentada · 🎯 Comportamientos y intereses analizados · 💼 Datos demográficos optimizados",
+    body: "Audiencia perfecta identificada y segmentada · Comportamientos e intereses analizados · Datos demográficos optimizados",
     detail: "Audiencia análisis · Segmentación · Targeting",
     duration: "Semana 1",
     color: "#ff8c00",
@@ -19,7 +19,7 @@ const facebookAdsSteps = [
   {
     num: "02",
     title: "Resultados Rápidos",
-    body: "📱 Alcance de millones en Facebook e Instagram · 💬 Engagement real y conversaciones · 🎬 Videos que viran y generan ventas",
+    body: "Alcance de millones en Facebook e Instagram · Engagement real y conversaciones · Videos que viran y generan ventas",
     detail: "Diseño · Videos · Copy · A/B testing",
     duration: "Semana 2",
     color: "#818cf8",
@@ -28,7 +28,7 @@ const facebookAdsSteps = [
   {
     num: "03",
     title: "Garantía de Conversiones",
-    body: "✅ Costo por conversión optimizado al máximo · 📊 Retargeting de clientes potenciales · 💰 ROAS medible y escalable",
+    body: "Costo por conversión optimizado al máximo · Retargeting de clientes potenciales · ROAS medible y escalable",
     detail: "Facebook · Instagram · Audience Network",
     duration: "Semana 3",
     color: "#34d399",

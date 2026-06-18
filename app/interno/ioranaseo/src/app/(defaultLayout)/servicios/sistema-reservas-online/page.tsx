@@ -10,7 +10,7 @@ const sistemaReservasOnlineSteps = [
   {
     num: "01",
     title: "Estrategia Personalizada",
-    body: "📅 Calendario sincronizado automáticamente · 💼 Servicios y horarios configurados · ⚙️ Reglas de reserva inteligentes",
+    body: "Calendario sincronizado automáticamente · Servicios y horarios configurados · Reglas de reserva inteligentes",
     detail: "Servicios setup · Horarios · Reglas",
     duration: "Semana 1",
     color: "#ff8c00",
@@ -19,7 +19,7 @@ const sistemaReservasOnlineSteps = [
   {
     num: "02",
     title: "Resultados Rápidos",
-    body: "📱 Reservas online en segundos desde app o web · 💳 Pagos seguros integrados · ⏰ Notificaciones automáticas a clientes",
+    body: "Reservas online en segundos desde app o web · Pagos seguros integrados · Notificaciones automáticas a clientes",
     detail: "Plataforma setup · Calendario · Confirmación",
     duration: "Semana 2",
     color: "#818cf8",
@@ -28,7 +28,7 @@ const sistemaReservasOnlineSteps = [
   {
     num: "03",
     title: "Garantía de Ocupación",
-    body: "✅ Reducción de no-shows hasta 90% · 📊 Análisis de ocupación en tiempo real · 💰 Máxima utilización de tu capacidad",
+    body: "Reducción de no-shows hasta 90% · Análisis de ocupación en tiempo real · Máxima utilización de tu capacidad",
     detail: "Pagos setup · Gateways · Seguridad",
     duration: "Semana 3",
     color: "#34d399",

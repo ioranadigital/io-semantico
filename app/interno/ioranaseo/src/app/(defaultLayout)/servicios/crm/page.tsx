@@ -10,7 +10,7 @@ const crmSteps = [
   {
     num: "01",
     title: "Estrategia Personalizada",
-    body: "👥 Flujo de ventas optimizado para tu proceso · 📊 Campos personalizados según necesidades · 🎯 Métricas claras definidas",
+    body: "Flujo de ventas optimizado para tu proceso · Campos personalizados según necesidades · Métricas claras definidas",
     detail: "Process mapping · Sales flow · CRM selection",
     duration: "Semana 1",
     color: "#ff8c00",
@@ -19,7 +19,7 @@ const crmSteps = [
   {
     num: "02",
     title: "Resultados Rápidos",
-    body: "📈 Aumento en cierre de ventas del 30-40% · ⏱️ Tiempo de ciclo de ventas reducido · 💡 Datos de clientes centralizados",
+    body: "Aumento en cierre de ventas del 30-40% · Tiempo de ciclo de ventas reducido · Datos de clientes centralizados",
     detail: "Setup · Customización · Integraciones",
     duration: "Semana 2-3",
     color: "#818cf8",
@@ -28,7 +28,7 @@ const crmSteps = [
   {
     num: "03",
     title: "Garantía de Crecimiento",
-    body: "✅ Equipo de ventas más productivo · 📊 Reportes automáticos por ejecutivo · 🔄 Escalabilidad para crecer",
+    body: "Equipo de ventas más productivo · Reportes automáticos por ejecutivo · Escalabilidad para crecer",
     detail: "Data migration · Limpieza · Validación",
     duration: "Semana 4",
     color: "#34d399",

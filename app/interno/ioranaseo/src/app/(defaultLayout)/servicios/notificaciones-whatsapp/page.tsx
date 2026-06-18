@@ -10,7 +10,7 @@ const notificacionesWhatsappSteps = [
   {
     num: "01",
     title: "Estrategia Personalizada",
-    body: "💬 Canal de comunicación directo con clientes · 📲 Número verificado listo para operar · 🔗 Integración con tus sistemas",
+    body: "Canal de comunicación directo con clientes · Número verificado listo para operar · Integración con tus sistemas",
     detail: "Cuenta setup · Número verificado · API access",
     duration: "Semana 1",
     color: "#ff8c00",
@@ -19,7 +19,7 @@ const notificacionesWhatsappSteps = [
   {
     num: "02",
     title: "Resultados Rápidos",
-    body: "📈 Tasa de apertura de 98% de mensajes · 💰 Aumenta ventas en 30-40% · ⏱️ Respuestas automáticas 24/7",
+    body: "Tasa de apertura de 98% de mensajes · Aumenta ventas en 30-40% · Respuestas automáticas 24/7",
     detail: "API integration · Webhooks · Testing",
     duration: "Semana 2",
     color: "#818cf8",
@@ -28,7 +28,7 @@ const notificacionesWhatsappSteps = [
   {
     num: "03",
     title: "Garantía de Engagement",
-    body: "✅ Clientes conectados constantemente · 🤖 Chatbot inteligente operando · 📊 Métricas de conversación detalladas",
+    body: "Clientes conectados constantemente · Chatbot inteligente operando · Métricas de conversación detalladas",
     detail: "Flujos · Mensajes · Plantillas",
     duration: "Semana 3",
     color: "#34d399",

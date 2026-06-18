@@ -10,7 +10,7 @@ const seoLocalSteps = [
   {
     num: "01",
     title: "Estrategia Personalizada",
-    body: "📍 Posicionamiento garantizado en tu zona geográfica · 🎯 Palabras clave locales de alto potencial · 📊 Análisis detallado de tu competencia local",
+    body: "Posicionamiento garantizado en tu zona geográfica · Palabras clave locales de alto potencial · Análisis detallado de tu competencia local",
     detail: "Análisis competitivo · Palabras clave locales · Roadmap",
     duration: "Semana 1",
     color: "#ff8c00",
@@ -19,7 +19,7 @@ const seoLocalSteps = [
   {
     num: "02",
     title: "Resultados Rápidos",
-    body: "📈 Visibilidad en Google Local en las primeras semanas · 📞 Aumento de llamadas de clientes cercanos · ⭐ Reseñas positivas que generan confianza",
+    body: "Visibilidad en Google Local en las primeras semanas · Aumento de llamadas de clientes cercanos · Reseñas positivas que generan confianza",
     detail: "GBP optimización · Citaciones · Reseñas",
     duration: "Semana 2-3",
     color: "#818cf8",
@@ -28,7 +28,7 @@ const seoLocalSteps = [
   {
     num: "03",
     title: "Garantía de Posicionamiento",
-    body: "✅ Te posicionamos en el Local Pack o ajustamos sin costo · 🔄 Optimización continua basada en datos · 🎁 ROI medible y transparente",
+    body: "Te posicionamos en el Local Pack o ajustamos sin costo · Optimización continua basada en datos · ROI medible y transparente",
     detail: "Posicionamiento garantizado · Ajustes sin costo",
     duration: "Contínuo",
     color: "#34d399",

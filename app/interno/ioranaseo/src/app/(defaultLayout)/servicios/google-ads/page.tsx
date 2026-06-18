@@ -10,7 +10,7 @@ const googleAdsSteps = [
   {
     num: "01",
     title: "Estrategia Personalizada",
-    body: "🎯 Palabras clave de alta intención de compra · 💡 Segmentación por público objetivo · 📍 Ubicación y horarios optimizados",
+    body: "Palabras clave de alta intención de compra · Segmentación por público objetivo · Ubicación y horarios optimizados",
     detail: "Auditoría · Palabras clave · Presupuesto inicial",
     duration: "Semana 1",
     color: "#ff8c00",
@@ -19,7 +19,7 @@ const googleAdsSteps = [
   {
     num: "02",
     title: "Resultados Rápidos",
-    body: "⚡ Tráfico calificado en 48 horas · 📞 Leads de calidad desde el primer día · 💰 ROI positivo en las primeras semanas",
+    body: "Tráfico calificado en 48 horas · Leads de calidad desde el primer día · ROI positivo en las primeras semanas",
     detail: "Campañas setup · Segmentación · Palabras clave",
     duration: "Semana 2",
     color: "#818cf8",
@@ -28,7 +28,7 @@ const googleAdsSteps = [
   {
     num: "03",
     title: "Garantía de ROI",
-    body: "✅ Presupuesto invertido sabiamente en clientes reales · 📊 Reportes transparentes diarios · 🔄 Optimización continua",
+    body: "Presupuesto invertido sabiamente en clientes reales · Reportes transparentes diarios · Optimización continua",
     detail: "Landing pages · Conversion tracking · A/B testing",
     duration: "Semana 3",
     color: "#34d399",
