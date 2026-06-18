@@ -29,9 +29,9 @@ const NotificacionesWhatsappPage = () => {
       </div>
 
       <FeaturesSection
-        title="¿Para qué quiero tener"
+        title="¿Cuáles son las ventajas de"
         titleHighlight="Notificaciones WhatsApp?"
-        description="WhatsApp es el canal de comunicación más directo con tus clientes. Notificaciones automáticas aumentan la tasa de apertura, mejoran la experiencia del cliente y generan más ventas."
+        description="WhatsApp es el canal más directo con tus clientes con 98% de tasa de apertura. Notificaciones automáticas mejoran experiencia, aumentan conversiones y crean una relación cercana con tu audiencia."
       ></FeaturesSection>
 
       <NuestroProcesoLocal

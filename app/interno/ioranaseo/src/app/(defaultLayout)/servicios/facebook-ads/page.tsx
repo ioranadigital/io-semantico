@@ -29,9 +29,9 @@ const FacebookAdsPage = () => {
       </div>
 
       <FeaturesSection
-        title="¿Por Que tengo que lanzar Campañas en"
+        title="¿Cuáles son las ventajas de las Campañas en"
         titleHighlight="Facebook Ads?"
-        description="Facebook Ads te conecta con millones de usuarios en el momento exacto. Aumenta visibilidad, atrae clientes y multiplica tu ROI con publicidad segmentada."
+        description="Facebook Ads alcanza a tu audiencia perfecta con segmentación avanzada. Multiplica tu alcance, aumenta conversiones y aprovecha el poder de 3 billones de usuarios activos en Meta."
       ></FeaturesSection>
 
       <NuestroProcesoLocal

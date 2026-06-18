@@ -29,9 +29,9 @@ const IAAutomatizacionesPage = () => {
       </div>
 
       <FeaturesSection
-        title="¿Es Necesario implementar"
+        title="¿Cuáles son las ventajas de implementar"
         titleHighlight="IA y Automatizaciones?"
-        description="La inteligencia artificial es el futuro. Automatizar tus procesos te permite enfocarte en lo que realmente importa: el crecimiento de tu negocio y la satisfacción de tus clientes."
+        description="La IA multiplica tu productividad sin aumentar costos. Automatiza tareas repetitivas, reduce errores humanos, mejora la experiencia del cliente y libera a tu equipo para trabajo estratégico de alto valor."
       ></FeaturesSection>
 
       <NuestroProcesoLocal

@@ -29,9 +29,9 @@ const TiendaOnlinePage = () => {
       </div>
 
       <FeaturesSection
-        title="¿Por qué tener una"
+        title="¿Cuáles son las ventajas de tener una"
         titleHighlight="Tienda Online?"
-        description="Vender online es el futuro del comercio. Con una tienda online profesional, alcanzas clientes 24/7, aumentas tus ventas y escalas tu negocio sin límites geográficos."
+        description="Vender online multiplica tus ingresos sin límites geográficos. Alcanza clientes 24/7, reduce costos operacionales y escala tu negocio exponencialmente. El comercio electrónico es el presente del negocio."
       ></FeaturesSection>
 
       <NuestroProcesoLocal></NuestroProcesoLocal>

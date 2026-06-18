@@ -29,9 +29,9 @@ const PaginaWebPage = () => {
       </div>
 
       <FeaturesSection
-        title="¿Es necesario que mi negocio tenga una"
-        titleHighlight="Pagina Web?"
-        description="Una página web profesional es tu tarjeta de presentación digital. Sin ella, pierdes oportunidades de negocio todos los días. Nosotros la creamos para que convierta."
+        title="¿Por qué tu negocio necesita una"
+        titleHighlight="Página Web Profesional?"
+        description="El 93% de los clientes investigan online antes de comprar. Una página web bien diseñada genera confianza, aumenta tus ventas y te posiciona por encima de la competencia. Tu mejor vendedor trabajando 24/7."
       ></FeaturesSection>
 
       <NuestroProcesoLocal

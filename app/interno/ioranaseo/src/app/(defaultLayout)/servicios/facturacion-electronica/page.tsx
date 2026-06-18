@@ -29,9 +29,9 @@ const FacturacionElectronicaPage = () => {
       </div>
 
       <FeaturesSection
-        title="¿Es Necesario implementar"
+        title="¿Cuáles son los beneficios de la"
         titleHighlight="Facturación Electrónica?"
-        description="La facturación electrónica es obligatoria en muchos países y ofrece ventajas significativas: reduce costos, acelera procesos y cumple normativas fiscales automáticamente."
+        description="La facturación electrónica es ley en muchos países y una ventaja competitiva. Reduce costos de papelería, acelera pagos, cumple automáticamente normativas fiscales y mejora la experiencia del cliente."
       ></FeaturesSection>
 
       <NuestroProcesoLocal

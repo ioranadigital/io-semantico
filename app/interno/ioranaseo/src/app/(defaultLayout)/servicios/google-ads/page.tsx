@@ -29,9 +29,9 @@ const GoogleAdsPage = () => {
       </div>
 
       <FeaturesSection
-        title="¿Vale la pena invertir en"
+        title="¿Cuáles son los beneficios de invertir en"
         titleHighlight="Google Ads?"
-        description="Si quieres resultados inmediatos, Google Ads es tu mejor aliado. Aparece en los primeros resultados de búsqueda y atrae clientes listos para comprar hoy mismo."
+        description="Google Ads genera resultados inmediatos. Aparece en los primeros resultados de búsqueda, atrae clientes con intención de compra y garantiza un ROI medible. Solo pagas por resultados reales."
       ></FeaturesSection>
 
       <NuestroProcesoLocal

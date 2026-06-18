@@ -20,15 +20,19 @@ const SeoLocalPruebaPage = () => {
 
       <div style={{ fontSize: "0.85em" }} className="ficha-hero">
         <HeroBannerPlanes
-          subtitle="Planes y Precios"
-          title="Servicio <span style='color: #4D32A5;'>SEO Local</span>"
-          content="Nuestros planes están diseñados para adaptarse a las necesidades de tu empresa, desde startups hasta grandes corporaciones."
+          subtitle="Servicios Digitales"
+          title="Posiciona tu Negocio con <span style='color: #4D32A5;'>SEO Local</span>"
+          content="Domina las búsquedas locales en tu área geográfica. Atrae clientes cercanos que buscan exactamente lo que ofreces. Estrategia probada para negocios con ubicación física."
           img="/assets/img/hero/hero3-main-img.png"
           showImage={false}
         ></HeroBannerPlanes>
       </div>
 
-      <FeaturesSection></FeaturesSection>
+      <FeaturesSection
+        title="¿Por qué tu negocio necesita"
+        titleHighlight="SEO Local?"
+        description="El 76% de las búsquedas móviles tienen intención local. Si no apareces en los resultados locales, tus competidores capturan tus clientes. Posicionamiento local que convierte búsquedas en visitas a tu negocio."
+      ></FeaturesSection>
 
       <NuestroProcesoLocal></NuestroProcesoLocal>
 

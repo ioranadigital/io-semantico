@@ -29,9 +29,9 @@ const ContenidosPage = () => {
       </div>
 
       <FeaturesSection
-        title="¿Por que es Importante Generar"
-        titleHighlight="Contenidos?"
-        description="El contenido es el rey en marketing digital. Contenido estratégico y optimizado posiciona tu marca, atrae tráfico orgánico y convierte visitantes en clientes."
+        title="¿Por qué el Marketing de"
+        titleHighlight="Contenidos es Estratégico?"
+        description="El contenido es el corazón del marketing digital moderno. Estrategia de contenido bien ejecutada posiciona tu marca, atrae tráfico orgánico de calidad, genera confianza y convierte visitantes en clientes leales."
       ></FeaturesSection>
 
       <NuestroProcesoLocal

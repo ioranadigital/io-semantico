@@ -29,9 +29,9 @@ const ImagenMarcaPage = () => {
       </div>
 
       <FeaturesSection
-        title="¿Es Necesario tener una"
-        titleHighlight="Imagen de Marca?"
-        description="Tu imagen de marca es tu primera impresión. Una identidad visual coherente y profesional genera confianza, diferencia tu negocio de la competencia y se queda en la mente de tus clientes."
+        title="¿Por qué tu negocio necesita una"
+        titleHighlight="Imagen de Marca Única?"
+        description="Tu imagen de marca es tu primera impresión y tu ventaja competitiva. Una identidad visual fuerte genera confianza, te diferencia de la competencia y se graba en la mente de tus clientes para siempre."
       ></FeaturesSection>
 
       <NuestroProcesoLocal

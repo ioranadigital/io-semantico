@@ -29,9 +29,9 @@ const GestionDocumentalPage = () => {
       </div>
 
       <FeaturesSection
-        title="¿Necesito aplicar una"
-        titleHighlight="Gestión Documental?"
-        description="Una gestión documental centralizada y eficiente es clave para cualquier negocio. Mejora la colaboración, reduce riesgos y cumple con requisitos legales y normativos."
+        title="¿Por qué tu negocio necesita una"
+        titleHighlight="Gestión Documental Profesional?"
+        description="La gestión documental centralizada protege tu información, mejora colaboración, reduce riesgos legales y cumple automáticamente normativas. Control total de tus documentos en un único lugar seguro."
       ></FeaturesSection>
 
       <NuestroProcesoLocal

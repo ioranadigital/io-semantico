@@ -29,9 +29,9 @@ const SistemaReservasOnlinePage = () => {
       </div>
 
       <FeaturesSection
-        title="¿Cuales son los beneficios de tener un sistema de"
-        titleHighlight="Reservas Online?"
-        description="Un sistema de reservas online reduce carga administrativa, mejora la experiencia del cliente y aumenta tus ingresos permitiendo que tus clientes reserven 24/7."
+        title="¿Cuáles son las ventajas de un"
+        titleHighlight="Sistema de Reservas Online?"
+        description="Un sistema de reservas automatizado reduce carga administrativa, mejora experiencia del cliente, aumenta ingresos y permite que tus clientes reserven 24/7 sin intervención manual. Eficiencia y conveniencia total."
       ></FeaturesSection>
 
       <NuestroProcesoLocal

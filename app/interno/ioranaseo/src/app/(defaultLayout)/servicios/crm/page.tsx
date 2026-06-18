@@ -29,9 +29,9 @@ const CRMPage = () => {
       </div>
 
       <FeaturesSection
-        title="¿Es Necesario implementar"
-        titleHighlight="CRM?"
-        description="Un CRM bien implementado transforma tu negocio. Centraliza la información de clientes, mejora la colaboración del equipo y aumenta significativamente las ventas."
+        title="¿Cuáles son los beneficios de un"
+        titleHighlight="CRM Profesional?"
+        description="Un CRM transformador centraliza toda la información de clientes, automatiza flujos de ventas, mejora colaboración del equipo y aumenta ingresos hasta 300%. Tu arma competitiva en el comercio moderno."
       ></FeaturesSection>
 
       <NuestroProcesoLocal
