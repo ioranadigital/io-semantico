@@ -61,7 +61,17 @@ const STEPS: Step[] = [
   },
 ];
 
-export default function NuestroProcesoLocal() {
+interface NuestroProcesoLocalProps {
+  title?: string;
+  titleHighlight?: string;
+  description?: string;
+}
+
+export default function NuestroProcesoLocal({
+  title = "¿Cómo desarrollamos",
+  titleHighlight = "SEO Local?",
+  description = "Proceso probado en más de 80 proyectos. Sin tecnicismos, sin sorpresas.",
+}: NuestroProcesoLocalProps = {}) {
   return (
     <section
       style={{
@@ -82,8 +92,7 @@ export default function NuestroProcesoLocal() {
               lineHeight: "1.3",
             }}
           >
-            ¿Cómo desarrollamos{" "}
-            <span style={{ color: "#4D32A5" }}>SEO Local?</span>
+            {title} <span style={{ color: "#4D32A5" }}>{titleHighlight}</span>
           </h2>
           <p
             style={{
@@ -94,8 +103,7 @@ export default function NuestroProcesoLocal() {
               lineHeight: "1.6",
             }}
           >
-            Proceso probado en más de 80 proyectos. Sin tecnicismos, sin
-            sorpresas.
+            {description}
           </p>
         </div>
 

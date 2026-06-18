@@ -9,7 +9,17 @@ interface Feature {
   description: string;
 }
 
-const FeaturesSection: FC = () => {
+interface FeaturesSectionProps {
+  title?: string;
+  titleHighlight?: string;
+  description?: string;
+}
+
+const FeaturesSection: FC<FeaturesSectionProps> = ({
+  title = "¿Por qué es importante el",
+  titleHighlight = "SEO Local?",
+  description = "Somos especialistas en posicionar negocios locales en Google. Con más de 80 proyectos exitosos, sabemos exactamente qué funciona.",
+}) => {
   const features: Feature[] = [
     {
       icon: <CheckCircle size={32} />,
@@ -51,8 +61,7 @@ const FeaturesSection: FC = () => {
               margin: "0 0 16px 0",
             }}
           >
-            ¿Por qué es importante el{" "}
-            <span style={{ color: "#4D32A5" }}>SEO Local?</span>
+            {title} <span style={{ color: "#4D32A5" }}>{titleHighlight}</span>
           </h2>
           <div
             style={{
@@ -72,8 +81,7 @@ const FeaturesSection: FC = () => {
               margin: "0",
             }}
           >
-            Somos especialistas en posicionar negocios locales en Google. Con
-            más de 80 proyectos exitosos, sabemos exactamente qué funciona.
+            {description}
           </p>
         </div>
 

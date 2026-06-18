@@ -28,9 +28,17 @@ const PosicionamientoGooglePage = () => {
         ></HeroBannerPlanes>
       </div>
 
-      <FeaturesSection></FeaturesSection>
+      <FeaturesSection
+        title="¿Es importante tener"
+        titleHighlight="visibilidad en Google?"
+        description="Si tu negocio no aparece en los primeros resultados de Google, tus competidores te están llevando los clientes. Nosotros te posicionamos donde te merecen encontrar."
+      ></FeaturesSection>
 
-      <NuestroProcesoLocal></NuestroProcesoLocal>
+      <NuestroProcesoLocal
+        title="Como trabajamos para lograr que tu negocio tenga"
+        titleHighlight="visibilidad en google"
+        description="Estrategia comprobada en más de 80 empresas. Posicionamiento real, resultados reales."
+      ></NuestroProcesoLocal>
 
       <ContactIno3></ContactIno3>
     </div>
