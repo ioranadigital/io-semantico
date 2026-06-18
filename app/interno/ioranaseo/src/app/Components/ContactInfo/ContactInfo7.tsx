@@ -27,7 +27,10 @@ const ContactInfo7: FC<ContactInfo7Props> = ({
         <div className="container">
           <div className="row align-items-center">
             <div className="col-lg-6">
-              <div className="heading3">
+              <div
+                className="heading3"
+                style={{ padding: "0", marginTop: "-50px" }}
+              >
                 <p className="title">
                   {" "}
                   <span className="span">
