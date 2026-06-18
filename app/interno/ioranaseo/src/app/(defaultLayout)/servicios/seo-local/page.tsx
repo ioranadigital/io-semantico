@@ -4,7 +4,37 @@ import HeroBannerPlanes from "@/app/Components/HeroBanner/HeroBannerPlanes";
 import FeaturesSection from "@/app/Components/FeaturesSection/FeaturesSection";
 import NuestroProcesoLocal from "@/app/Components/NuestroProcesoLocal/NuestroProcesoLocal";
 import ContactIno3 from "@/app/Components/ContactInfo/ContactIno3";
-import { Search, Settings, FileText, Star, BarChart3 } from "lucide-react";
+import {
+  Search,
+  Settings,
+  FileText,
+  Star,
+  BarChart3,
+  MapPin,
+  TrendingUp,
+  CheckCircle,
+} from "lucide-react";
+
+const seoLocalFeatures = [
+  {
+    icon: <MapPin size={32} />,
+    title: "Tu Negocio Visible en tu Zona",
+    description:
+      "El 76% de búsquedas locales terminan en una compra. Sin SEO Local, tus clientes cercanos van con tu competencia. Nosotros te ponemos en el mapa donde realmente importa.",
+  },
+  {
+    icon: <TrendingUp size={32} />,
+    title: "Más Llamadas y Visitas Reales",
+    description:
+      "No es tráfico cualquiera, son clientes en tu zona listos para comprar. Aumento promedio de 40-60% en contactos durante los primeros 3 meses.",
+  },
+  {
+    icon: <CheckCircle size={32} />,
+    title: "Resultados Comprobados o Te Devolvemos",
+    description:
+      "Te garantizamos posicionamiento en el Local Pack de Google. Si en 90 días no lo logramos, ajustamos sin costo adicional hasta hacerlo.",
+  },
+];
 
 const seoLocalSteps = [
   {
@@ -81,6 +111,7 @@ const SeoLocalPruebaPage = () => {
         title="¿Por qué tu negocio necesita"
         titleHighlight="SEO Local?"
         description="El 76% de las búsquedas móviles tienen intención local. Si no apareces en los resultados locales, tus competidores capturan tus clientes. Posicionamiento local que convierte búsquedas en visitas a tu negocio."
+        features={seoLocalFeatures}
       ></FeaturesSection>
 
       <NuestroProcesoLocal

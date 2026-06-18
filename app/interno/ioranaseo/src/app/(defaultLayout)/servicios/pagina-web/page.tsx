@@ -4,7 +4,37 @@ import HeroBannerPlanes from "@/app/Components/HeroBanner/HeroBannerPlanes";
 import FeaturesSection from "@/app/Components/FeaturesSection/FeaturesSection";
 import NuestroProcesoLocal from "@/app/Components/NuestroProcesoLocal/NuestroProcesoLocal";
 import ContactIno3 from "@/app/Components/ContactInfo/ContactIno3";
-import { Search, Settings, FileText, Star, BarChart3 } from "lucide-react";
+import {
+  Search,
+  Settings,
+  FileText,
+  Star,
+  BarChart3,
+  Globe,
+  Smartphone,
+  DollarSign,
+} from "lucide-react";
+
+const paginaWebFeatures = [
+  {
+    icon: <Globe size={32} />,
+    title: "Presencia Profesional 24/7",
+    description:
+      "El 93% de clientes investiga online antes de comprar. Sin página web, pierdes esas ventas. Tu web es tu mejor vendedor trabajando sin descanso para ti.",
+  },
+  {
+    icon: <Smartphone size={32} />,
+    title: "Funciona en Todos los Dispositivos",
+    description:
+      "Diseño responsivo que se adapta perfectamente a móvil, tablet y desktop. Los clientes pueden verte desde cualquier lugar, en cualquier momento.",
+  },
+  {
+    icon: <DollarSign size={32} />,
+    title: "Convertir Visitantes en Clientes",
+    description:
+      "No es solo una página bonita, es una máquina de generar leads. Con CTAs optimizados y formularios estratégicos, cada visitante es un cliente potencial.",
+  },
+];
 
 const paginaWebSteps = [
   {
@@ -81,6 +111,7 @@ const PaginaWebPage = () => {
         title="¿Por qué tu negocio necesita una"
         titleHighlight="Página Web Profesional?"
         description="El 93% de los clientes investigan online antes de comprar. Una página web bien diseñada genera confianza, aumenta tus ventas y te posiciona por encima de la competencia. Tu mejor vendedor trabajando 24/7."
+        features={paginaWebFeatures}
       ></FeaturesSection>
 
       <NuestroProcesoLocal

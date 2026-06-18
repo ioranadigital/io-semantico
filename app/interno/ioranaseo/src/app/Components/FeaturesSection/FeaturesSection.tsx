@@ -13,14 +13,16 @@ interface FeaturesSectionProps {
   title?: string;
   titleHighlight?: string;
   description?: string;
+  features?: Feature[];
 }
 
 const FeaturesSection: FC<FeaturesSectionProps> = ({
   title = "¿Por qué es importante el",
   titleHighlight = "SEO Local?",
   description = "Somos especialistas en posicionar negocios locales en Google. Con más de 80 proyectos exitosos, sabemos exactamente qué funciona.",
+  features: customFeatures,
 }) => {
-  const features: Feature[] = [
+  const defaultFeatures: Feature[] = [
     {
       icon: <CheckCircle size={32} />,
       title: "Estrategia Personalizada",
@@ -40,6 +42,8 @@ const FeaturesSection: FC<FeaturesSectionProps> = ({
         "Te posicionamos en el Local Pack de Google o ajustamos nuestra estrategia sin costo adicional hasta lograrlo.",
     },
   ];
+
+  const features: Feature[] = customFeatures || defaultFeatures;
 
   return (
     <section

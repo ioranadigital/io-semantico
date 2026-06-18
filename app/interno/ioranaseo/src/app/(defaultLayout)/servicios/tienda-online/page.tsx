@@ -4,7 +4,37 @@ import HeroBannerPlanes from "@/app/Components/HeroBanner/HeroBannerPlanes";
 import FeaturesSection from "@/app/Components/FeaturesSection/FeaturesSection";
 import NuestroProcesoLocal from "@/app/Components/NuestroProcesoLocal/NuestroProcesoLocal";
 import ContactIno3 from "@/app/Components/ContactInfo/ContactIno3";
-import { Search, Settings, FileText, Star, BarChart3 } from "lucide-react";
+import {
+  Search,
+  Settings,
+  FileText,
+  Star,
+  BarChart3,
+  ShoppingCart,
+  CreditCard,
+  TrendingUp,
+} from "lucide-react";
+
+const tiendaOnlineFeatures = [
+  {
+    icon: <ShoppingCart size={32} />,
+    title: "Vender Sin Límites Geográficos",
+    description:
+      "Abre tu mercado más allá de tu ciudad. Vende a cualquier lugar del país o mundo. Una tienda online multiplica tu potencial de clientes exponencialmente.",
+  },
+  {
+    icon: <CreditCard size={32} />,
+    title: "Pagos Seguros y Múltiples Opciones",
+    description:
+      "Integración con las principales pasarelas de pago. Tus clientes compran con confianza usando su método favorito: tarjeta, transferencia, billetera digital.",
+  },
+  {
+    icon: <TrendingUp size={32} />,
+    title: "Automatización Total de Ventas",
+    description:
+      "Gestión automática de inventario, pedidos y notificaciones. Mientras duermes, tu tienda sigue vendiendo y enviando confirmaciones a tus clientes.",
+  },
+];
 
 const tiendaOnlineSteps = [
   {
@@ -81,6 +111,7 @@ const TiendaOnlinePage = () => {
         title="¿Cuáles son las ventajas de tener una"
         titleHighlight="Tienda Online?"
         description="Vender online multiplica tus ingresos sin límites geográficos. Alcanza clientes 24/7, reduce costos operacionales y escala tu negocio exponencialmente. El comercio electrónico es el presente del negocio."
+        features={tiendaOnlineFeatures}
       ></FeaturesSection>
 
       <NuestroProcesoLocal
