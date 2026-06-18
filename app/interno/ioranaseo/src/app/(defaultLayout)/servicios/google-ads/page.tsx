@@ -36,7 +36,7 @@ const GoogleAdsPage = () => {
 
       <NuestroProcesoLocal
         title="¿Cómo Gestionaremos tus campañas de"
-        titleHighlight="google ads?"
+        titleHighlight="Google Ads?"
         description="Proceso probado en más de 80 proyectos. Estrategia enfocada en ROI y conversiones reales."
       ></NuestroProcesoLocal>
 
