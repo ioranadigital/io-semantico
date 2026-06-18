@@ -149,6 +149,8 @@ const PaginaWebPage = () => {
         titleHighlight="Página Web Profesional?"
         description="El 93% de los clientes investigan online antes de comprar. Una página web bien diseñada genera confianza, aumenta tus ventas y te posiciona por encima de la competencia. Tu mejor vendedor trabajando 24/7."
         features={paginaWebFeatures}
+        imageSrc="/assets/img/pagina-web-450.jpg"
+        imageAlt="Desarrollo de página web"
       ></FeaturesSection>
 
       <NuestroProcesoLocal
