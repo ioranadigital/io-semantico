@@ -55,7 +55,7 @@ const Header1: FC<Header1Props> = ({ variant }) => {
                 <div className="header-btn">
                   <div className="button">
                     <Link
-                      href="/contact"
+                      href="/contacto"
                       className="btn-barrido-header"
                       style={{
                         backgroundColor: "#FF8C00",

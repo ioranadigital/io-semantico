@@ -302,7 +302,7 @@ const Nav: FC<NavProps> = ({ setMobileToggle }) => {
         </DropDown>
       </li>
       <li>
-        <Link href="/contact" onClick={() => setMobileToggle(false)}>
+        <Link href="/contacto" onClick={() => setMobileToggle(false)}>
           Contacto
         </Link>
       </li>

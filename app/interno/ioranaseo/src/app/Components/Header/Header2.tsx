@@ -72,7 +72,7 @@ const Header2: FC<Header2Props> = ({ variant }) => {
             <div className="cs_main_header_right">
               <div className="header-btn">
                 <div className="button">
-                  <Link href="/contact" className="theme-btn2">
+                  <Link href="/contacto" className="theme-btn2">
                     Get In Touch{" "}
                     <span>
                       <i className="bi bi-arrow-right"></i>
