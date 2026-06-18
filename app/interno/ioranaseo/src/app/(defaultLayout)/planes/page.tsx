@@ -10,6 +10,7 @@ const PlanesPage = () => {
       <BreadCumb
         bgimg="/assets/img/bg/comon-hero-bg.jpg"
         Title="Planes y Precios"
+        breadcrumbBgColor="#F5F6FF"
       ></BreadCumb>
 
       <HeroBannerPlanes
