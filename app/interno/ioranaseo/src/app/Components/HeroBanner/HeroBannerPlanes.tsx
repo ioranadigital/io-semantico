@@ -39,7 +39,7 @@ const HeroBannerPlanes: FC<HeroBannerPlanesProps> = ({
           minHeight: "600px",
           margin: "0",
           padding: "0",
-          marginTop: "-25px",
+          marginTop: "-50px",
         }}
       >
         <div className="container">
