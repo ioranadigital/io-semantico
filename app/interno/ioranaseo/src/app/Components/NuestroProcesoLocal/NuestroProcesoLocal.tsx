@@ -65,12 +65,14 @@ interface NuestroProcesoLocalProps {
   title?: string;
   titleHighlight?: string;
   description?: string;
+  steps?: Step[];
 }
 
 export default function NuestroProcesoLocal({
   title = "¿Cómo desarrollamos",
   titleHighlight = "SEO Local?",
   description = "Proceso probado en más de 80 proyectos. Sin tecnicismos, sin sorpresas.",
+  steps = STEPS,
 }: NuestroProcesoLocalProps = {}) {
   return (
     <section
@@ -115,7 +117,7 @@ export default function NuestroProcesoLocal({
             gap: "30px",
           }}
         >
-          {STEPS.map((step, i) => (
+          {steps.map((step, i) => (
             <div
               key={step.num}
               style={{
