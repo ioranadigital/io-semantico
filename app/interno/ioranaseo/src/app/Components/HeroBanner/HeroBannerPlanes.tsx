@@ -12,6 +12,7 @@ interface HeroBannerPlanesProps {
   showBreadcrumb?: boolean;
   showImage?: boolean;
   benefits?: string[];
+  whyImportant?: string[];
 }
 
 const HeroBannerPlanes: FC<HeroBannerPlanesProps> = ({
@@ -25,6 +26,11 @@ const HeroBannerPlanes: FC<HeroBannerPlanesProps> = ({
     "Higher Conversion Rates",
     "Increase Website Traffic",
     "Local Market Dominance",
+  ],
+  whyImportant = [
+    "El 46% de todas las búsquedas en Google tienen intención local — tus clientes te están buscando ahora mismo",
+    "El 76% de las personas que hacen una búsqueda local visitan el negocio en 24 horas",
+    "Los negocios en el Local Pack de Google reciben el 44% de los clics totales de la página de resultados",
   ],
 }) => {
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -304,94 +310,37 @@ const HeroBannerPlanes: FC<HeroBannerPlanesProps> = ({
                         gap: "20px",
                       }}
                     >
-                      <div
-                        style={{
-                          display: "flex",
-                          gap: "12px",
-                          alignItems: "flex-start",
-                        }}
-                      >
-                        <span
+                      {whyImportant.map((tip, index) => (
+                        <div
+                          key={index}
                           style={{
-                            color: "#22c55e",
-                            fontSize: "20px",
-                            fontWeight: "700",
-                            flexShrink: 0,
+                            display: "flex",
+                            gap: "12px",
+                            alignItems: "flex-start",
                           }}
                         >
-                          ✓
-                        </span>
-                        <p
-                          style={{
-                            color: "#333",
-                            fontSize: "15px",
-                            lineHeight: "1.6",
-                            margin: "0",
-                          }}
-                        >
-                          El 46% de todas las búsquedas en Google tienen
-                          intención local — tus clientes te están buscando ahora
-                          mismo
-                        </p>
-                      </div>
-                      <div
-                        style={{
-                          display: "flex",
-                          gap: "12px",
-                          alignItems: "flex-start",
-                        }}
-                      >
-                        <span
-                          style={{
-                            color: "#22c55e",
-                            fontSize: "20px",
-                            fontWeight: "700",
-                            flexShrink: 0,
-                          }}
-                        >
-                          ✓
-                        </span>
-                        <p
-                          style={{
-                            color: "#333",
-                            fontSize: "15px",
-                            lineHeight: "1.6",
-                            margin: "0",
-                          }}
-                        >
-                          El 76% de las personas que hacen una búsqueda local
-                          visitan el negocio en 24 horas
-                        </p>
-                      </div>
-                      <div
-                        style={{
-                          display: "flex",
-                          gap: "12px",
-                          alignItems: "flex-start",
-                        }}
-                      >
-                        <span
-                          style={{
-                            color: "#22c55e",
-                            fontSize: "20px",
-                            fontWeight: "700",
-                            flexShrink: 0,
-                          }}
-                        >
-                          ✓
-                        </span>
-                        <p
-                          style={{
-                            color: "#333",
-                            fontSize: "15px",
-                            lineHeight: "1.6",
-                            margin: "0",
-                          }}
-                        >
-                          Los negocios en el Local Pack de Google reciben el 44%
-                          de los clics totales de la página de resultados
-                        </p>
-                      </div>
+                          <span
+                            style={{
+                              color: "#22c55e",
+                              fontSize: "20px",
+                              fontWeight: "700",
+                              flexShrink: 0,
+                            }}
+                          >
+                            ✓
+                          </span>
+                          <p
+                            style={{
+                              color: "#333",
+                              fontSize: "15px",
+                              lineHeight: "1.6",
+                              margin: "0",
+                            }}
+                          >
+                            {tip}
+                          </p>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 </div>
