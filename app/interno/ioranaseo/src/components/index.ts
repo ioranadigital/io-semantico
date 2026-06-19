@@ -1,4 +1,4 @@
-export { default as OptimizedImage } from "./OptimizedImage";
+export { OptimizedImage, ResponsiveImage } from "./OptimizedImage";
 export { default as SEOHead } from "./SEOHead";
 export { default as WebVitalsMonitor } from "./WebVitalsMonitor";
 export { default as PerformanceMetrics } from "./PerformanceMetrics";
