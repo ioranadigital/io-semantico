@@ -125,46 +125,8 @@ const nextConfig = {
     };
   },
 
-  // Webpack optimization
-  webpack: (config, { isServer }) => {
-    if (!isServer) {
-      config.optimization = {
-        ...config.optimization,
-        splitChunks: {
-          chunks: "all",
-          cacheGroups: {
-            default: false,
-            vendors: false,
-            vendor: {
-              filename: "chunks/vendor.js",
-              chunks: "all",
-              test: /node_modules/,
-              priority: 10,
-              minSize: 100000,
-            },
-            common: {
-              minChunks: 2,
-              priority: 5,
-              reuseExistingChunk: true,
-              minSize: 50000,
-            },
-            reactVendor: {
-              test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
-              name: "chunks/react-vendor",
-              chunks: "all",
-              priority: 20,
-            },
-            seoLib: {
-              test: /[\\/]src[\\/]lib[\\/](performance|content|technical-seo)[\\/]/,
-              name: "chunks/seo-lib",
-              chunks: "all",
-              priority: 15,
-              minSize: 10000,
-            },
-          },
-        },
-      };
-    }
+  // Webpack optimization - simplificado para evitar conflictos
+  webpack: (config) => {
     return config;
   },
 
