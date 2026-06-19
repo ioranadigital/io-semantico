@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, FC } from "react";
 import loadBackgroudImages from "./loadBackgroudImages";
-import { OptimizedImage } from "@/components";
 import BreadcrumbInline from "../HeroBanner/BreadcrumbInline";
 
 interface BreadcrumbItem {
