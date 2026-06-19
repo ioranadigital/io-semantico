@@ -171,9 +171,6 @@ const nextConfig = {
   // Compression
   compress: true,
 
-  // SWR and static generation
-  swcMinify: true,
-
   // Powering
   poweredByHeader: false,
 
@@ -184,13 +181,6 @@ const nextConfig = {
   experimental: {
     optimizeCss: true,
     optimizePackageImports: ["lucide-react", "bootstrap-icons"],
-  },
-
-  // Turbopack configuration for faster builds
-  turbopack: {
-    resolveAlias: {
-      "@": "./src",
-    },
   },
 };
 
