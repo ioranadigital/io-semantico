@@ -14,12 +14,6 @@ export default function InformeGratisPage() {
     setLoading(true);
     setError(null);
 
-    const formData = new FormData(e.currentTarget);
-    const _website = formData.get("website") as string;
-    const _email = formData.get("email") as string;
-    const _nombre = formData.get("nombre") as string;
-    const _telefono = formData.get("telefono") as string;
-
     try {
       await new Promise((resolve) => setTimeout(resolve, 1000));
       setSubmitted(true);
