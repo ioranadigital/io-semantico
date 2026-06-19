@@ -60,10 +60,15 @@ const HeroBannerPlanes: FC<HeroBannerPlanesProps> = ({
               <div className="main-heading" style={{ marginTop: "-5px" }}>
                 <h1
                   className="text-anime-style-3"
-                  style={{ fontWeight: "bold" }}
-                >
-                  {parse(title)}
-                </h1>
+                  style={{ fontWeight: "bold", fontSize: "48px" }}
+                  dangerouslySetInnerHTML={{
+                    __html: title.replace(
+                      /<span[^>]*>/g,
+                      "<span style='color: #4D32A5; font-weight: bold;'>",
+                    ),
+                  }}
+                />
+
                 <div className="space20"></div>
                 <p data-aos="fade-right" data-aos-duration="800">
                   {parse(content)}
