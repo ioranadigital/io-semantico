@@ -8,10 +8,10 @@ interface HeroBanner4Props {
   sutitle: string;
   title: string;
   shape1: string;
-  shpae2: string;
-  shpae3: string;
-  shpae4: string;
-  shpae5: string;
+  shape2: string;
+  shape3: string;
+  shape4: string;
+  shape5: string;
   img: string;
 }
 
@@ -20,10 +20,10 @@ const HeroBanner4: FC<HeroBanner4Props> = ({
   sutitle,
   title,
   shape1,
-  shpae2,
-  shpae3,
-  shpae4,
-  shpae5,
+  shape2,
+  shape3,
+  shape4,
+  shape5,
   img,
 }) => {
   useEffect(() => {
@@ -71,28 +71,28 @@ const HeroBanner4: FC<HeroBanner4Props> = ({
             className="shape1"
           />
           <Image
-            src={shpae2}
+            src={shape2}
             alt="img"
             width={335}
             height={308}
             className="shape2"
           />
           <Image
-            src={shpae3}
+            src={shape3}
             alt="img"
             width={496}
             height={375}
             className="shape3"
           />
           <Image
-            src={shpae4}
+            src={shape4}
             alt="img"
             width={358}
             height={254}
             className="shape4"
           />
           <Image
-            src={shpae5}
+            src={shape5}
             alt="img"
             width={179}
             height={179}

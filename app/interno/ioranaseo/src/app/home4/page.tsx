@@ -18,10 +18,10 @@ const page = () => {
         sutitle="Expert Strategies With SeoMax"
         title="Maximize Your ROI with Our Best SEO Solutions"
         shape1="/assets/img/shapes/hero4-shape1.png"
-        shpae2="/assets/img/shapes/hero4-shape2.png"
-        shpae3="/assets/img/shapes/hero4-shape3.png"
-        shpae4="/assets/img/shapes/hero4-shape4.png"
-        shpae5="/assets/img/shapes/hero2-shape3.png"
+        shape2="/assets/img/shapes/hero4-shape2.png"
+        shape3="/assets/img/shapes/hero4-shape3.png"
+        shape4="/assets/img/shapes/hero4-shape4.png"
+        shape5="/assets/img/shapes/hero2-shape3.png"
         img="/assets/img/hero/hero4-main-img.png"
       ></HeroBanner4>
       <About1

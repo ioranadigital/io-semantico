@@ -17,9 +17,9 @@ const page = () => {
         subtitle="Expert Strategies With SeoMax"
         title="The Best Digital Of Marketing Agency"
         content="Our dedicated team of SEO professionals committed <br> to driving targeted traffic to your website, increasing."
-        shpae1="/assets/img/shapes/hero2-shape1.png"
-        shpae2="/assets/img/shapes/hero2-shape2.png"
-        shpae3="/assets/img/shapes/hero2-shape3.png"
+        shape1="/assets/img/shapes/hero2-shape1.png"
+        shape2="/assets/img/shapes/hero2-shape2.png"
+        shape3="/assets/img/shapes/hero2-shape3.png"
         img1="/assets/img/hero/hero2-main-image.png"
         img2="/assets/img/shapes/hero2-left-shape.png"
       ></HeroBanner2>

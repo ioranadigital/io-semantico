@@ -29,14 +29,14 @@
   },
   {
     "icon": "/assets/img/icons/service-icon5.svg",
-    "title": "PPC Advertise",
+    "title": "PPC Advertising",
     "desc": "Pay-Per-Click (PPC) advertising is a powerful digital marketing tool that allows businesses to reach their target audience.",
     "btnLink": "/service/service-details",
     "addclass": "service-box noactive"
   },
   {
     "icon": "/assets/img/icons/service-icon6.svg",
-    "title": "Influence Marketing",
+    "title": "Influencer Marketing",
     "desc": "Analyst reporting is a critical within any organization, providing valuable insights and data-driven recommendations.",
     "btnLink": "/service/service-details",
     "addclass": "service-box noactive"

@@ -60,7 +60,7 @@ const seoLocalSteps = [
     title: "Garantía de Posicionamiento",
     body: "Te posicionamos en el Local Pack o ajustamos sin costo · Optimización continua basada en datos · ROI medible y transparente",
     detail: "Posicionamiento garantizado · Ajustes sin costo",
-    duration: "Contínuo",
+    duration: "Continuo",
     color: "#34d399",
     icon: <FileText size={32} />,
   },

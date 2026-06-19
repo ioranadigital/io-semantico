@@ -6,9 +6,9 @@ interface HeroBanner2Props {
   subtitle: string;
   title: string;
   content: string;
-  shpae1: string;
-  shpae2: string;
-  shpae3: string;
+  shape1: string;
+  shape2: string;
+  shape3: string;
   img1: string;
   img2: string;
 }
@@ -17,9 +17,9 @@ const HeroBanner2: FC<HeroBanner2Props> = ({
   subtitle,
   title,
   content,
-  shpae1,
-  shpae2,
-  shpae3,
+  shape1,
+  shape2,
+  shape3,
   img1,
   img2,
 }) => {
@@ -72,13 +72,13 @@ const HeroBanner2: FC<HeroBanner2Props> = ({
               data-aos-duration="700"
             >
               <div className="shape1 animate1">
-                <Image src={shpae1} alt="img" width={300} height={242} />
+                <Image src={shape1} alt="img" width={300} height={242} />
               </div>
               <div className="shape2 animate3">
-                <Image src={shpae2} alt="img" width={480} height={363} />
+                <Image src={shape2} alt="img" width={480} height={363} />
               </div>
               <div className="shape3 animate2">
-                <Image src={shpae3} alt="img" width={179} height={179} />
+                <Image src={shape3} alt="img" width={179} height={179} />
               </div>
             </div>
           </div>
