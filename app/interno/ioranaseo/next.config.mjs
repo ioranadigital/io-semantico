@@ -13,9 +13,12 @@ const nextConfig = {
         hostname: "iorana.dev",
       },
     ],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    minimumCacheTTL: 60,
   },
 
-  // Headers for SEO
+  // Headers for SEO and performance
   async headers() {
     return [
       {
@@ -40,6 +43,57 @@ const nextConfig = {
           {
             key: "Referrer-Policy",
             value: "strict-origin-when-cross-origin",
+          },
+        ],
+      },
+      // Cache static assets
+      {
+        source: "/static/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      // Cache images
+      {
+        source: "/images/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, stale-while-revalidate=31536000",
+          },
+        ],
+      },
+      // Cache fonts
+      {
+        source: "/fonts/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      // HTML pages
+      {
+        source: "/:path*",
+        has: [{ type: "header", key: "accept", value: "text/html" }],
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=0, stale-while-revalidate=3600",
+          },
+        ],
+      },
+      // API responses
+      {
+        source: "/api/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=60, stale-while-revalidate=300",
           },
         ],
       },
@@ -86,11 +140,26 @@ const nextConfig = {
               chunks: "all",
               test: /node_modules/,
               priority: 10,
+              minSize: 100000,
             },
             common: {
               minChunks: 2,
               priority: 5,
               reuseExistingChunk: true,
+              minSize: 50000,
+            },
+            reactVendor: {
+              test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+              name: "chunks/react-vendor",
+              chunks: "all",
+              priority: 20,
+            },
+            seoLib: {
+              test: /[\\/]src[\\/]lib[\\/](performance|content|technical-seo)[\\/]/,
+              name: "chunks/seo-lib",
+              chunks: "all",
+              priority: 15,
+              minSize: 10000,
             },
           },
         },
@@ -110,6 +179,19 @@ const nextConfig = {
 
   // Production source maps
   productionBrowserSourceMaps: false,
+
+  // Experimental optimizations
+  experimental: {
+    optimizeCss: true,
+    optimizePackageImports: ["lucide-react", "bootstrap-icons"],
+  },
+
+  // Turbopack configuration for faster builds
+  turbopack: {
+    resolveAlias: {
+      "@": "./src",
+    },
+  },
 };
 
 export default nextConfig;
