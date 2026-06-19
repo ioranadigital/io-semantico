@@ -46,7 +46,7 @@ export function getCacheHeaders(
   };
 }
 
-interface ImageOptimizationOptions {
+export interface ImageOptimizationOptions {
   width: number;
   height: number;
   quality?: number;
@@ -74,7 +74,7 @@ export function optimizeImageUrl(
   return `${src}?${params.toString()}`;
 }
 
-interface PerformanceMetrics {
+export interface PerformanceMetrics {
   lcp: number | null;
   fid: number | null;
   cls: number | null;
