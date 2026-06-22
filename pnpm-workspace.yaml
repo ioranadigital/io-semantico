@@ -1,6 +1,35 @@
+# MONOREPO CONFIG - OPCIÓN B: SEMI-INDEPENDIENTES
+# Cada proyecto mantiene su estructura, pero usa pnpm workspace
+
 packages:
-  - 'lib'
-  - 'scripts'
-  - 'app/clientes/*'
-  - 'app/interno/*'
-  - 'app/tools/*'
+  # Herramientas y librerías (tools/)
+  - 'tools/io-budget'
+  - 'tools/io-crm'
+  - 'tools/io-semantico'
+  - 'tools/io-design'
+  - 'tools/io-kw'
+  - 'tools/io-neruda'
+  - 'tools/io-prospector'
+
+  # Aplicaciones internas (interno/)
+  - 'interno/io-docusia'
+  - 'interno/io-docussia'
+  - 'interno/iorana-dev'
+  - 'interno/iorana-next'
+  - 'interno/ioranaseo'
+  - 'interno/ricardoherreravarela'
+
+  # Proyectos cliente (clientes/)
+  - 'clientes/resogar'
+
+  # Aplicaciones sin normalizar (requieren package.json raíz)
+  - 'interno/casaruralasturias'
+  - 'interno/index-construccion'
+  - 'interno/iorana-surf'
+  - 'interno/qr-iorana-dev'
+  - 'interno/surfvintage'
+  - 'clientes/hoteles'
+
+resolution-mode: highest
+node-linker: isolated
+shamefully-hoist: false

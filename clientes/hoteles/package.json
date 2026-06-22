@@ -1,0 +1,7 @@
+{
+  "name": "clientes-hoteles",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "hoteles project",
+  "private": true
+}
