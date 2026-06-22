@@ -1,16 +1,24 @@
 {
-  "name": "iorana-digital",
-  "version": "1.0.0",
+  "name": "io-monorepo",
+  "version": "0.1.0",
   "type": "module",
-  "description": "IORANA DIGITAL - Agencia digital con monorepo pnpm",
+  "description": "Iorana Digital Monorepo - Tools, internal apps, and client projects",
   "private": true,
   "scripts": {
-    "build": "pnpm -r --parallel run build",
-    "dev": "pnpm -r --parallel run dev",
-    "lint": "pnpm -r --parallel run lint",
-    "type-check": "tsc --noEmit",
-    "test:run": "pnpm -r run test --run || true",
-    "prepare": "husky install"
+    "install": "pnpm install",
+    "dev": "pnpm -r --parallel dev",
+    "build": "pnpm -r --parallel build",
+    "test": "pnpm -r --parallel test",
+    "lint": "pnpm -r --parallel lint",
+    "format": "pnpm -r --parallel format",
+    "type-check": "tsc --noEmit -p app/interno/ioranaseo/tsconfig.json",
+    "clean": "pnpm -r --parallel clean",
+    "clean:all": "pnpm clean && rm -rf node_modules pnpm-lock.yaml",
+    "lib:dev": "pnpm --filter @iorana/lib dev",
+    "semantico:dev": "pnpm --filter @iorana/io-semantico dev",
+    "design:dev": "pnpm --filter @iorana/io-design dev",
+    "iorana-next:dev": "pnpm --filter iorana-next dev",
+    "ws:list": "pnpm ls -r --depth 0"
   },
   "engines": {
     "node": ">=20.0.0",
