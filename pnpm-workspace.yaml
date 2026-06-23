@@ -2,9 +2,11 @@
 # Cada proyecto mantiene su estructura, pero usa pnpm workspace
 
 packages:
+  # Librerías compartidas
+  - 'lib'
+
   # Herramientas y librerías (tools/)
   - 'tools/io-budget'
-  - 'tools/io-crm'
   - 'tools/io-semantico'
   - 'tools/io-design'
   - 'tools/io-kw'
