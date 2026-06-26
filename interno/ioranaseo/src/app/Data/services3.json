@@ -1,0 +1,46 @@
+[
+  {
+    "addclass": "service5-items",
+    "img2": "/assets/img/service/service5-box1-img1.png",
+    "title": "IoranaSEO Social Media Strategy",
+    "desc": "At the heart of our services is a customized social media strategy tailored to your unique business goals and target audience. We understand that every brand is different, which is why we take.",
+    "list1": "Improved Brand Visibility",
+    "list2": "Enhanced Engagement",
+    "list3": "Higher Conversion Rates",
+    "list4": "Reputation Management",
+    "btnLink": "/service/service-details"
+  },
+  {
+    "addclass": "service5-items service5-items2",
+    "img2": "/assets/img/service/service5-box2-img1.png",
+    "title": "Competitor Analysis Reporting",
+    "desc": "At the heart of our services is a customized social media strategy tailored to your unique business goals and target audience. We understand that every brand is different, which is why we take.",
+    "list1": "Improved Brand Visibility",
+    "list2": "Enhanced Engagement",
+    "list3": "Higher Conversion Rates",
+    "list4": "Reputation Management",
+    "btnLink": "/service/service-details"
+  },
+  {
+    "addclass": "service5-items service5-items3",
+    "img2": "/assets/img/service/service5-box3-img1.png",
+    "title": "High Quality Content Creation",
+    "desc": "At the heart of our services is a customized social media strategy tailored to your unique business goals and target audience. We understand that every brand is different, which is why we take.",
+    "list1": "Improved Brand Visibility",
+    "list2": "Enhanced Engagement",
+    "list3": "Higher Conversion Rates",
+    "list4": "Reputation Management",
+    "btnLink": "/service/service-details"
+  },
+  {
+    "addclass": "service5-items service5-items4",
+    "img2": "/assets/img/service/service5-box4-img1.png",
+    "title": "Ad Campaign Management",
+    "desc": "At the heart of our services is a customized social media strategy tailored to your unique business goals and target audience. We understand that every brand is different, which is why we take.",
+    "list1": "Improved Brand Visibility",
+    "list2": "Enhanced Engagement",
+    "list3": "Higher Conversion Rates",
+    "list4": "Reputation Management",
+    "btnLink": "/service/service-details"
+  }
+]

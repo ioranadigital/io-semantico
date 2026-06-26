@@ -52,10 +52,26 @@ const HeroBanner3: FC<HeroBanner3Props> = ({
                 data-aos-duration="1200"
               >
                 <div className="form-btn">
-                  <Link href="/informe-gratuito" className="theme-btn2">
-                    Informe Gratuito de tu Web{" "}
-                    <span>
-                      <i className="bi bi-arrow-right"></i>
+                  <Link
+                    href="/informe-gratuito"
+                    className="btn-barrido-contact"
+                    style={{
+                      display: "inline-block",
+                      backgroundColor: "#FF8C00",
+                      color: "#ffffff",
+                      padding: "14px 32px",
+                      borderRadius: "24px",
+                      border: "none",
+                      fontWeight: "600",
+                      fontSize: "14px",
+                      cursor: "pointer",
+                      position: "relative",
+                      overflow: "hidden",
+                      textDecoration: "none",
+                    }}
+                  >
+                    <span style={{ position: "relative", zIndex: 1 }}>
+                      Informe Gratuito de tu Web →
                     </span>
                   </Link>
                 </div>

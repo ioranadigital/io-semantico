@@ -185,7 +185,7 @@ const ContactIno3: FC<ContactIno3Props> = ({ faqData, showForm = true }) => {
                     }}
                   >
                     <span style={{ position: "relative", zIndex: 1 }}>
-                      Enviar Mensaje
+                      Enviar Mensaje →
                     </span>
                   </button>
                 </form>

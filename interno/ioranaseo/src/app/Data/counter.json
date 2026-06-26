@@ -1,0 +1,22 @@
+[
+  {
+    "img": "/assets/img/icons/about3-icon1.svg",
+    "title": "Clientes que eligen comprar",
+    "desc": "Optimizamos tu web para eliminar fricciones y convertir visitantes en clientes. Llamadas, presupuestos y ventas reales."
+  },
+  {
+    "img": "/assets/img/icons/about3-icon2.svg",
+    "title": "Visibilidad de tu negocio",
+    "desc": "Posicionamos tu negocio cuando tus clientes te buscan. Capturamos intención real y dirigimos tráfico cualificado."
+  },
+  {
+    "img": "/assets/img/icons/about3-icon3.svg",
+    "title": "Liderazgo en tu región",
+    "desc": "Sé la autoridad local en Google Maps y búsquedas geográficas. Tu negocio, la primera opción en tu zona."
+  },
+  {
+    "img": "/assets/img/icons/about3-icon4.svg",
+    "title": "Un comercial activo las 24 horas",
+    "desc": "Tu presencia digital trabaja sin parar. Atrae oportunidades y captura leads fuera de tu horario comercial."
+  }
+]

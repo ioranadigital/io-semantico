@@ -1,0 +1,38 @@
+[
+  {
+    "icon": "/assets/img/service/service3-img1.png",
+    "title": "Marketing SEO",
+    "desc": "La Optimización en Motores de Búsqueda (SEO) es esencial para impulsar la visibilidad de tu sitio web en los resultados de búsqueda.",
+    "btnLink": "/service/service-details"
+  },
+  {
+    "icon": "/assets/img/service/service3-img2.png",
+    "title": "Marketing de Contenidos",
+    "desc": "El marketing de contenidos es un enfoque estratégico enfocado en crear y distribuir contenido valioso, relevante y consistente.",
+    "btnLink": "/service/service-details"
+  },
+  {
+    "icon": "/assets/img/service/service3-img3.png",
+    "title": "Marketing Digital",
+    "desc": "El marketing digital abarca todos los esfuerzos de marketing en línea para conectar con clientes potenciales y hacer crecer tu negocio.",
+    "btnLink": "/service/service-details"
+  },
+  {
+    "icon": "/assets/img/service/service3-img4.png",
+    "title": "Email Marketing",
+    "desc": "El email marketing es una estrategia de marketing digital que implica enviar correos a una lista dirigida de destinatarios con objetivos claros.",
+    "btnLink": "/service/service-details"
+  },
+  {
+    "icon": "/assets/img/service/service3-img5.png",
+    "title": "Publicidad PPC",
+    "desc": "Expande tu audiencia con publicidad pagada. Nuestros servicios de gestión incluyen creación de campañas, optimización y análisis continuo.",
+    "btnLink": "/service/service-details"
+  },
+  {
+    "icon": "/assets/img/service/service3-img6.png",
+    "title": "Marketing en Redes Sociales",
+    "desc": "Descubre las palabras clave que tus competidores están utilizando. Realizamos investigaciones profundas para identificar términos relevantes.",
+    "btnLink": "/service/service-details"
+  }
+]

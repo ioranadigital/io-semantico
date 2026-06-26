@@ -226,38 +226,6 @@ const Nav: FC<NavProps> = ({ setMobileToggle }) => {
           </ul>
         </DropDown>
       </li>
-      <li className="menu-item-has-children">
-        <Link href="/blog" onClick={() => setMobileToggle(false)}>
-          Blog
-        </Link>
-        <DropDown>
-          <ul>
-            <li>
-              <Link href="/blog" onClick={() => setMobileToggle(false)}>
-                Blog
-              </Link>
-            </li>
-            <li>
-              <Link href="/blog-right" onClick={() => setMobileToggle(false)}>
-                Blog Barra Lateral Derecha
-              </Link>
-            </li>
-            <li>
-              <Link href="/blog-left" onClick={() => setMobileToggle(false)}>
-                Blog Barra Lateral Izquierda
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/blog/blog-details"
-                onClick={() => setMobileToggle(false)}
-              >
-                Detalles de Blog
-              </Link>
-            </li>
-          </ul>
-        </DropDown>
-      </li>
       <li>
         <Link href="/informe-gratuito" onClick={() => setMobileToggle(false)}>
           Informe Gratuito

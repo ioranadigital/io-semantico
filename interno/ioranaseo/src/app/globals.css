@@ -1,0 +1,52 @@
+@import "bootstrap/dist/css/bootstrap.min.css";
+@import "./assets/main.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* All links hover to orange */
+a:hover,
+a:focus {
+  color: #FF8C00 !important;
+  transition: color 0.3s ease;
+}
+
+/* Buttons with orange background keep white text */
+.btn-barrido,
+.btn-barrido-contact,
+button[style*="background: #FF8C00"],
+button[style*="backgroundColor: #FF8C00"],
+a.btn-barrido,
+a.btn-barrido-contact {
+  color: #ffffff !important;
+}
+
+.btn-barrido:hover,
+.btn-barrido-contact:hover,
+button[style*="background: #FF8C00"]:hover,
+button[style*="backgroundColor: #FF8C00"]:hover,
+a.btn-barrido:hover,
+a.btn-barrido-contact:hover {
+  color: #ffffff !important;
+}
+
+.btn-barrido span,
+.btn-barrido-contact span,
+a.btn-barrido span,
+a.btn-barrido-contact span,
+.btn-barrido span:hover,
+.btn-barrido-contact span:hover,
+a.btn-barrido span:hover,
+a.btn-barrido-contact span:hover,
+.btn-barrido i,
+.btn-barrido-contact i,
+a.btn-barrido i,
+a.btn-barrido-contact i {
+  color: #ffffff !important;
+}
