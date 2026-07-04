@@ -1,7 +1,14 @@
-FROM python:3.11-slim
+FROM node:18-alpine
 WORKDIR /app
-COPY requirements.txt* ./
-RUN if [ -f requirements.txt ]; then pip install --no-cache-dir -r requirements.txt; fi
+COPY package.json package-lock.json* ./
+RUN npm install
 COPY . .
-EXPOSE 8000
-CMD ["python", "-m", "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+ARG NEXT_PUBLIC_SUPABASE_URL
+ARG NEXT_PUBLIC_SUPABASE_ANON_KEY
+ENV NEXT_PUBLIC_SUPABASE_URL=$NEXT_PUBLIC_SUPABASE_URL
+ENV NEXT_PUBLIC_SUPABASE_ANON_KEY=$NEXT_PUBLIC_SUPABASE_ANON_KEY
+RUN npm run build
+EXPOSE 3002
+ENV NODE_ENV=production
+ENV PORT=3002
+CMD ["npm", "start", "--", "-p", "3002"]
